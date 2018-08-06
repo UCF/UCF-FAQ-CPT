@@ -12,9 +12,10 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 		 * @since 1.0.0
 		 **/
 		public static function register() {
-			$singular = apply_filters( 'ucf_faq_singular_label', 'FAQ' );
-			$plural = apply_filters( 'ucf_faq_plural_label', 'FAQs' );
-			register_post_type( 'faq', self::args( $singular, $plural ) );
+			$text_domain = 'ucf_faq';
+			$singular = apply_filters( $text_domain . '_singular_label', 'FAQ' );
+			$plural = apply_filters( $text_domain . '_plural_label', 'FAQs' );
+			register_post_type( 'faq', self::args( $singular, $plural, $text_domain ) );
 		}
 
 		/**
@@ -23,31 +24,32 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 		 * @since 1.0.0
 		 * @param $singular string | The singular form for the CPT labels.
 		 * @param $plural string | The plural form for the CPT labels.
+		 * @param $text_domain string | Text domain for CPT.
 		 * @return Array
 		 **/
-		public static function labels( $singular, $plural ) {
+		public static function labels( $singular, $plural, $text_domain ) {
 			return array(
-				'name'                  => _x( $plural, 'Post Type General Name', 'ucf_faq' ),
-				'singular_name'         => _x( $singular, 'Post Type Singular Name', 'ucf_faq' ),
-				'menu_name'             => __( $plural, 'ucf_faq' ),
-				'name_admin_bar'        => __( $singular, 'ucf_faq' ),
-				'archives'              => __( $plural . ' Archives', 'ucf_faq' ),
-				'parent_item_colon'     => __( 'Parent ' . $singular . ':', 'ucf_faq' ),
-				'all_items'             => __( 'All ' . $plural, 'ucf_faq' ),
-				'add_new_item'          => __( 'Add New ' . $singular, 'ucf_faq' ),
-				'add_new'               => __( 'Add New', 'ucf_faq' ),
-				'new_item'              => __( 'New ' . $singular, 'ucf_faq' ),
-				'edit_item'             => __( 'Edit ' . $singular, 'ucf_faq' ),
-				'update_item'           => __( 'Update ' . $singular, 'ucf_faq' ),
-				'view_item'             => __( 'View ' . $singular, 'ucf_faq' ),
-				'search_items'          => __( 'Search ' . $plural, 'ucf_faq' ),
-				'not_found'             => __( 'Not found', 'ucf_faq' ),
-				'not_found_in_trash'    => __( 'Not found in Trash', 'ucf_faq' ),
-				'insert_into_item'      => __( 'Insert into ' . $singular, 'ucf_faq' ),
-				'uploaded_to_this_item' => __( 'Uploaded to this ' . $singular, 'ucf_faq' ),
-				'items_list'            => __( $plural . ' list', 'ucf_faq' ),
-				'items_list_navigation' => __( $plural . ' list navigation', 'ucf_faq' ),
-				'filter_items_list'     => __( 'Filter ' . $plural . ' list', 'ucf_faq' ),
+				'name'                  => _x( $plural, 'Post Type General Name', $text_domain ),
+				'singular_name'         => _x( $singular, 'Post Type Singular Name', $text_domain ),
+				'menu_name'             => __( $plural, $text_domain ),
+				'name_admin_bar'        => __( $singular, $text_domain ),
+				'archives'              => __( $plural . ' Archives', $text_domain ),
+				'parent_item_colon'     => __( 'Parent ' . $singular . ':', $text_domain ),
+				'all_items'             => __( 'All ' . $plural, $text_domain ),
+				'add_new_item'          => __( 'Add New ' . $singular, $text_domain ),
+				'add_new'               => __( 'Add New', $text_domain ),
+				'new_item'              => __( 'New ' . $singular, $text_domain ),
+				'edit_item'             => __( 'Edit ' . $singular, $text_domain ),
+				'update_item'           => __( 'Update ' . $singular, $text_domain ),
+				'view_item'             => __( 'View ' . $singular, $text_domain ),
+				'search_items'          => __( 'Search ' . $plural, $text_domain ),
+				'not_found'             => __( 'Not found', $text_domain ),
+				'not_found_in_trash'    => __( 'Not found in Trash', $text_domain ),
+				'insert_into_item'      => __( 'Insert into ' . $singular, $text_domain ),
+				'uploaded_to_this_item' => __( 'Uploaded to this ' . $singular, $text_domain ),
+				'items_list'            => __( $plural . ' list', $text_domain ),
+				'items_list_navigation' => __( $plural . ' list navigation', $text_domain ),
+				'filter_items_list'     => __( 'Filter ' . $plural . ' list', $text_domain ),
 			);
 		}
 
@@ -59,11 +61,11 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 		 * @param $plural string | The plural form for the CPT labels.
 		 * @return Array
 		 **/
-		public static function args( $singular, $plural ) {
+		public static function args( $singular, $plural, $text_domain ) {
 			$args = array(
-				'label'                 => __( $plural, 'ucf_faq' ),
-				'description'           => __( $plural, 'ucf_faq' ),
-				'labels'                => self::labels( $singular, $plural ),
+				'label'                 => __( $plural, $text_domain ),
+				'description'           => __( $plural, $text_domain ),
+				'labels'                => self::labels( $singular, $plural, $text_domain ),
 				'supports'              => array( 'title', 'editor', 'revisions', 'custom-fields', ),
 				'taxonomies'            => self::taxonomies(),
 				'hierarchical'          => false,
@@ -81,7 +83,7 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 				'capability_type'       => 'post',
 			);
 
-			$args = apply_filters( 'ucf_faq_post_type_args', $args );
+			$args = apply_filters( $text_domain . '_post_type_args', $args );
 
 			return $args;
 		}
