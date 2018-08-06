@@ -110,23 +110,5 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 
 			return $taxonomies;
 		}
-
-		public static function append_metadata( $faq ) {
-			$meta = get_post_meta( $faq->ID );
-
-			// Short circuit if there is no meta
-			if ( ! $meta ) return $faq;
-
-			foreach( $meta as $key=>$value ) {
-				if ( is_array( $value ) && count( $value ) === 1 ) {
-					$meta[$key] = $value[0];
-				}
-			}
-
-			$meta = apply_filters( 'ucf_faq_format_metadata', $meta );
-
-			$faq->metadata = $meta;
-			return $faq;
-		}
 	}
 }
