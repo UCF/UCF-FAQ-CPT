@@ -14,11 +14,20 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 		public static function shortcode( $atts ) {
 			$atts = shortcode_atts( array(
 				'layout'        => 'classic',
-				'title'         => 'FAQ'
+				'title'         => '',
+				'category'		=> '',
 			), $atts, 'ucf-faq-list' );
+
+			$category_id = null;
+
+			if( $atts['category'] ) {
+				$term = get_term_by('name', $atts['category'], 'category');
+				$category_id =  $term->term_id;
+			}
 
 			$args = array(
 				'post_type'      => 'faq',
+				'category'		 => $category_id,
 				'posts_per_page' => -1,
 				'orderby'        => 'title',
 				'order'          => 'ASC'

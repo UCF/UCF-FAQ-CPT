@@ -27,7 +27,7 @@ if ( ! function_exists( 'ucf_faq_list_display_athena' ) ) {
 		if( $items ):
 			foreach( $items as $key => $item ) :
 	?>
-				<h2 class="ucf-faq-category mt-5 mb-3 h4"><?php echo $key; ?></h2>
+				<h2 class="ucf-faq-category mt-4 mb-3 h4"><?php echo $key; ?></h2>
 	<?php
 				foreach( $item as $post ) :
 	?>
