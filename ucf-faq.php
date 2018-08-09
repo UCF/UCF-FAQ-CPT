@@ -16,6 +16,9 @@ define( 'UCF_FAQ__STATIC_URL', UCF_FAQ__PLUGIN_URL . '/static' );
 define( 'UCF_FAQ__PLUGIN_FILE', __FILE__ );
 
 include_once 'includes/ucf-faq-posttype.php';
+include_once 'includes/ucf-faq-utils.php';
+include_once 'common/ucf-faq-list-common.php';
+include_once 'shortcodes/ucf-faq-list-shortcode.php';
 
 if ( ! function_exists( 'ucf_faq_plugin_activation' ) ) {
 	function ucf_faq_plugin_activation() {
