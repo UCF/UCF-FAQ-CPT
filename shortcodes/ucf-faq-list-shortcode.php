@@ -55,4 +55,36 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 		add_shortcode( 'ucf-faq-list', array( 'UCF_FAQ_List_Shortcode', 'shortcode' ) );
 	}
 }
+
+/**
+ * Defines the faq-category-list shortcode
+ **/
+if ( ! class_exists( 'UCF_FAQ_Category_List_Shortcode' ) ) {
+	class UCF_FAQ_Category_List_Shortcode {
+		/**
+		* Displays a list of FAQ categories
+		* @author RJ Bruneel
+		* @since 1.0.0
+		* @param $atts array | An array of attributes
+		* @return string | The html output of the shortcode.
+		**/
+		public static function shortcode( $atts ) {
+			$atts = shortcode_atts( array(
+				'layout'        => 'classic',
+				'title'         => '',
+			), $atts, 'ucf-faq-list' );
+
+			$categories = get_terms('category', array(
+				'post_type' => array('faq')
+			));
+
+			echo UCF_FAQ_Category_List_Common::display_faq_categories( $categories, $atts['layout'], $atts );
+			return ob_get_clean();
+		}
+	}
+
+	if ( ! shortcode_exists( 'ucf-faq-category-list' ) ) {
+		add_shortcode( 'ucf-faq-category-list', array( 'UCF_FAQ_Category_List_Shortcode', 'shortcode' ) );
+	}
+}
 ?>
