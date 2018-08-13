@@ -38,8 +38,6 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 			);
 
 			$posts = get_posts( $args );
-			ob_start();
-
 			$items = array();
 
 			foreach( $posts as $post ) {
@@ -50,8 +48,7 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 				}
 			}
 
-			echo UCF_FAQ_List_Common::display_faqs( $items, $atts['layout'], $atts );
-			return ob_get_clean();
+			return UCF_FAQ_List_Common::display_faqs( $items, $atts['layout'], $atts );
 		}
 	}
 
@@ -84,8 +81,7 @@ if ( ! class_exists( 'UCF_FAQ_Category_List_Shortcode' ) ) {
 				'post_type' => array('faq')
 			));
 
-			echo UCF_FAQ_Category_List_Common::display_faq_categories( $categories, $atts['layout'], $atts );
-			return ob_get_clean();
+			return UCF_FAQ_Category_List_Common::display_faq_categories( $categories, $atts['layout'], $atts );
 		}
 	}
 
