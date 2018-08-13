@@ -27,11 +27,11 @@ if ( ! function_exists( 'ucf_faq_list_display_athena' ) ) {
 		if( $items ):
 			foreach( $items as $key => $item ) :
 	?>
-				<h2 class="ucf-faq-category mt-4 mb-3 h4"><?php echo $key; ?></h2>
+				<<?php echo $args['category_element']; ?> class="ucf-faq-category mt-4 mb-3 <?php echo $args['category_class']; ?>"><?php echo $key; ?></<?php echo $args['category_element']; ?>>
 	<?php
 				foreach( $item as $post ) :
 	?>
-					<a href="<?php echo get_permalink( $post->ID ); ?>"><h3 class="ucf-faq-question mt-3 h6" data-toggle="collapse" href="#post<?php echo $post->ID; ?>"><?php echo $post->post_title; ?></h3></a>
+					<a href="<?php echo get_permalink( $post->ID ); ?>"><<?php echo $args['question_element']; ?> class="ucf-faq-question mt-3 <?php echo $args['question_class']; ?>" data-toggle="collapse" href="#post<?php echo $post->ID; ?>"><?php echo $post->post_title; ?></<?php echo $args['question_element']; ?>></a>
 					<div class="collapse ucf-faq-answer" id="post<?php echo $post->ID; ?>">
 						<?php echo $post->post_content; ?>
 					</div>

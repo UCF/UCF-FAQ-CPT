@@ -28,14 +28,14 @@ if ( ! function_exists( 'ucf_faq_list_display_classic' ) ) {
 		if( $items ):
 			foreach( $items as $key => $item ) :
 	?>
-				<h2 class="ucf-faq-category"><?php echo $key; ?></h2>
+				<<?php echo $args['category_element']; ?> class="ucf-faq-category <?php echo $args['category_class']; ?>"><?php echo $key; ?></<?php echo $args['category_element']; ?>>
 	<?php
 				foreach( $item as $post ) :
 	?>
-					<h3 class="ucf-faq-question"><?php echo $post->post_title; ?></h3>
-					<div class="ucf-faq-answer">
+					<<?php echo $args['question_element']; ?> class="ucf-faq-question <?php echo $args['question_class']; ?>"><?php echo $post->post_title; ?></<?php echo $args['question_element']; ?>>
+					<p class="ucf-faq-answer">
 						<?php echo $post->post_content; ?>
-					</div>
+					</p>
 	<?php
 				endforeach;
 			endforeach;

@@ -13,9 +13,13 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 		**/
 		public static function shortcode( $atts ) {
 			$atts = shortcode_atts( array(
-				'layout'        => 'classic',
-				'title'         => '',
-				'category'		=> '',
+				'layout'            => 'classic',
+				'title'             => '',
+				'category'		    => '',
+				'category_element'  => 'h2',
+				'category_class'    => 'h4',
+				'question_element'  => 'h3',
+				'question_class'    => 'h6',
 			), $atts, 'ucf-faq-list' );
 
 			$category_id = null;
@@ -70,8 +74,10 @@ if ( ! class_exists( 'UCF_FAQ_Category_List_Shortcode' ) ) {
 		**/
 		public static function shortcode( $atts ) {
 			$atts = shortcode_atts( array(
-				'layout'        => 'classic',
-				'title'         => '',
+				'layout'            => 'classic',
+				'title'             => '',
+				'category_element'  => 'h2',
+				'category_class'    => 'h4',
 			), $atts, 'ucf-faq-list' );
 
 			$categories = get_terms('category', array(

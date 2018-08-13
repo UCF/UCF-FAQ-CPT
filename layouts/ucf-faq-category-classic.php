@@ -28,10 +28,10 @@ if ( ! function_exists( 'ucf_faq_category_list_display_classic' ) ) {
 		if( $items ):
 			foreach( $items as $item ) :
 	?>
-				<h2 class="ucf-faq-category-title"><?php echo $item->name; ?></h2>
-				<div class="ucf-faq-category-content">
+				<<?php echo $args['category_element']; ?> class="ucf-faq-category-title <?php echo $args['category_class']; ?>"><?php echo $item->name; ?></<?php echo $args['category_element']; ?>>
+				<p class="ucf-faq-category-content">
 					<?php echo $item->description; ?>
-				</div>
+				</p>
 	<?php
 			endforeach;
 		else:
