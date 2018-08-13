@@ -26,7 +26,9 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 
 			if( $atts['category'] ) {
 				$term = get_term_by('name', $atts['category'], 'category');
-				$category_id =  $term->term_id;
+				if( !empty( $term ) ) {
+					$category_id =  $term->term_id;
+				}
 			}
 
 			$args = array(
