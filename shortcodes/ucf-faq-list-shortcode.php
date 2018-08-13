@@ -15,7 +15,7 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 			$atts = shortcode_atts( array(
 				'layout'            => 'classic',
 				'title'             => '',
-				'category'		    => '',
+				'category'          => '',
 				'category_element'  => 'h2',
 				'category_class'    => 'h4',
 				'question_element'  => 'h3',
@@ -33,7 +33,7 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 
 			$args = array(
 				'post_type'      => 'faq',
-				'category'		 => $category_id,
+				'category'       => $category_id,
 				'posts_per_page' => -1,
 				'orderby'        => 'title',
 				'order'          => 'ASC'

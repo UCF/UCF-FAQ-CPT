@@ -7,7 +7,7 @@ if ( ! function_exists( 'ucf_faq_list_display_collapse_before' ) ) {
 	<?php
 		return ob_get_clean();
 	}
-	add_filter( 'ucf_faq_list_display_collapse_before', 'ucf_faq_list_display_collapse_before', 10, 4 );
+	add_filter( 'ucf_faq_list_display_collapse_before', 'ucf_faq_list_display_collapse_before', 10, 3 );
 }
 
 if ( ! function_exists( 'ucf_faq_list_display_collapse_title' ) ) {
@@ -18,7 +18,7 @@ if ( ! function_exists( 'ucf_faq_list_display_collapse_title' ) ) {
 		}
 		return $formatted_title;
 	}
-	add_filter( 'ucf_faq_list_display_collapse_title', 'ucf_faq_list_display_collapse_title', 10, 4 );
+	add_filter( 'ucf_faq_list_display_collapse_title', 'ucf_faq_list_display_collapse_title', 10, 3 );
 }
 
 if ( ! function_exists( 'ucf_faq_list_display_collapse' ) ) {
@@ -48,7 +48,7 @@ if ( ! function_exists( 'ucf_faq_list_display_collapse' ) ) {
 		endif;
 		return ob_get_clean();
 	}
-	add_filter( 'ucf_faq_list_display_collapse', 'ucf_faq_list_display_collapse', 10, 4 );
+	add_filter( 'ucf_faq_list_display_collapse', 'ucf_faq_list_display_collapse', 10, 3 );
 }
 
 if ( ! function_exists( 'ucf_faq_list_display_collapse_after' ) ) {
@@ -59,5 +59,5 @@ if ( ! function_exists( 'ucf_faq_list_display_collapse_after' ) ) {
 	<?php
 		return ob_get_clean();
 	}
-	add_filter( 'ucf_faq_list_display_collapse_after', 'ucf_faq_list_display_collapse_after', 10, 4 );
+	add_filter( 'ucf_faq_list_display_collapse_after', 'ucf_faq_list_display_collapse_after', 10, 3 );
 }

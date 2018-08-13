@@ -8,7 +8,7 @@ if ( ! function_exists( 'ucf_faq_list_display_classic_before' ) ) {
 	<?php
 		return ob_get_clean();
 	}
-	add_filter( 'ucf_faq_list_display_classic_before', 'ucf_faq_list_display_classic_before', 10, 4 );
+	add_filter( 'ucf_faq_list_display_classic_before', 'ucf_faq_list_display_classic_before', 10, 3 );
 }
 
 if ( ! function_exists( 'ucf_faq_list_display_classic_title' ) ) {
@@ -19,7 +19,7 @@ if ( ! function_exists( 'ucf_faq_list_display_classic_title' ) ) {
 		}
 		return $formatted_title;
 	}
-	add_filter( 'ucf_faq_list_display_classic_title', 'ucf_faq_list_display_classic_title', 10, 4 );
+	add_filter( 'ucf_faq_list_display_classic_title', 'ucf_faq_list_display_classic_title', 10, 3 );
 }
 
 if ( ! function_exists( 'ucf_faq_list_display_classic' ) ) {
@@ -33,9 +33,9 @@ if ( ! function_exists( 'ucf_faq_list_display_classic' ) ) {
 				foreach( $item as $post ) :
 	?>
 					<<?php echo $args['question_element']; ?> class="ucf-faq-question <?php echo $args['question_class']; ?>"><?php echo $post->post_title; ?></<?php echo $args['question_element']; ?>>
-					<p class="ucf-faq-answer">
+					<div class="ucf-faq-answer">
 						<?php echo $post->post_content; ?>
-					</p>
+					</div>
 	<?php
 				endforeach;
 			endforeach;
@@ -46,7 +46,7 @@ if ( ! function_exists( 'ucf_faq_list_display_classic' ) ) {
 		endif;
 		return ob_get_clean();
 	}
-	add_filter( 'ucf_faq_list_display_classic', 'ucf_faq_list_display_classic', 10, 4 );
+	add_filter( 'ucf_faq_list_display_classic', 'ucf_faq_list_display_classic', 10, 3 );
 }
 
 if ( ! function_exists( 'ucf_faq_list_display_classic_after' ) ) {
@@ -57,5 +57,5 @@ if ( ! function_exists( 'ucf_faq_list_display_classic_after' ) ) {
 	<?php
 		return ob_get_clean();
 	}
-	add_filter( 'ucf_faq_list_display_classic_after', 'ucf_faq_list_display_classic_after', 10, 4 );
+	add_filter( 'ucf_faq_list_display_classic_after', 'ucf_faq_list_display_classic_after', 10, 3 );
 }

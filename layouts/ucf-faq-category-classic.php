@@ -8,7 +8,7 @@ if ( ! function_exists( 'ucf_faq_category_list_display_classic_before' ) ) {
 	<?php
 		return ob_get_clean();
 	}
-	add_filter( 'ucf_faq_category_list_display_classic_before', 'ucf_faq_category_list_display_classic_before', 10, 4 );
+	add_filter( 'ucf_faq_category_list_display_classic_before', 'ucf_faq_category_list_display_classic_before', 10, 3 );
 }
 
 if ( ! function_exists( 'ucf_faq_category_list_display_classic_title' ) ) {
@@ -19,7 +19,7 @@ if ( ! function_exists( 'ucf_faq_category_list_display_classic_title' ) ) {
 		}
 		return $formatted_title;
 	}
-	add_filter( 'ucf_faq_category_list_display_classic_title', 'ucf_faq_category_list_display_classic_title', 10, 4 );
+	add_filter( 'ucf_faq_category_list_display_classic_title', 'ucf_faq_category_list_display_classic_title', 10, 3 );
 }
 
 if ( ! function_exists( 'ucf_faq_category_list_display_classic' ) ) {
@@ -29,9 +29,9 @@ if ( ! function_exists( 'ucf_faq_category_list_display_classic' ) ) {
 			foreach( $items as $item ) :
 	?>
 				<<?php echo $args['category_element']; ?> class="ucf-faq-category-title <?php echo $args['category_class']; ?>"><?php echo $item->name; ?></<?php echo $args['category_element']; ?>>
-				<p class="ucf-faq-category-content">
+				<div class="ucf-faq-category-content">
 					<?php echo $item->description; ?>
-				</p>
+				</div>
 	<?php
 			endforeach;
 		else:
@@ -41,7 +41,7 @@ if ( ! function_exists( 'ucf_faq_category_list_display_classic' ) ) {
 		endif;
 		return ob_get_clean();
 	}
-	add_filter( 'ucf_faq_category_list_display_classic', 'ucf_faq_category_list_display_classic', 10, 4 );
+	add_filter( 'ucf_faq_category_list_display_classic', 'ucf_faq_category_list_display_classic', 10, 3 );
 }
 
 if ( ! function_exists( 'ucf_faq_category_list_display_classic_after' ) ) {
@@ -52,5 +52,5 @@ if ( ! function_exists( 'ucf_faq_category_list_display_classic_after' ) ) {
 	<?php
 		return ob_get_clean();
 	}
-	add_filter( 'ucf_faq_category_list_display_classic_after', 'ucf_faq_category_list_display_classic_after', 10, 4 );
+	add_filter( 'ucf_faq_category_list_display_classic_after', 'ucf_faq_category_list_display_classic_after', 10, 3 );
 }
