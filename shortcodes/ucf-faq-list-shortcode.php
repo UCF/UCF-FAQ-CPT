@@ -25,9 +25,9 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 			$category_id = null;
 
 			if( $atts['category'] ) {
-				$term = get_term_by('name', $atts['category'], 'category');
-				if( !empty( $term ) ) {
-					$category_id =  $term->term_id;
+				$slug = get_term_by( 'slug', $atts['category'], 'category' );
+				if( !empty( $slug ) ) {
+					$category_id =  $slug->term_id;
 				}
 			}
 
@@ -79,9 +79,9 @@ if ( ! class_exists( 'UCF_FAQ_Category_List_Shortcode' ) ) {
 				'category_class'    => 'h4',
 			), $atts, 'ucf-faq-list' );
 
-			$categories = get_terms('category', array(
+			$categories = get_terms( 'category', array(
 				'post_type' => array('faq')
-			));
+			) );
 
 			return UCF_FAQ_Category_List_Common::display_faq_categories( $categories, $atts['layout'], $atts );
 		}
