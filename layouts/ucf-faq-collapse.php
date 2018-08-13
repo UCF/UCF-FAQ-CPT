@@ -1,28 +1,28 @@
 <?php
-if ( ! function_exists( 'ucf_faq_list_display_athena_before' ) ) {
-	function ucf_faq_list_display_athena_before( $content, $items, $args ) {
+if ( ! function_exists( 'ucf_faq_list_display_collapse_before' ) ) {
+	function ucf_faq_list_display_collapse_before( $content, $items, $args ) {
 		ob_start();
 	?>
 		<div class="faq-list-wrapper">
 	<?php
 		return ob_get_clean();
 	}
-	add_filter( 'ucf_faq_list_display_athena_before', 'ucf_faq_list_display_athena_before', 10, 4 );
+	add_filter( 'ucf_faq_list_display_collapse_before', 'ucf_faq_list_display_collapse_before', 10, 4 );
 }
 
-if ( ! function_exists( 'ucf_faq_list_display_athena_title' ) ) {
-	function ucf_faq_list_display_athena_title( $content, $items, $args ) {
+if ( ! function_exists( 'ucf_faq_list_display_collapse_title' ) ) {
+	function ucf_faq_list_display_collapse_title( $content, $items, $args ) {
 		$formatted_title = '';
 		if ( $title = $args['title'] ) {
 			$formatted_title = '<h2 class="ucf-faq-list-title">' . $title . '</h2>';
 		}
 		return $formatted_title;
 	}
-	add_filter( 'ucf_faq_list_display_athena_title', 'ucf_faq_list_display_athena_title', 10, 4 );
+	add_filter( 'ucf_faq_list_display_collapse_title', 'ucf_faq_list_display_collapse_title', 10, 4 );
 }
 
-if ( ! function_exists( 'ucf_faq_list_display_athena' ) ) {
-	function ucf_faq_list_display_athena( $content, $items, $args ) {
+if ( ! function_exists( 'ucf_faq_list_display_collapse' ) ) {
+	function ucf_faq_list_display_collapse( $content, $items, $args ) {
 		ob_start();
 		if( $items ):
 			foreach( $items as $key => $item ) :
@@ -45,16 +45,16 @@ if ( ! function_exists( 'ucf_faq_list_display_athena' ) ) {
 		endif;
 		return ob_get_clean();
 	}
-	add_filter( 'ucf_faq_list_display_athena', 'ucf_faq_list_display_athena', 10, 4 );
+	add_filter( 'ucf_faq_list_display_collapse', 'ucf_faq_list_display_collapse', 10, 4 );
 }
 
-if ( ! function_exists( 'ucf_faq_list_display_athena_after' ) ) {
-	function ucf_faq_list_display_athena_after( $content, $items, $args ) {
+if ( ! function_exists( 'ucf_faq_list_display_collapse_after' ) ) {
+	function ucf_faq_list_display_collapse_after( $content, $items, $args ) {
 		ob_start();
 	?>
 		</div>
 	<?php
 		return ob_get_clean();
 	}
-	add_filter( 'ucf_faq_list_display_athena_after', 'ucf_faq_list_display_athena_after', 10, 4 );
+	add_filter( 'ucf_faq_list_display_collapse_after', 'ucf_faq_list_display_collapse_after', 10, 4 );
 }

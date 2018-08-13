@@ -20,7 +20,7 @@ include_once 'common/ucf-faq-list-common.php';
 include_once 'shortcodes/ucf-faq-list-shortcode.php';
 
 include_once 'layouts/ucf-faq-classic.php';
-include_once 'layouts/ucf-faq-athena.php';
+include_once 'layouts/ucf-faq-collapse.php';
 include_once 'layouts/ucf-faq-category-classic.php';
 
 if ( ! function_exists( 'ucf_faq_plugin_activation' ) ) {
