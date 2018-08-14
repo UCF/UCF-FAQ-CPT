@@ -73,6 +73,8 @@ if ( ! class_exists( 'UCF_FAQ_Category_List_Common' ) ) {
 	}
 }
 
+/*
+
 add_filter( 'template_include', 'faq_page_template', 9 );
 
 function faq_page_template( $template ) {
@@ -87,4 +89,4 @@ function faq_page_template( $template ) {
 	// }
 
 	return $template;
-}
+} */
