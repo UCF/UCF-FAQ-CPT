@@ -15,25 +15,25 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 			$atts = shortcode_atts( array(
 				'layout'            => 'classic',
 				'title'             => '',
-				'category'          => '',
-				'category_element'  => 'h2',
-				'category_class'    => 'h4',
+				'topic'          => '',
+				'topic_element'  => 'h2',
+				'topic_class'    => 'h4',
 				'question_element'  => 'h3',
 				'question_class'    => 'h6',
 			), $atts, 'ucf-faq-list' );
 
-			$category_id = null;
+			$topic_id = null;
 
-			if( $atts['category'] ) {
-				$slug = get_term_by( 'slug', $atts['category'], 'category' );
+			if( $atts['topic'] ) {
+				$slug = get_term_by( 'slug', $atts['topic'], 'topic' );
 				if( !empty( $slug ) ) {
-					$category_id =  $slug->term_id;
+					$topic_id =  $slug->term_id;
 				}
 			}
 
 			$args = array(
 				'post_type'      => 'faq',
-				'category'       => $category_id,
+				'topic'       => $topic_id,
 				'posts_per_page' => -1,
 				'orderby'        => 'title',
 				'order'          => 'ASC'
@@ -43,10 +43,10 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 			$items = array();
 
 			foreach( $posts as $post ) {
-				$categories = wp_get_post_terms( $post->ID, 'category' );
+				$topics = wp_get_post_terms( $post->ID, 'topic' );
 
-				foreach( $categories as $cat ) {
-					$items[$cat->name][] = $post;
+				foreach( $topics as $topic ) {
+					$items[$topic->name][] = $post;
 				}
 			}
 
@@ -60,12 +60,12 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 }
 
 /**
- * Defines the faq-category-list shortcode
+ * Defines the faq-topic-list shortcode
  **/
-if ( ! class_exists( 'UCF_FAQ_Category_List_Shortcode' ) ) {
-	class UCF_FAQ_Category_List_Shortcode {
+if ( ! class_exists( 'UCF_FAQ_Topic_List_Shortcode' ) ) {
+	class UCF_FAQ_Topic_List_Shortcode {
 		/**
-		* Displays a list of FAQ categories
+		* Displays a list of FAQ topics
 		* @author RJ Bruneel
 		* @since 1.0.0
 		* @param $atts array | An array of attributes
@@ -75,20 +75,20 @@ if ( ! class_exists( 'UCF_FAQ_Category_List_Shortcode' ) ) {
 			$atts = shortcode_atts( array(
 				'layout'            => 'classic',
 				'title'             => '',
-				'category_element'  => 'h2',
-				'category_class'    => 'h4',
+				'topic_element'  => 'h2',
+				'topic_class'    => 'h4',
 			), $atts, 'ucf-faq-list' );
 
-			$categories = get_terms( 'category', array(
+			$topics = get_terms( 'topic', array(
 				'post_type' => array('faq')
 			) );
 
-			return UCF_FAQ_Category_List_Common::display_faq_categories( $categories, $atts['layout'], $atts );
+			return UCF_FAQ_Topic_List_Common::display_faq_topics( $topics, $atts['layout'], $atts );
 		}
 	}
 
-	if ( ! shortcode_exists( 'ucf-faq-category-list' ) ) {
-		add_shortcode( 'ucf-faq-category-list', array( 'UCF_FAQ_Category_List_Shortcode', 'shortcode' ) );
+	if ( ! shortcode_exists( 'ucf-faq-topic-list' ) ) {
+		add_shortcode( 'ucf-faq-topic-list', array( 'UCF_FAQ_Topic_List_Shortcode', 'shortcode' ) );
 	}
 }
 ?>
