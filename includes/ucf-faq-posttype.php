@@ -90,25 +90,27 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 
 		/**
 		 * Returns a list of taxonomies to add during post type registration.
-		 * @author Jim Barnes
+		 * @author RJ Bruneel
 		 * @since 1.0.0
 		 * @return Array<string>
 		 **/
 		public static function taxonomies() {
+			$retval = array();
 			$taxonomies = array(
 				'post_tag',
-				'category'
+				'topic'
 			);
 
 			$taxonomies = apply_filters( self::$text_domain . '_taxonomies', $taxonomies );
 
 			foreach( $taxonomies as $taxonomy ) {
-				if ( ! taxonomy_exists( $taxonomy ) ) {
-					unset( $taxonomies[$taxonomy] );
+				if ( taxonomy_exists( $taxonomy ) ) {
+					$retval[] = $taxonomy;
 				}
 			}
 
-			return $taxonomies;
+			return $retval;
 		}
+
 	}
 }

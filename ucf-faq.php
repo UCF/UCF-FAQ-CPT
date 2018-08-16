@@ -15,16 +15,18 @@ define( 'UCF_FAQ__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'UCF_FAQ__STATIC_URL', UCF_FAQ__PLUGIN_URL . '/static' );
 define( 'UCF_FAQ__PLUGIN_FILE', __FILE__ );
 
+include_once 'includes/ucf-faq-topic-tax.php';
 include_once 'includes/ucf-faq-posttype.php';
 include_once 'common/ucf-faq-list-common.php';
 include_once 'shortcodes/ucf-faq-list-shortcode.php';
 
 include_once 'layouts/ucf-faq-classic.php';
 include_once 'layouts/ucf-faq-collapse.php';
-include_once 'layouts/ucf-faq-category-classic.php';
+include_once 'layouts/ucf-faq-topic-classic.php';
 
 if ( ! function_exists( 'ucf_faq_plugin_activation' ) ) {
 	function ucf_faq_plugin_activation() {
+		UCF_FAQ_Topic::register_topic();
 		UCF_FAQ_PostType::register();
 		flush_rewrite_rules();
 		return;
@@ -48,6 +50,13 @@ if ( ! function_exists( 'ucf_faq_plugins_loaded' ) ) {
 	}
 
 	add_action( 'plugins_loaded', 'ucf_faq_plugins_loaded', 10, 0 );
+}
+
+if ( ! function_exists( 'ucf_faq_init' ) ) {
+	function ucf_faq_init() {
+		add_action( 'init', array( 'UCF_FAQ_Topic', 'register_topic'), 10, 0 );
+	}
+	add_action( 'plugins_loaded', 'ucf_faq_init' );
 }
 
 ?>
