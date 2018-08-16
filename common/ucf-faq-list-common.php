@@ -75,20 +75,20 @@ if ( ! class_exists( 'UCF_FAQ_Topic_List_Common' ) ) {
 
 
 function ucf_faq_page_template( $template ) {
-	if (
-		( is_category() && get_query_var( 'post_type' ) === 'faq' )
-		|| is_post_type_archive()
-	) {
+	// if (
+	// 	( is_category() && get_query_var( 'post_type' ) === 'faq' )
+	// 	|| is_post_type_archive()
+	// ) {
 		$new_template = plugin_dir_path( __FILE__ ) . 'faq-category-page-template.php';
 		if ( file_exists( $new_template ) ) {
 			return $new_template;
 		}
-	}
+	// }
 
 	return $template;
 }
 
-add_filter( 'template_include', 'ucf_faq_page_template', 9 );
+// add_filter( 'template_include', 'ucf_faq_page_template', 9 );
 
 
 function ucf_faq_sort_order( $query ) {
@@ -101,4 +101,4 @@ function ucf_faq_sort_order( $query ) {
 	}
 };
 
-add_action( 'pre_get_posts', 'ucf_faq_sort_order' );
+// add_action( 'pre_get_posts', 'ucf_faq_sort_order' );

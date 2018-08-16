@@ -3,7 +3,7 @@
 <article>
 	<div class="container ucf-faq-topic-archive">
 		<?php
-		$topic_description = topic_description();
+		$topic_description = term_description();
 		if ( ! empty( $topic_description ) ) {
 			echo '<div class="ucf-faq-topic-description mb-4">' . $topic_description . '</div>';
 		}
