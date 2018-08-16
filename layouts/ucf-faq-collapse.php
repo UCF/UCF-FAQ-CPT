@@ -28,7 +28,7 @@ if ( ! function_exists( 'ucf_faq_list_display_collapse' ) ) {
 		if( $items ):
 			foreach( $items as $key => $item ) :
 	?>
-				<<?php echo $args['category_element']; ?> class="ucf-faq-category mt-4 mb-3 <?php echo $args['category_class']; ?>"><?php echo $key; ?></<?php echo $args['category_element']; ?>>
+				<<?php echo $args['topic_element']; ?> class="ucf-faq-topic mt-4 mb-3 <?php echo $args['topic_class']; ?>"><?php echo $key; ?></<?php echo $args['topic_element']; ?>>
 	<?php
 				foreach( $item as $post ) :
 	?>
