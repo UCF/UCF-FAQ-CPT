@@ -12,9 +12,13 @@
 			while ( have_posts() ) {
 				the_post();
 			?>
-				<h2 class="ucf-faq-topic-question h5"><?php the_title(); ?></h2>
-				<div class="ucf-faq-topic-answer mt-2 mb-4">
-					<?php echo the_content(); ?>
+				<a href="<?php echo get_permalink( $post->ID ); ?>">
+					<h2 class="ucf-faq-question mt-3 h5" data-toggle="collapse" href="#post<?php echo $post->ID; ?>">
+						<?php the_title(); ?>
+					</h2>
+				</a>
+				<div class="ucf-faq-topic-answer mt-2 mb-4 collapse" id="post<?php echo $post->ID; ?>">
+					<?php the_content(); ?>
 				</div>
 			<?php
 			}
