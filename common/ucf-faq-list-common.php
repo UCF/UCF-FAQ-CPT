@@ -1,6 +1,8 @@
 <?php
 /**
- * Defines hooks for displaying lists of faqs.
+ * Defines hooks for displaying a list of FAQs.
+ * @author RJ Bruneel
+ * @since 1.0.0
  **/
 if ( ! class_exists( 'UCF_FAQ_List_Common' ) ) {
 	class UCF_FAQ_List_Common {
@@ -36,8 +38,11 @@ if ( ! class_exists( 'UCF_FAQ_List_Common' ) ) {
 	}
 }
 
+
 /**
- * Defines hooks for displaying lists of faq topics.
+ * Defines hooks for displaying a list of FAQ topics.
+ * @author RJ Bruneel
+ * @since 1.0.0
  **/
 if ( ! class_exists( 'UCF_FAQ_Topic_List_Common' ) ) {
 	class UCF_FAQ_Topic_List_Common {
@@ -74,7 +79,31 @@ if ( ! class_exists( 'UCF_FAQ_Topic_List_Common' ) ) {
 }
 
 
+/**
+ * Adds filter to display custom template for FAQ topic taxonomy.
+ * @author RJ Bruneel
+ * @since 1.0.0
+ **/
 function ucf_faq_template( $template ) {
+	if ( get_query_var( 'post_type' ) === 'faq' && is_archive() ) {
+		$new_template = plugin_dir_path( __FILE__ ) . 'faq-template.php';
+		if ( file_exists( $new_template ) ) {
+			return $new_template;
+		}
+	}
+
+	return $template;
+}
+
+add_filter( 'template_include', 'ucf_faq_template', 9 );
+
+
+/**
+ * Adds filter to display custom template for FAQ topic taxonomy.
+ * @author RJ Bruneel
+ * @since 1.0.0
+ **/
+function ucf_faq_topic_template( $template ) {
 	if ( is_tax( 'topic' ) ) {
 		$new_template = plugin_dir_path( __FILE__ ) . 'faq-topic-template.php';
 		if ( file_exists( $new_template ) ) {
@@ -86,11 +115,11 @@ function ucf_faq_template( $template ) {
 
 }
 
-add_filter( 'template_include', 'ucf_faq_template', 9 );
+add_filter( 'template_include', 'ucf_faq_topic_template', 9 );
 
 
 function ucf_faq_sort_order( $query ) {
-	if ( is_tax( 'topic' ) ) {
+	if ( is_tax( 'topic' ) || ( ( is_category() && get_query_var( 'post_type' ) === 'faq' )	|| is_post_type_archive() ) ) {
 		$query->set( 'order', 'ASC' );
 		$query->set( 'orderby', 'title' );
 	}

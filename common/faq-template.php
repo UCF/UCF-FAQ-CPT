@@ -1,13 +1,9 @@
 <?php get_header(); ?>
 
 <article>
-	<div class="container mb-5 ucf-faq-topic-list">
+	<div class="container my-5 ucf-faq-list">
+		<h1 class="ucf-faq-title mb-4">Frequently Asked Questions</h1>
 		<?php
-		$topic_description = term_description();
-		if ( ! empty( $topic_description ) ) {
-			echo '<div class="ucf-faq-topic-description mb-4">' . $topic_description . '</div>';
-		}
-
 		if ( have_posts() ) {
 			while ( have_posts() ) {
 				the_post();
