@@ -1,6 +1,8 @@
 <?php
 /**
- * Defines hooks for displaying lists of faqs.
+ * Defines hooks for displaying a list of FAQs.
+ * @author RJ Bruneel
+ * @since 1.0.0
  **/
 if ( ! class_exists( 'UCF_FAQ_List_Common' ) ) {
 	class UCF_FAQ_List_Common {
@@ -36,8 +38,11 @@ if ( ! class_exists( 'UCF_FAQ_List_Common' ) ) {
 	}
 }
 
+
 /**
- * Defines hooks for displaying lists of faq topics.
+ * Defines hooks for displaying a list of FAQ topics.
+ * @author RJ Bruneel
+ * @since 1.0.0
  **/
 if ( ! class_exists( 'UCF_FAQ_Topic_List_Common' ) ) {
 	class UCF_FAQ_Topic_List_Common {
@@ -72,27 +77,3 @@ if ( ! class_exists( 'UCF_FAQ_Topic_List_Common' ) ) {
 		}
 	}
 }
-
-
-function ucf_faq_template( $template ) {
-	if ( is_tax( 'topic' ) ) {
-		$new_template = plugin_dir_path( __FILE__ ) . 'faq-topic-template.php';
-		if ( file_exists( $new_template ) ) {
-			return $new_template;
-		}
-	}
-
-	return $template;
-}
-
-add_filter( 'template_include', 'ucf_faq_template', 9 );
-
-
-function ucf_faq_sort_order( $query ) {
-	if ( is_tax( 'topic' ) ) {
-		$query->set( 'order', 'ASC' );
-		$query->set( 'orderby', 'title' );
-	}
-};
-
-add_action( 'pre_get_posts', 'ucf_faq_sort_order' );
