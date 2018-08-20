@@ -14,6 +14,11 @@ Provides a custom post type for describing FAQ.
 
 Provides a custom post type for describing FAQ.
 
+The following templates can be overwritten in the theme.
+* single-faq.php
+* archive-faq.php
+* taxonomy-topic.php
+
 
 == Installation ==
 
