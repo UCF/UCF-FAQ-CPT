@@ -1,19 +1,16 @@
-<?php get_header(); ?>
+<?php
+get_header();
+$container_classes = " container my-5";
+$title_classes = " mb-4";
+?>
 
 <article>
-	<div class="<?php if( get_option( 'ucf_faq_include_athena_classes' ) ) echo "container my-5 "; ?>ucf-faq-list">
-		<h1 class="ucf-faq-title<?php if( get_option( 'ucf_faq_include_athena_classes' ) ) echo " mb-4"; ?>">Frequently Asked Questions</h1>
+	<div class="ucf-faq-list<?php UCF_FAQ_Config::add_athena_attr($container_classes); ?>">
+		<h1 class="ucf-faq-title<?php UCF_FAQ_Config::add_athena_attr($title_classes); ?>">Frequently Asked Questions</h1>
 		<?php
 		if ( have_posts() ) {
 
-			$args = array(
-				'post_type'      => 'faq',
-				'posts_per_page' => -1,
-				'orderby'        => 'title',
-				'order'          => 'ASC'
-			);
-
-			$posts = get_posts( $args );
+			$posts = $wp_query->posts;
 			$items = array();
 
 			foreach( $posts as $post ) {
@@ -25,29 +22,22 @@
 			}
 
 			foreach( $items as $key => $item ) :
-				$title_classes = ( get_option( 'ucf_faq_include_athena_classes' ) ) ? " mt-4 mb-3" : "";
+				$topic_title_classes = " mt-4 mb-3";
 			?>
-				<h2 class="ucf-faq-topic<?php echo $title_classes; ?>"><?php echo $key; ?></h2>
+				<h2 class="ucf-faq-topic<?php UCF_FAQ_Config::add_athena_attr($topic_title_classes); ?>"><?php echo $key; ?></h2>
 			<?php
 				foreach( $item as $post ) :
-					$question_classes = "";
-					$question_attrs = "";
-					$answer_classes = "";
-					$answer_attrs = "";
-
-					if ( get_option( 'ucf_faq_include_athena_classes' ) ) {
-						$question_classes = " mt-3 h5";
-						$question_attrs = ' data-toggle="collapse" href="#post' . $post->ID . '"';
-						$answer_classes = " mt-2 mb-4 collapse";
-						$answer_attrs = ' id="post' . $post->ID . '"';
-					}
+					$question_classes = " mt-3 h5";
+					$question_attrs = ' data-toggle="collapse" href="#post' . $post->ID . '"';
+					$answer_classes = " mt-2 mb-4 collapse";
+					$answer_attrs = ' id="post' . $post->ID . '"';
 			?>
 					<a href="<?php echo get_permalink( $post->ID ); ?>">
-						<h3 class="ucf-faq-question<?php echo $question_classes; ?>"<?php echo $question_attrs; ?>>
+						<h3 class="ucf-faq-question<?php UCF_FAQ_Config::add_athena_attr($question_classes); ?>"<?php UCF_FAQ_Config::add_athena_attr($question_attrs); ?>>
 							<?php echo $post->post_title; ?>
 						</h3>
 					</a>
-					<div class="ucf-faq-topic-answer<?php echo $answer_classes; ?>"<?php echo $answer_attrs; ?>>
+					<div class="ucf-faq-topic-answer<?php UCF_FAQ_Config::add_athena_attr($answer_classes); ?>"<?php UCF_FAQ_Config::add_athena_attr($answer_attrs); ?>>
 						<?php echo $post->post_content; ?>
 					</div>
 			<?php
