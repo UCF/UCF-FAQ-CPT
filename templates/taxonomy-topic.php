@@ -4,15 +4,15 @@ $container_classes = " container mb-5";
 ?>
 
 <article>
-	<div class="ucf-faq-topic-list<?php UCF_FAQ_Config::add_athena_attr($container_classes); ?>">
+	<div class="ucf-faq-topic-list<?php UCF_FAQ_Config::add_athena_attr( $container_classes ); ?>">
 		<?php
 		$topic_description = term_description();
 
 		if ( ! empty( $topic_description ) ) {
 			$topic_description_classes = " mb-4";
 		?>
-			<div class="ucf-faq-topic-description<?php UCF_FAQ_Config::add_athena_attr($topic_description_classes); ?>">
-				<?php UCF_FAQ_Config::add_athena_attr($topic_description); ?>
+			<div class="ucf-faq-topic-description<?php UCF_FAQ_Config::add_athena_attr( $topic_description_classes ); ?>">
+				<?php UCF_FAQ_Config::add_athena_attr( $topic_description ); ?>
 			</div>
 		<?php
 		}
@@ -26,11 +26,11 @@ $container_classes = " container mb-5";
 				$answer_attrs = ' id="post' . $post->ID . '"';
 			?>
 				<a href="<?php echo get_permalink( $post->ID ); ?>">
-					<h2 class="ucf-faq-question<?php UCF_FAQ_Config::add_athena_attr($question_classes); ?>"<?php UCF_FAQ_Config::add_athena_attr($question_attrs); ?>>
+					<h2 class="ucf-faq-question<?php UCF_FAQ_Config::add_athena_attr( $question_classes ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>>
 						<?php the_title(); ?>
 					</h2>
 				</a>
-				<div class="ucf-faq-topic-answer<?php UCF_FAQ_Config::add_athena_attr($answer_classes); ?>"<?php UCF_FAQ_Config::add_athena_attr($answer_attrs); ?>>
+				<div class="ucf-faq-topic-answer<?php UCF_FAQ_Config::add_athena_attr( $answer_classes ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $answer_attrs ); ?>>
 					<?php the_content(); ?>
 				</div>
 			<?php

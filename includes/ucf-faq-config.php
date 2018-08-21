@@ -131,7 +131,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			// Register fields - general
 			add_settings_field(
 				self::$option_prefix . 'include_athena_classes',
-				'Include Default CSS',  // formatted field title
+				'Include Athena Classes',  // formatted field title
 				array( 'UCF_FAQ_Config', 'display_settings_field' ),  // display callback
 					'ucf_faq',  // settings page slug
 					'ucf_faq_section_general',  // option section slug
