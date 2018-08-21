@@ -8,14 +8,17 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			$default_plugin_options = array(
 				'ucf_faq_include_athena_classes'    => 'on',
 			);
+
 		public static function add_options() {
 			$defaults = self::$default_plugin_options;
 			add_option( 'ucf_faq_include_athena_classes', $defaults['ucf_faq_include_athena_classes'] );
 		}
+
 		public static function get_default_plugin_options() {
 			$defaults = self::$default_plugin_options;
 			return self::format_options( $defaults );
 		}
+
 		public static function format_options( $list ) {
 			foreach( $list as $key => $val ) {
 				switch( $key ) {
@@ -28,6 +31,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			}
 			return $list;
 		}
+
 		public static function add_options_page() {
 			add_options_page(
 				'UCF FAQ',
@@ -41,9 +45,11 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			);
 			add_action( 'admin_init', array( 'UCF_FAQ_Config', 'register_settings' ) );
 		}
+
 		public static function register_settings() {
 			register_setting( 'ucf-faq-group', 'ucf_faq_include_athena_classes' );
 		}
+
 		public static function add_settings_page() {
 			$defaults = self::get_default_plugin_options();
 			$ucf_faq_include_athena_classes = get_option( 'ucf_faq_include_athena_classes', $defaults['ucf_faq_include_athena_classes'] );
@@ -69,6 +75,17 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 				</form>
 			</div>
 	<?php
+		}
+
+
+		/**
+		 * Add athena classes if setting is turned on.
+		 * @author RJ Bruneel
+		 * @since 1.0.0
+		 **/
+
+		public static function add_athena_attr($attr) {
+			echo ( get_option( 'ucf_faq_include_athena_classes' ) ) ? $attr : "";
 		}
 	}
 }
