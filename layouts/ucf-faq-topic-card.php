@@ -27,25 +27,33 @@ if ( ! function_exists( 'ucf_faq_topic_list_display_card' ) ) {
 		ob_start();
 		if( $items ):
 	?>
-			<div class="card-deck mb-4">
+			<div class="row">
 	<?php
 			foreach( $items as $key => $item ) :
 	?>
-				<div class="card">
-					<div class="card-block">
-						<a href="<?php echo get_term_link( $item->term_id ); ?>">
-							<<?php echo $args['topic_element']; ?> class="ucf-faq-topic-title card-title <?php echo $args['topic_class']; ?>">
-								<?php echo $item->name; ?>
-							</<?php echo $args['topic_element']; ?>>
-						</a>
-						<div class="card-text"><?php echo $item->description; ?></div>
+				<div class="col-md-4 mb-4">
+					<div class="card h-100">
+						<div class="card-block">
+							<a href="<?php echo get_term_link( $item->term_id ); ?>">
+								<<?php echo $args['topic_element']; ?> class="ucf-faq-topic-title card-title <?php echo $args['topic_class']; ?>">
+									<?php echo $item->name; ?>
+								</<?php echo $args['topic_element']; ?>>
+							</a>
+	<?php
+						if( $item->description ) :
+	?>
+							<div class="card-text"><?php echo $item->description; ?></div>
+	<?php
+						endif;
+	?>
+						</div>
 					</div>
 				</div>
 	<?php
 				if ( $key > 0 && $key % 2 === 0 ) :
 	?>
 					</div>
-					<div class="card-deck">
+					<div class="row">
 	<?php
 				endif;
 			endforeach;
