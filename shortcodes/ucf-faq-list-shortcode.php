@@ -15,25 +15,25 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 			$atts = shortcode_atts( array(
 				'layout'            => 'classic',
 				'title'             => '',
-				'topic'          => '',
-				'topic_element'  => 'h2',
-				'topic_class'    => 'h4',
+				'topic'             => '',
+				'topic_element'     => 'h2',
+				'topic_class'       => 'h4',
 				'question_element'  => 'h3',
 				'question_class'    => 'h6',
 			), $atts, 'ucf-faq-list' );
 
-			$topic_id = null;
+			$term_id = null;
 
 			if( $atts['topic'] ) {
-				$slug = get_term_by( 'slug', $atts['topic'], 'topic' );
-				if( !empty( $slug ) ) {
-					$topic_id =  $slug->term_id;
+				$term = get_term_by( 'slug', $atts['topic'], 'topic' );
+				if( !empty( $term ) ) {
+					$term_id =  $term->term_id;
 				}
 			}
 
 			$args = array(
 				'post_type'      => 'faq',
-				'topic'       => $topic_id,
+				'topic'          => $term_id,
 				'posts_per_page' => -1,
 				'orderby'        => 'title',
 				'order'          => 'ASC'
@@ -73,8 +73,8 @@ if ( ! class_exists( 'UCF_FAQ_Topic_List_Shortcode' ) ) {
 		**/
 		public static function shortcode( $atts ) {
 			$atts = shortcode_atts( array(
-				'layout'            => 'classic',
-				'title'             => '',
+				'layout'         => 'classic',
+				'title'          => '',
 				'topic_element'  => 'h2',
 				'topic_class'    => 'h4',
 			), $atts, 'ucf-faq-list' );
