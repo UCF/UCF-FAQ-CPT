@@ -5,6 +5,7 @@ Description: Provides a FAQ custom post type and related meta fields.
 Version: 1.0.0
 Author: UCF Web Communications
 License: GPL3
+Github Plugin URI: UCF/UCF-FAQ-CPT
 */
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -25,6 +26,7 @@ include_once 'shortcodes/ucf-faq-list-shortcode.php';
 include_once 'layouts/ucf-faq-classic.php';
 include_once 'layouts/ucf-faq-collapse.php';
 include_once 'layouts/ucf-faq-topic-classic.php';
+include_once 'layouts/ucf-faq-topic-card.php';
 
 if ( ! function_exists( 'ucf_faq_plugin_activation' ) ) {
 	function ucf_faq_plugin_activation() {
