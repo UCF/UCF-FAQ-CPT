@@ -52,7 +52,7 @@ if ( ! function_exists( 'ucf_faq_topic_list_display_card' ) ) {
 					</div>
 				</div>
 	<?php
-				if ( $key > 0 && $key % 2 === 0 ) :
+				if ( $key > 0 && ($key + 1) % 3 === 0 ) :
 	?>
 					</div>
 					<div class="row">
