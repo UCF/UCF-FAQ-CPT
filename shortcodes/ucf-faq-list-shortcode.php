@@ -31,13 +31,30 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 				}
 			}
 
-			$args = array(
-				'post_type'      => 'faq',
-				'topic'          => $term_id,
-				'posts_per_page' => -1,
-				'orderby'        => 'title',
-				'order'          => 'ASC'
+			$tax_query = array(
+				array(
+				  'taxonomy' => 'topic',
+				  'field' => 'id',
+				  'terms' => $term_id
+				)
 			);
+
+			if( $term_id ) {
+				$args = array(
+					'post_type'      => 'faq',
+					'tax_query' 	 => $tax_query,
+					'posts_per_page' => -1,
+					'orderby'        => 'title',
+					'order'          => 'ASC'
+				);
+			} else {
+				$args = array(
+					'post_type'      => 'faq',
+					'posts_per_page' => -1,
+					'orderby'        => 'title',
+					'order'          => 'ASC'
+				);
+			}
 
 			$posts = get_posts( $args );
 			$items = array();
