@@ -30,17 +30,19 @@ if ( ! function_exists( 'ucf_faq_topic_list_display_card' ) ) {
 			<div class="row">
 	<?php
 			foreach( $items as $key => $item ) :
+				$is_description = ( $item->description );
+				$margin_class = ($is_description) ? "" : " mb-0";
 	?>
 				<div class="col-md-4 mb-4">
 					<div class="card h-100">
 						<div class="card-block">
 							<a href="<?php echo get_term_link( $item->term_id ); ?>">
-								<<?php echo $args['topic_element']; ?> class="ucf-faq-topic-title card-title <?php echo $args['topic_class']; ?>">
+								<<?php echo $args['topic_element']; ?> class="ucf-faq-topic-title card-title <?php echo $args['topic_class'] . $margin_class; ?>">
 									<?php echo $item->name; ?>
 								</<?php echo $args['topic_element']; ?>>
 							</a>
 	<?php
-						if( $item->description ) :
+						if( $is_description ) :
 	?>
 							<div class="card-text"><?php echo $item->description; ?></div>
 	<?php
