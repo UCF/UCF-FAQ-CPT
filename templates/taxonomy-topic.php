@@ -18,9 +18,13 @@ $container_classes = " container mb-5";
 		}
 
 		if ( have_posts() ) {
+			?>
+			<div class="row">
+				<div class="col-8">
+			<?php
 			while ( have_posts() ) {
 				the_post();
-				$question_classes = " mt-3 h5";
+				$question_classes = " mt-3 h4";
 				$question_attrs = ' data-toggle="collapse" href="#post' . $post->ID . '"';
 				$answer_classes = " mt-2 mb-4 collapse";
 				$answer_attrs = ' id="post' . $post->ID . '"';
@@ -35,6 +39,14 @@ $container_classes = " container mb-5";
 				</div>
 			<?php
 			}
+			?>
+				</div>
+				<div class="col-4">
+					<h3 class="h6">Related FAQs</h3>
+					<h3 class="h6">Spotlight</h3>
+				</div>
+			</div>
+			<?php
 		}
 		else {
 			echo 'No results found.';
