@@ -1,10 +1,9 @@
 # UCF FAQ CPT Plugin #
 
 
-
 ## Description ##
 
-Provides a custom post type for describing FAQ.
+Provides a custom post type for describing FAQs and supporting shortcodes. This theme supports the [UCF Athena Framework](https://github.com/UCF/Athena-Framework).
 
 The following templates can be overwritten in the theme.
 * single-faq.php

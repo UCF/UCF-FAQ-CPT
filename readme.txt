@@ -7,12 +7,10 @@ Stable tag: 1.0.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
 
-Provides a custom post type for describing FAQs and supporting shortcodes. This theme supports the [UCF Athena Framework](https://github.com/UCF/Athena-Framework).
-
 
 == Description ==
 
-Provides a custom post type for describing FAQ.
+Provides a custom post type for describing FAQs and supporting shortcodes. This theme supports the [UCF Athena Framework](https://github.com/UCF/Athena-Framework).
 
 The following templates can be overwritten in the theme.
 * single-faq.php
