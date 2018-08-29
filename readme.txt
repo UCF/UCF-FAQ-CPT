@@ -29,11 +29,11 @@ The following templates can be overwritten in the theme.
 
 ### Required Plugins
 These plugins *must* be activated for the theme to function properly.
-* Advanced Custom Fields PRO
+* [Advanced Custom Fields PRO](https://www.advancedcustomfields.com/pro/)
 
 ### Supported Plugins
 The plugins listed below are extended upon in this theme--this may include custom layouts for feeds, style modifications, etc.  These plugins are not technically required on sites running this theme, and shouldn't be activated on sites that don't require their features.  A plugin does not have to be listed here to be compatible with this theme.
-* UCF Spotlight
+* [UCF Spotlight](https://github.com/UCF/UCF-Spotlights-Plugin)
 
 ## Configuration
 
