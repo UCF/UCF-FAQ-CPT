@@ -1,12 +1,14 @@
 <?php
 get_header();
 $container_classes = " container mb-5";
+$term_object = get_term_by('slug', $term, 'topic');
+$show = ( get_field( 'faq-topic-show-answers', $term_object) ) ?  " show" : "";
+$topic_description = term_description();
 ?>
 
 <article>
 	<div class="ucf-faq-topic-list<?php UCF_FAQ_Config::add_athena_attr( $container_classes ); ?>">
 		<?php
-		$topic_description = term_description();
 
 		if ( ! empty( $topic_description ) ) {
 			$topic_description_classes = " mb-4";
@@ -19,14 +21,14 @@ $container_classes = " container mb-5";
 
 		if ( have_posts() ) {
 			?>
-			<div class="row">
-				<div class="col-8">
+			<div class="<?php UCF_FAQ_Config::add_athena_attr( 'row' ); ?>">
+				<div class="<?php UCF_FAQ_Config::add_athena_attr( 'col-8' ); ?>">
 			<?php
 			while ( have_posts() ) {
 				the_post();
 				$question_classes = " mt-3 h4";
 				$question_attrs = ' data-toggle="collapse" href="#post' . $post->ID . '"';
-				$answer_classes = " mt-2 mb-4 collapse";
+				$answer_classes = " mt-2 mb-4 collapse" . $show;
 				$answer_attrs = ' id="post' . $post->ID . '"';
 			?>
 				<a href="<?php echo get_permalink( $post->ID ); ?>">
@@ -41,9 +43,14 @@ $container_classes = " container mb-5";
 			}
 			?>
 				</div>
-				<div class="col-4">
-					<h3 class="h6">Related FAQs</h3>
-					<h3 class="h6">Spotlight</h3>
+				<div class="<?php UCF_FAQ_Config::add_athena_attr( 'col-4 mt-3' ); ?>">
+					<h3 class="<?php UCF_FAQ_Config::add_athena_attr( 'h5' ); ?>">TODO: Spotlight</h3>
+				</div>
+			</div>
+			<div class="<?php UCF_FAQ_Config::add_athena_attr( 'row mt-4' ); ?>">
+				<div class="<?php UCF_FAQ_Config::add_athena_attr( 'col-4' ); ?>">
+					<h3 class="<?php UCF_FAQ_Config::add_athena_attr( 'h5' ); ?>">TODO: Related FAQs</h3>
+					<p>List of FAQs with the same topic.</p>
 				</div>
 			</div>
 			<?php
