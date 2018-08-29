@@ -1,0 +1,68 @@
+[
+    {
+        "key": "group_5b8598adb88f3",
+        "title": "Topic Fields",
+        "fields": [
+            {
+                "key": "field_5b8598c5aeaa9",
+                "label": "Image",
+                "name": "faq-topic-image",
+                "type": "image",
+                "instructions": "An image displayed above the topic title on the card layout using the ucf-faq-topic-list shortcode.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "min_width": 300,
+                "min_height": 300,
+                "min_size": "",
+                "max_width": 500,
+                "max_height": 500,
+                "max_size": "",
+                "mime_types": "jpg, png"
+            },
+            {
+                "key": "field_5b85b5c65fe52",
+                "label": "Show Answers",
+                "name": "faq-topic-show-answers",
+                "type": "true_false",
+                "instructions": "If checked the FAQ answer will be visible on page load.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "taxonomy",
+                    "operator": "==",
+                    "value": "topic"
+                }
+            ]
+        ],
+        "menu_order": -1,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
+    }
+]

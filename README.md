@@ -1,6 +1,5 @@
 # UCF FAQ CPT Plugin #
 
-Provides a custom post type for describing FAQ.
 
 
 ## Description ##
@@ -22,6 +21,17 @@ The following templates can be overwritten in the theme.
 ### WP CLI Installation ###
 1. `$ wp plugin install --activate https://github.com/UCF/UCF-FAQ-CPT/archive/master.zip`.  See [WP-CLI Docs](http://wp-cli.org/commands/plugin/install/) for more command options.
 
+### Required Plugins
+These plugins *must* be activated for the theme to function properly.
+* Advanced Custom Fields PRO
+
+### Supported Plugins
+The plugins listed below are extended upon in this theme--this may include custom layouts for feeds, style modifications, etc.  These plugins are not technically required on sites running this theme, and shouldn't be activated on sites that don't require their features.  A plugin does not have to be listed here to be compatible with this theme.
+* UCF Spotlight
+
+## Configuration
+
+* Import field groups (`dev/acf-fields.json`) using the ACF importer under Custom Fields > Tools.
 
 ## Changelog ##
 
