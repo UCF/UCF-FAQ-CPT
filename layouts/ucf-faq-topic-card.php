@@ -34,22 +34,25 @@ if ( ! function_exists( 'ucf_faq_topic_list_display_card' ) ) {
 				$margin_class = ($is_description) ? "" : " mb-0";
 	?>
 				<div class="col-md-4 mb-4">
-					<div class="card h-100">
-						<div class="card-block">
-							<a href="<?php echo get_term_link( $item->term_id ); ?>">
+					<a href="<?php echo get_term_link( $item->term_id ); ?>">
+						<div class="card h-100">
+
+							<?php if($image_url = get_field( 'faq-topic-image', $item )) :?>
+								<img class="ucf-faq-topic-image card-img-top" src="<?php echo $image_url['url']; ?>" alt="<?php echo $item->name; ?>">
+							<?php endif; ?>
+
+							<div class="card-block">
 								<<?php echo $args['topic_element']; ?> class="ucf-faq-topic-title card-title <?php echo $args['topic_class'] . $margin_class; ?>">
 									<?php echo $item->name; ?>
 								</<?php echo $args['topic_element']; ?>>
-							</a>
-	<?php
-						if( $is_description ) :
-	?>
-							<div class="card-text"><?php echo $item->description; ?></div>
-	<?php
-						endif;
-	?>
+
+								<?php if( $is_description ) : ?>
+									<div class="ucf-faq-topic-description card-text text-secondary"><?php echo $item->description; ?></div>
+								<?php endif; ?>
+
+							</div>
 						</div>
-					</div>
+					</a>
 				</div>
 	<?php
 				if ( $key > 0 && ($key + 1) % 3 === 0 ) :

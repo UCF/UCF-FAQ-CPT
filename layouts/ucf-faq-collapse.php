@@ -24,9 +24,9 @@ if ( ! function_exists( 'ucf_faq_list_display_collapse_title' ) ) {
 if ( ! function_exists( 'ucf_faq_list_display_collapse' ) ) {
 	function ucf_faq_list_display_collapse( $content, $items, $args ) {
 		ob_start();
-		$unique_id = wp_rand();
 		if( $items ):
 			foreach( $items as $key => $item ) :
+				$unique_id = wp_rand();
 	?>
 				<<?php echo $args['topic_element']; ?> class="ucf-faq-topic mt-4 mb-3 <?php echo $args['topic_class']; ?>"><?php echo $key; ?></<?php echo $args['topic_element']; ?>>
 	<?php
