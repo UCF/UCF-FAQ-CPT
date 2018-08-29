@@ -10,9 +10,9 @@ License URI: http://www.gnu.org/copyleft/gpl-3.0.html
 
 == Description ==
 
-Provides a custom post type for describing FAQs and creates supporting shortcodes. This theme supports the [UCF Athena Framework](https://github.com/UCF/Athena-Framework).
+Provides a custom post type for describing FAQs and creates supporting shortcodes. This plugin supports the [UCF Athena Framework](https://github.com/UCF/Athena-Framework).
 
-The following templates can be overwritten in the theme.
+The following templates can be overwritten in the plugin.
 * single-faq.php
 * archive-faq.php
 * taxonomy-topic.php
@@ -32,7 +32,7 @@ These plugins *must* be activated for the plugin to function properly.
 * [Advanced Custom Fields PRO](https://www.advancedcustomfields.com/pro/)
 
 ### Supported Plugins
-The plugins listed below are extended upon in this theme--this may include custom layouts for feeds, style modifications, etc.  These plugins are not technically required on sites running this theme, and shouldn't be activated on sites that don't require their features.  A plugin does not have to be listed here to be compatible with this theme.
+The plugins listed below are extended upon in this plugin--this may include custom layouts for feeds, style modifications, etc.  These plugins are not technically required on sites running this plugin, and shouldn't be activated on sites that don't require their features.  A plugin does not have to be listed here to be compatible with this plugin.
 * [UCF Spotlight](https://github.com/UCF/UCF-Spotlights-Plugin)
 
 ## Configuration
