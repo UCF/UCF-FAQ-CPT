@@ -3,7 +3,7 @@
 
 ## Description ##
 
-Provides a custom post type for describing FAQs and supporting shortcodes. This theme supports the [UCF Athena Framework](https://github.com/UCF/Athena-Framework).
+Provides a custom post type for describing FAQs and creates supporting shortcodes. This theme supports the [UCF Athena Framework](https://github.com/UCF/Athena-Framework).
 
 The following templates can be overwritten in the theme.
 * single-faq.php
@@ -21,7 +21,7 @@ The following templates can be overwritten in the theme.
 1. `$ wp plugin install --activate https://github.com/UCF/UCF-FAQ-CPT/archive/master.zip`.  See [WP-CLI Docs](http://wp-cli.org/commands/plugin/install/) for more command options.
 
 ### Required Plugins
-These plugins *must* be activated for the theme to function properly.
+These plugins *must* be activated for the plugin to function properly.
 * [Advanced Custom Fields PRO](https://www.advancedcustomfields.com/pro/)
 
 ### Supported Plugins

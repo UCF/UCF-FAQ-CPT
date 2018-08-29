@@ -1,8 +1,7 @@
 <?php
 get_header();
 $container_classes = " container mb-5";
-$term_object = get_term_by('slug', $term, 'topic');
-$show = ( get_field( 'faq-topic-show-answers', $term_object) ) ?  " show" : "";
+$show = ( get_field( 'faq-topic-show-answers', get_queried_object() ) ) ?  " show" : "";
 $topic_description = term_description();
 ?>
 
@@ -22,7 +21,7 @@ $topic_description = term_description();
 		if ( have_posts() ) {
 			?>
 			<div class="<?php UCF_FAQ_Config::add_athena_attr( 'row' ); ?>">
-				<div class="<?php UCF_FAQ_Config::add_athena_attr( 'col-8' ); ?>">
+				<div class="<?php UCF_FAQ_Config::add_athena_attr( 'col-md-8' ); ?>">
 			<?php
 			while ( have_posts() ) {
 				the_post();
@@ -43,13 +42,13 @@ $topic_description = term_description();
 			}
 			?>
 				</div>
-				<div class="<?php UCF_FAQ_Config::add_athena_attr( 'col-4 mt-3' ); ?>">
-					<h3 class="<?php UCF_FAQ_Config::add_athena_attr( 'h5' ); ?>">TODO: Spotlight</h3>
+				<div class="<?php UCF_FAQ_Config::add_athena_attr( 'col-md-4 mt-3' ); ?>">
+					<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h5' ); ?>">TODO: Spotlight</h3>
 				</div>
 			</div>
 			<div class="<?php UCF_FAQ_Config::add_athena_attr( 'row mt-4' ); ?>">
-				<div class="<?php UCF_FAQ_Config::add_athena_attr( 'col-4' ); ?>">
-					<h3 class="<?php UCF_FAQ_Config::add_athena_attr( 'h5' ); ?>">TODO: Related FAQs</h3>
+				<div class="<?php UCF_FAQ_Config::add_athena_attr( 'col-md-4' ); ?>">
+					<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h5' ); ?>">TODO: Related FAQs</h3>
 					<p>List of FAQs with the same topic.</p>
 				</div>
 			</div>
