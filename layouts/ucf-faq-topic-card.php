@@ -25,19 +25,19 @@ if ( ! function_exists( 'ucf_faq_topic_list_display_card_title' ) ) {
 if ( ! function_exists( 'ucf_faq_topic_list_display_card' ) ) {
 	function ucf_faq_topic_list_display_card( $content, $items, $args ) {
 		ob_start();
-		if( $items ):
+		if ( $items ):
 	?>
 			<div class="row">
 	<?php
 			foreach( $items as $key => $item ) :
 				$is_description = ( $item->description );
-				$margin_class = ($is_description) ? "" : " mb-0";
+				$margin_class = ( $is_description ) ? "" : " mb-0";
 	?>
 				<div class="col-md-4 mb-4">
 					<a href="<?php echo get_term_link( $item->term_id ); ?>">
 						<div class="card h-100">
 
-							<?php if($image_url = get_field( 'faq-topic-image', $item )) :?>
+							<?php if ( $image_url = get_field( 'faq-topic-image', $item ) ) :?>
 								<img class="ucf-faq-topic-image card-img-top" src="<?php echo $image_url['url']; ?>" alt="<?php echo $item->name; ?>">
 							<?php endif; ?>
 
@@ -46,7 +46,7 @@ if ( ! function_exists( 'ucf_faq_topic_list_display_card' ) ) {
 									<?php echo $item->name; ?>
 								</<?php echo $args['topic_element']; ?>>
 
-								<?php if( $is_description ) : ?>
+								<?php if ( $is_description ) : ?>
 									<div class="ucf-faq-topic-description card-text text-secondary"><?php echo $item->description; ?></div>
 								<?php endif; ?>
 
@@ -55,7 +55,7 @@ if ( ! function_exists( 'ucf_faq_topic_list_display_card' ) ) {
 					</a>
 				</div>
 	<?php
-				if ( $key > 0 && ($key + 1) % 3 === 0 ) :
+				if ( $key > 0 && ( $key + 1 ) % 3 === 0 ) :
 	?>
 					</div>
 					<div class="row">

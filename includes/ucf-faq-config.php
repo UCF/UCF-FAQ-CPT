@@ -157,7 +157,6 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 
 			switch ( $field_type ) {
 				case 'checkbox':
-				default:
 					ob_start();
 				?>
 					<input type="checkbox" id="<?php echo $option_name; ?>" name="<?php echo $option_name; ?>" <?php echo ( $current_value == true ) ? 'checked' : ''; ?>>
