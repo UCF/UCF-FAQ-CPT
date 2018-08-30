@@ -82,7 +82,7 @@ function display_faq( $post, $show, $question_class ) {
 
 				foreach( $posts as $post ) {
 					if( !in_array( $post, $faqs ) ) { // Don't display FAQs already on the page
-						$related_faqs =  display_faq( $post, $show, 'h5' );
+						$related_faqs .=  display_faq( $post, $show, 'h5' );
 					}
 				}
 
