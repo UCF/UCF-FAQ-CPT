@@ -39,7 +39,7 @@ $title_classes = " mb-4";
 						</h3>
 					</a>
 					<div class="ucf-faq-topic-answer<?php UCF_FAQ_Config::add_athena_attr( $answer_classes ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $answer_attrs ); ?>>
-						<?php echo $post->post_content; ?>
+						<?php echo apply_filters( 'the_content', $post->post_content ); ?>
 					</div>
 			<?php
 				endforeach;

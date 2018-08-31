@@ -34,7 +34,7 @@ if ( ! function_exists( 'ucf_faq_list_display_classic' ) ) {
 	?>
 					<<?php echo $args['question_element']; ?> class="ucf-faq-question <?php echo $args['question_class']; ?>"><?php echo $post->post_title; ?></<?php echo $args['question_element']; ?>>
 					<div class="ucf-faq-answer">
-						<?php echo $post->post_content; ?>
+						<?php echo apply_filters( 'the_content', $post->post_content ); ?>
 					</div>
 	<?php
 				endforeach;

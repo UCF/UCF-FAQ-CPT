@@ -36,7 +36,7 @@ if ( ! function_exists( 'ucf_faq_list_display_collapse' ) ) {
 						<?php echo $post->post_title; ?></<?php echo $args['question_element']; ?>>
 					</a>
 					<div class="collapse ucf-faq-answer" id="post<?php echo $post->ID . $unique_id; ?>">
-						<?php echo $post->post_content; ?>
+						<?php echo apply_filters( 'the_content', $post->post_content ); ?>
 					</div>
 	<?php
 				endforeach;
