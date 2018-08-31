@@ -77,3 +77,58 @@ if ( ! class_exists( 'UCF_FAQ_Topic_List_Common' ) ) {
 		}
 	}
 }
+
+
+if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
+	class UCF_FAQ_Common {
+		/**
+		 * Method to output the faq question and answer HTML.
+		 * @author RJ Bruneel
+		 * @since 1.0.0
+		 **/
+		public static function display_faq( $post, $show, $question_class ) {
+			ob_start();
+
+			$question_classes = " mt-3 " . $question_class;
+			$question_attrs   = ' data-toggle="collapse" href="#post' . $post->ID . '"';
+			$answer_classes   = " mt-2 mb-4 collapse" . $show;
+			$answer_attrs     = ' id="post' . $post->ID . '"';
+		?>
+			<a href="<?php echo get_permalink( $post->ID ); ?>">
+				<h2 class="ucf-faq-question<?php UCF_FAQ_Config::add_athena_attr( $question_classes ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>>
+					<?php echo $post->post_title; ?>
+				</h2>
+			</a>
+
+			<div class="ucf-faq-topic-answer<?php UCF_FAQ_Config::add_athena_attr( $answer_classes ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $answer_attrs ); ?>>
+				<?php echo apply_filters( 'the_content', $post->post_content ); ?>
+			</div>
+		<?php
+			return ob_get_clean();
+		}
+
+
+		/**
+		 * Get related FAQs by tag excluding faqs already on the page.
+		 * @author RJ Bruneel
+		 * @since 1.0.0
+		 **/
+		public static function get_related_faqs( $tags, $faqs ) {
+			$args = array(
+				'post_type'      => 'faq',
+				'posts_per_page' => -1,
+				'post__not_in'   => $faqs,
+				'tax_query'      => array(
+					array(
+						'taxonomy' => 'post_tag',
+						'field'    => 'slug',
+						'terms'    => $tags,
+					),
+				),
+			);
+
+			return get_posts( $args );
+		}
+
+	}
+}
