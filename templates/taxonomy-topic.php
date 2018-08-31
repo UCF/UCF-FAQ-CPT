@@ -28,6 +28,23 @@ function display_faq( $post, $show, $question_class ) {
 <?php
 	return ob_get_clean();
 }
+
+function get_related_posts($tags) {
+	// Get posts with same tags to display in related FAQs section
+	$args = array(
+		'post_type'      => 'faq',
+		'posts_per_page' => -1,
+		'tax_query'      => array(
+			array(
+				'taxonomy' => 'post_tag',
+				'field'    => 'slug',
+				'terms'    => $tags,
+			),
+		),
+	);
+
+	return get_posts( $args );
+}
 ?>
 
 
@@ -52,7 +69,7 @@ function display_faq( $post, $show, $question_class ) {
 				while ( have_posts() ) {
 					the_post();
 
-					// Save FAQs and tags for related FAQs section
+					// Save FAQ and tag list to filter out of related FAQs section
 					array_push( $faqs, $post );
 
 					foreach( wp_get_post_tags( $post->ID ) as $tag ) {
@@ -64,33 +81,20 @@ function display_faq( $post, $show, $question_class ) {
 					echo display_faq( $post, $show, 'h4' );
 				}
 
-				// Get posts with same tags to display in related FAQs section
-				$args = array(
-					'post_type'      => 'faq',
-					'posts_per_page' => -1,
-					'tax_query'      => array(
-						array(
-							'taxonomy' => 'post_tag',
-							'field'    => 'slug',
-							'terms'    => $tags,
-						),
-					),
-				);
+				$related_posts = get_related_posts($tags);
+				$related_faq_html = null;
 
-				$posts = get_posts( $args );
-				$related_faqs = null;
-
-				foreach( $posts as $post ) {
+				foreach( $related_posts as $post ) {
 					if( !in_array( $post, $faqs ) ) { // Don't display FAQs already on the page
-						$related_faqs .=  display_faq( $post, $show, 'h5' );
+						$related_faq_html .=  display_faq( $post, $show, 'h5' );
 					}
 				}
 
-				if( $related_faqs ) {
+				if( $related_faq_html ) {
 				?>
 					<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h3 mt-5 mb-4' ); ?>">Related FAQs</h3>
 				<?php
-					echo $related_faqs;
+					echo $related_faq_html;
 				}
 
 			?>
