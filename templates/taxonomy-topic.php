@@ -74,7 +74,7 @@ if( in_array('UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters('active_pl
 				</div>
 
 				<?php if( $spotlight ) : ?>
-					<div class="col-md-4 mt-3">
+					<div class="col-md-4 mt-5 mt-md-3">
 						<?php echo do_shortcode( '[ucf-spotlight slug="' . $spotlight->post_name . '"]' ); ?>
 					</div>
 				<?php endif; ?>
