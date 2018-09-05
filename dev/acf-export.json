@@ -45,6 +45,85 @@
                 "ui": 0,
                 "ui_on_text": "",
                 "ui_off_text": ""
+            },
+            {
+                "key": "field_5b90050373b29",
+                "label": "FAQ Topic Spotlight",
+                "name": "faq-topic-spotlight",
+                "type": "post_object",
+                "instructions": "Select a Spotlight to be displayed on the topic list page.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "ucf_spotlight"
+                ],
+                "taxonomy": [],
+                "allow_null": 0,
+                "multiple": 0,
+                "return_format": "object",
+                "ui": 1
+            },
+            {
+                "key": "field_5b9028cb19703",
+                "label": "Related FAQ Title",
+                "name": "related-faq-title",
+                "type": "text",
+                "instructions": "Title displayed above the related FAQ below topic FAQs.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Related FAQs",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5b90292019704",
+                "label": "FAQ Topic Footer CTA Text",
+                "name": "faq-topic-footer-cta-text",
+                "type": "text",
+                "instructions": "The text for the topic footer CTA link.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "View All FAQs",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5b9029c019705",
+                "label": "FAQ Topic Footer CTA URL",
+                "name": "faq-topic-footer-cta-url",
+                "type": "text",
+                "instructions": "The url for the topic footer CTA link.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "\/faq\/",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
             }
         ],
         "location": [
