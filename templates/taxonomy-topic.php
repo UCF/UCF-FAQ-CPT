@@ -23,16 +23,10 @@ if( in_array('UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters('active_pl
 			<div class="<?php UCF_FAQ_Config::add_athena_attr( 'row' ); ?>">
 				<div class="ucf-faq-topic-description<?php UCF_FAQ_Config::add_athena_attr( $topic_description_classes ); ?>">
 					<?php UCF_FAQ_Config::add_athena_attr( $topic_description ); ?>
-				</div>
-			</div>
 		<?php
 		endif;
 
 		if ( have_posts() ) :
-			?>
-			<div class="<?php UCF_FAQ_Config::add_athena_attr( 'row' ); ?>">
-				<div class="<?php UCF_FAQ_Config::add_athena_attr( 'col-md-8' ); ?>">
-			<?php
 				while ( have_posts() ) :
 					the_post();
 
@@ -76,7 +70,7 @@ if( in_array('UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters('active_pl
 				</div>
 
 				<?php if( $spotlight ) : ?>
-					<div class="col-md-4 mt-5 mt-md-3">
+					<div class="col-md-4 mt-5 mt-md-2">
 						<?php echo do_shortcode( '[ucf-spotlight slug="' . $spotlight->post_name . '"]' ); ?>
 					</div>
 				<?php endif; ?>
