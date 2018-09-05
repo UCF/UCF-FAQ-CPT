@@ -6,6 +6,7 @@ $faqs = array();
 $container_classes = " container mb-5";
 $show = ( get_field( 'faq-topic-show-answers', get_queried_object() ) ) ?  " show" : "";
 $topic_description = term_description();
+$spotlight = get_field( 'faq-topic-spotlight', get_queried_object() );
 ?>
 
 
@@ -55,13 +56,16 @@ $topic_description = term_description();
 				<?php
 					echo $related_faq_html;
 				}
-
 			?>
+					<a href="<?php echo site_url(); ?>/faq/" class="<?php UCF_FAQ_Config::add_athena_attr( 'btn btn-primary mt-4' ); ?>">View all FAQs</a>
 				</div>
 
-				<div class="<?php UCF_FAQ_Config::add_athena_attr( 'col-md-4 mt-3' ); ?>">
-					<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h5' ); ?>">TODO: Spotlight</h2>
-				</div>
+				<?php if( $spotlight ) : ?>
+					<div class="col-md-4 mt-3">
+						<?php echo do_shortcode( '[ucf-spotlight slug="' . $spotlight->post_name . '"]' ); ?>
+					</div>
+				<?php endif; ?>
+
 			</div>
 			<?php
 		}

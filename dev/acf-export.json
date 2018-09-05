@@ -45,6 +45,28 @@
                 "ui": 0,
                 "ui_on_text": "",
                 "ui_off_text": ""
+            },
+            {
+                "key": "field_5b90050373b29",
+                "label": "FAQ Topic Spotlight",
+                "name": "faq-topic-spotlight",
+                "type": "post_object",
+                "instructions": "Select a Spotlight to be displayed on the topic list page.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "ucf_spotlight"
+                ],
+                "taxonomy": [],
+                "allow_null": 0,
+                "multiple": 0,
+                "return_format": "object",
+                "ui": 1
             }
         ],
         "location": [
