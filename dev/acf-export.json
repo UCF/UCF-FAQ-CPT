@@ -67,6 +67,63 @@
                 "multiple": 0,
                 "return_format": "object",
                 "ui": 1
+            },
+            {
+                "key": "field_5b9028cb19703",
+                "label": "Related FAQ Title",
+                "name": "related-faq-title",
+                "type": "text",
+                "instructions": "Title displayed above the related FAQ below topic FAQs.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Related FAQs",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5b90292019704",
+                "label": "FAQ Topic Footer CTA Text",
+                "name": "faq-topic-footer-cta-text",
+                "type": "text",
+                "instructions": "The text for the topic footer CTA link.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "View All FAQs",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5b9029c019705",
+                "label": "FAQ Topic Footer CTA URL",
+                "name": "faq-topic-footer-cta-url",
+                "type": "text",
+                "instructions": "The url for the topic footer CTA link.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "\/faq\/",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
             }
         ],
         "location": [
