@@ -18,10 +18,12 @@ if( in_array('UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters('active_pl
 		<?php
 
 		if ( ! empty( $topic_description ) ) :
-			$topic_description_classes = " mb-4";
+			$topic_description_classes = " col-md-8 mb-4";
 		?>
-			<div class="ucf-faq-topic-description<?php UCF_FAQ_Config::add_athena_attr( $topic_description_classes ); ?>">
-				<?php UCF_FAQ_Config::add_athena_attr( $topic_description ); ?>
+			<div class="<?php UCF_FAQ_Config::add_athena_attr( 'row' ); ?>">
+				<div class="ucf-faq-topic-description<?php UCF_FAQ_Config::add_athena_attr( $topic_description_classes ); ?>">
+					<?php UCF_FAQ_Config::add_athena_attr( $topic_description ); ?>
+				</div>
 			</div>
 		<?php
 		endif;
@@ -43,7 +45,7 @@ if( in_array('UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters('active_pl
 						}
 					}
 
-					echo UCF_FAQ_Common::display_faq( $post, $show, 'h4' );
+					echo UCF_FAQ_Common::display_faq( $post, $show, 'h5' );
 				endwhile;
 
 				$related_posts = UCF_FAQ_Common::get_related_faqs( $tags, $faqs );
@@ -55,7 +57,7 @@ if( in_array('UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters('active_pl
 
 				if( $related_faq_html ) :
 				?>
-					<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h3 mt-5 mb-4' ); ?>">
+					<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 mt-5 mb-4' ); ?>">
 						<?php echo get_field( 'related-faq-title', get_queried_object() ); ?>
 					</h2>
 				<?php
