@@ -89,7 +89,7 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 		public static function display_faq( $post, $show, $question_class ) {
 			ob_start();
 
-			$question_classes = " mt-3 " . $question_class;
+			$question_classes = " mt-4 " . $question_class;
 			$question_attrs   = ' data-toggle="collapse" href="#post' . $post->ID . '"';
 			$answer_classes   = " mt-2 mb-4 collapse" . $show;
 			$answer_attrs     = ' id="post' . $post->ID . '"';
