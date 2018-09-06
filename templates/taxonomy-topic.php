@@ -18,7 +18,7 @@ if( in_array('UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters('active_pl
 		<?php
 
 		if ( ! empty( $topic_description ) ) :
-			$topic_description_classes = " col-md-8 mb-4";
+			$topic_description_classes = " col-lg-7 mb-4";
 		?>
 			<div class="<?php UCF_FAQ_Config::add_athena_attr( 'row' ); ?>">
 				<div class="ucf-faq-topic-description<?php UCF_FAQ_Config::add_athena_attr( $topic_description_classes ); ?>">
@@ -70,7 +70,7 @@ if( in_array('UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters('active_pl
 				</div>
 
 				<?php if( $spotlight ) : ?>
-					<div class="col-md-4 mt-5 mt-md-2">
+					<div class="col-lg-4 offset-lg-1 mt-5 mt-md-2">
 						<?php echo do_shortcode( '[ucf-spotlight slug="' . $spotlight->post_name . '"]' ); ?>
 					</div>
 				<?php endif; ?>
