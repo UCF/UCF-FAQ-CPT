@@ -4,7 +4,9 @@ $show = ( get_field( 'faq-topic-show-answers', get_queried_object() ) ) ?  " sho
 $container_classes = " container my-5";
 $title_classes = " mb-4";
 $answer_classes = " col-lg-8 mt-2 mb-4";
+$topic = wp_get_post_terms( $post->ID, 'topic' )[0];
 $tags = array();
+
 
 foreach( wp_get_post_tags( $post->ID ) as $tag ) {
 	array_push( $tags, $tag->slug );
@@ -27,16 +29,16 @@ foreach( wp_get_post_tags( $post->ID ) as $tag ) {
 			if( $related_faq_html ) :
 			?>
 					<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 mt-5 mb-4' ); ?>">
-						Related FAQs
+					<?php echo get_field( 'related-faq-title', $topic ); ?>
 					</h2>
 			<?php
 					echo $related_faq_html;
 				endif;
 
 			?>
-			<a href="<?php echo site_url() . '/faq/' ?>"
+			<a href="<?php echo site_url() . get_field( 'faq-topic-footer-cta-url', $topic ) ?>"
 				class="<?php UCF_FAQ_Config::add_athena_attr( 'btn btn-primary mt-4' ); ?>">
-				View All FAQs
+				<?php echo get_field( 'faq-topic-footer-cta-text', $topic ) ?>
 			</a>
 		</div>
 	</div>
