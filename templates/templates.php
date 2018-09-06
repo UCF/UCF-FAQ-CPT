@@ -4,11 +4,33 @@
  * @author RJ Bruneel
  * @since 1.0.0
  **/
-function ucf_faq_template( $template ) {
+function ucf_faq_archive_template( $template ) {
 	if ( get_query_var( 'post_type' ) === 'faq' && is_archive() ) {
 		// Look for a file in theme
 		if( !locate_template('archive-faq.php' ) ) {
 			$new_template = plugin_dir_path( __FILE__ ) . 'archive-faq.php';
+			if ( file_exists( $new_template ) ) {
+				return $new_template;
+			}
+		}
+	}
+
+	return $template;
+}
+
+add_filter( 'template_include', 'ucf_faq_archive_template', 9 );
+
+
+/**
+ * Adds filter to display custom template for FAQ single.
+ * @author RJ Bruneel
+ * @since 1.0.0
+ **/
+function ucf_faq_template( $template ) {
+	if ( get_query_var( 'post_type' ) === 'faq' && !is_archive() ) {
+		// Look for a file in theme
+		if( !locate_template('single-faq.php' ) ) {
+			$new_template = plugin_dir_path( __FILE__ ) . 'single-faq.php';
 			if ( file_exists( $new_template ) ) {
 				return $new_template;
 			}
