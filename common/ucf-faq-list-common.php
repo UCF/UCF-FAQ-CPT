@@ -118,6 +118,9 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 				'post_type'      => 'faq',
 				'posts_per_page' => -1,
 				'post__not_in'   => $faqs,
+				'meta_key'       => 'faq_question_sort_order',
+				'orderby'        => 'meta_value',
+				'order'          => 'ASC',
 				'tax_query'      => array(
 					array(
 						'taxonomy' => 'post_tag',
