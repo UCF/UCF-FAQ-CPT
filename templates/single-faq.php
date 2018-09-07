@@ -4,7 +4,10 @@ $show = ( get_field( 'faq-topic-show-answers', get_queried_object() ) ) ?  " sho
 $container_classes = " container my-5";
 $title_classes = " mb-4";
 $answer_classes = " col-lg-8 mt-2 mb-4";
-$topic = wp_get_post_terms( $post->ID, 'topic' )[0];
+$topic = wp_get_post_terms( $post->ID, 'topic' );
+if( is_array( $topic ) ) {
+	$topic = $topic[0];
+}
 $tags = array();
 
 
