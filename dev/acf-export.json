@@ -5,7 +5,7 @@
         "fields": [
             {
                 "key": "field_5b8598c5aeaa9",
-                "label": "Image",
+                "label": "FAQ Topic Image",
                 "name": "faq-topic-image",
                 "type": "image",
                 "instructions": "An image displayed above the topic title on the card layout using the ucf-faq-topic-list shortcode.",
@@ -29,7 +29,7 @@
             },
             {
                 "key": "field_5b85b5c65fe52",
-                "label": "Show Answers",
+                "label": "FAQ Show Answers",
                 "name": "faq-topic-show-answers",
                 "type": "true_false",
                 "instructions": "If checked the FAQ answer will be visible on page load.",
@@ -136,6 +136,50 @@
             ]
         ],
         "menu_order": -1,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
+    },
+    {
+        "key": "group_5b917a2fa04ba",
+        "title": "FAQ Question Fields",
+        "fields": [
+            {
+                "key": "field_5b917a3820356",
+                "label": "FAQ Question Sort Order",
+                "name": "faq_question_sort_order",
+                "type": "number",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "min": "",
+                "max": "",
+                "step": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "faq"
+                }
+            ]
+        ],
+        "menu_order": 0,
         "position": "normal",
         "style": "default",
         "label_placement": "top",

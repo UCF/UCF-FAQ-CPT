@@ -25,8 +25,9 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 			$args = array(
 				'post_type'      => 'faq',
 				'posts_per_page' => -1,
-				'orderby'        => 'title',
-				'order'          => 'ASC'
+				'meta_key'       => 'faq_question_sort_order',
+				'orderby'        => 'meta_value',
+				'order'          => 'ASC',
 			);
 
 			if( $atts['topic'] ) {
