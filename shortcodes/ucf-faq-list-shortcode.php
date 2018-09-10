@@ -20,15 +20,39 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 				'topic_class'       => 'h4',
 				'question_element'  => 'h3',
 				'question_class'    => 'h6',
+				'order_by_meta'     => true,
 			), $atts, 'ucf-faq-list' );
+
+			$atts['order_by_sort_meta'] = filter_var( $atts['order_by_sort_meta'], VALIDATE_FILTER_BOOLEAN );
 
 			$args = array(
 				'post_type'      => 'faq',
 				'posts_per_page' => -1,
-				// 'meta_key'       => 'faq_question_sort_order',
 				'orderby'        => 'title',
-				'order'          => 'ASC',
+				'order'          => 'ASC'
 			);
+
+			if ( $atts['order_by_sort_meta'] ) {
+				$args['meta_key'] = 'faq_question_sort_order';
+
+				// Order by title first, then meta_value
+				$args['orderby'] = array(
+					'title'      => 'ASC',
+					'meta_value' => 'ASC'
+				);
+
+				$args['meta_query'] = array(
+					'relation' => 'OR',
+					array(
+						'key'     => 'faq_question_sort_order',
+						'compare' => 'EXISTS',
+					),
+					array(
+						'key'     => 'faq_question_sort_order',
+						'compare' => 'NOT EXISTS'
+					)
+				);
+			}
 
 			if( $atts['topic'] ) {
 				$term = get_term_by( 'slug', $atts['topic'], 'topic' );
