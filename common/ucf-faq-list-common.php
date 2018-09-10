@@ -119,8 +119,8 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 				'posts_per_page' => -1,
 				'post__not_in'   => $faqs,
 				'orderby'        => array(
-					'title'      => 'ASC',
-					'meta_value' => 'ASC'
+					'meta_value' => 'ASC',
+					'title'      => 'ASC'
 				),
 				'meta_query'     => array(
 					'relation' => 'OR',

@@ -27,9 +27,7 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 
 			$args = array(
 				'post_type'      => 'faq',
-				'posts_per_page' => -1,
-				'orderby'        => 'title',
-				'order'          => 'ASC'
+				'posts_per_page' => -1
 			);
 
 			if ( $atts['order_by_sort_meta'] ) {
@@ -37,8 +35,8 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 
 				// Order by title first, then meta_value
 				$args['orderby'] = array(
-					'title'      => 'ASC',
-					'meta_value' => 'ASC'
+					'meta_value' => 'ASC',
+					'title'      => 'ASC'
 				);
 
 				$args['meta_query'] = array(
