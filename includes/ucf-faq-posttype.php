@@ -6,7 +6,7 @@
  **/
 if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 	class UCF_FAQ_PostType {
-		public static $text_domain = 'faq';
+		public static $text_domain = 'ucf_faq';
 
 		/**
 		 * Registers the FAQ custom post type.
