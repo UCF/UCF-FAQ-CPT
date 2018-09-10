@@ -13,14 +13,14 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 		**/
 		public static function shortcode( $atts ) {
 			$atts = shortcode_atts( array(
-				'layout'            => 'classic',
-				'title'             => '',
-				'topic'             => '',
-				'topic_element'     => 'h2',
-				'topic_class'       => 'h4',
-				'question_element'  => 'h3',
-				'question_class'    => 'h6',
-				'order_by_meta'     => true,
+				'layout'             => 'classic',
+				'title'              => '',
+				'topic'              => '',
+				'topic_element'      => 'h2',
+				'topic_class'        => 'h4',
+				'question_element'   => 'h3',
+				'question_class'     => 'h6',
+				'order_by_sort_meta' => true,
 			), $atts, 'ucf-faq-list' );
 
 			$atts['order_by_sort_meta'] = filter_var( $atts['order_by_sort_meta'], FILTER_VALIDATE_BOOLEAN );
