@@ -118,8 +118,21 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 				'post_type'      => 'faq',
 				'posts_per_page' => -1,
 				'post__not_in'   => $faqs,
-				'orderby'        => 'title',
-				'order'          => 'ASC',
+				'orderby'        => array(
+					'meta_value' => 'ASC',
+					'title'      => 'ASC'
+				),
+				'meta_query'     => array(
+					'relation' => 'OR',
+					array(
+						'key'     => 'faq_question_sort_order',
+						'compare' => 'EXISTS',
+					),
+					array(
+						'key'     => 'faq_question_sort_order',
+						'compare' => 'NOT EXISTS'
+					)
+				),
 				'tax_query'      => array(
 					array(
 						'taxonomy' => 'post_tag',
@@ -131,6 +144,5 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 
 			return get_posts( $args );
 		}
-
 	}
 }
