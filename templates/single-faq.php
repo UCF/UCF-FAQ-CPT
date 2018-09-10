@@ -1,6 +1,6 @@
 <?php
 get_header();
-$show = ( get_field( 'faq-topic-show-answers', get_queried_object() ) ) ?  " show" : "";
+$atts['show'] = ( get_field( 'faq-topic-show-answers', get_queried_object() ) ) ?  " show" : "";
 $container_classes = " container my-5";
 $title_classes = " mb-4";
 $answer_classes = " col-lg-8 mt-2 mb-4";
@@ -18,7 +18,7 @@ foreach( wp_get_post_tags( $post->ID ) as $tag ) {
 	array_push( $tags, $tag->slug );
 }
 
-$related_posts = UCF_FAQ_Common::get_related_faqs( $tags, "" );
+$related_posts = UCF_FAQ_Common::get_related_faqs( $tags, array( $post->ID ) );
 $related_faq_html = null;
 ?>
 
@@ -29,7 +29,7 @@ $related_faq_html = null;
 			echo apply_filters( 'the_content', $post->post_content );
 
 			foreach( $related_posts as $post ) {
-				$related_faq_html .=  UCF_FAQ_Common::display_faq( $post, $show, 'h5' );
+				$related_faq_html .=  UCF_FAQ_Common::display_faq( $post, $atts );
 			}
 
 			if( $related_faq_html ) :

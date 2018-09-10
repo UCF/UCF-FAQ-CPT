@@ -4,7 +4,7 @@ get_header();
 $tags = array();
 $faqs = array();
 $container_classes = " container mb-5";
-$show = ( get_field( 'faq-topic-show-answers', get_queried_object() ) ) ?  " show" : "";
+$atts['show'] = ( get_field( 'faq-topic-show-answers', get_queried_object() ) ) ?  " show" : "";
 $topic_description = term_description();
 $spotlight = false;
 if( in_array('UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters('active_plugins', get_option('active_plugins'))) ) {
@@ -39,14 +39,14 @@ if( in_array('UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters('active_pl
 						}
 					}
 
-					echo UCF_FAQ_Common::display_faq( $post, $show, 'h5' );
+					echo UCF_FAQ_Common::display_faq( $post, $atts );
 				endwhile;
 
 				$related_posts = UCF_FAQ_Common::get_related_faqs( $tags, $faqs );
 				$related_faq_html = null;
 
 				foreach( $related_posts as $post ) {
-					$related_faq_html .=  UCF_FAQ_Common::display_faq( $post, $show, 'h5' );
+					$related_faq_html .=  UCF_FAQ_Common::display_faq( $post, $atts );
 				}
 
 				if( $related_faq_html ) :
