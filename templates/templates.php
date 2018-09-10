@@ -67,8 +67,8 @@ add_filter( 'template_include', 'ucf_faq_topic_template', 9 );
 
 function ucf_faq_sort_order( $query ) {
 	if ( is_tax( 'topic' ) || ( get_query_var( 'post_type' ) === 'faq' && is_archive() ) || is_post_type_archive( 'faq' ) ) {
-		$query->set( 'meta_key', 'faq_question_sort_order' );
-		$query->set( 'orderby', 'meta_value' );
+		// $query->set( 'meta_key', 'faq_question_sort_order' );
+		$query->set( 'orderby', 'title' );
 		$query->set( 'order', 'ASC' );
 		$query->set( 'posts_per_page', '-1' );
 	}
