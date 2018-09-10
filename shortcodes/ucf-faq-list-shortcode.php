@@ -23,7 +23,7 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 				'order_by_meta'     => true,
 			), $atts, 'ucf-faq-list' );
 
-			$atts['order_by_sort_meta'] = filter_var( $atts['order_by_sort_meta'], VALIDATE_FILTER_BOOLEAN );
+			$atts['order_by_sort_meta'] = filter_var( $atts['order_by_sort_meta'], FILTER_VALIDATE_BOOLEAN );
 
 			$args = array(
 				'post_type'      => 'faq',
