@@ -13,23 +13,47 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 		**/
 		public static function shortcode( $atts ) {
 			$atts = shortcode_atts( array(
-				'layout'            => 'classic',
-				'title'             => '',
-				'topic'             => '',
-				'topic_element'     => 'h2',
-				'topic_class'       => 'h4',
-				'question_element'  => 'h3',
-				'question_class'    => 'h6',
+
+				'layout'             => 'classic',
+				'title'              => '',
+				'topic'              => '',
+				'topic_element'      => 'h2',
+				'topic_class'        => 'h4',
+				'question_element'   => 'h3',
+				'question_class'     => 'h6',
 				'show'              => '',
-				'tags'              => ''
+				'tags'              => '',
+				'order_by_sort_meta' => true,
 			), $atts, 'ucf-faq-list' );
+
+			$atts['order_by_sort_meta'] = filter_var( $atts['order_by_sort_meta'], FILTER_VALIDATE_BOOLEAN );
 
 			$args = array(
 				'post_type'      => 'faq',
-				'posts_per_page' => -1,
-				'orderby'        => 'title',
-				'order'          => 'ASC',
+				'posts_per_page' => -1
 			);
+
+			if ( $atts['order_by_sort_meta'] ) {
+				$args['meta_key'] = 'faq_question_sort_order';
+
+				// Order by meta_value first, then title
+				$args['orderby'] = array(
+					'meta_value' => 'ASC',
+					'title'      => 'ASC'
+				);
+
+				$args['meta_query'] = array(
+					'relation' => 'OR',
+					array(
+						'key'     => 'faq_question_sort_order',
+						'compare' => 'EXISTS',
+					),
+					array(
+						'key'     => 'faq_question_sort_order',
+						'compare' => 'NOT EXISTS'
+					)
+				);
+			}
 
 			if( $atts['topic'] ) {
 				$term = get_term_by( 'slug', $atts['topic'], 'topic' );

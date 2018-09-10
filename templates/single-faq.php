@@ -18,7 +18,7 @@ foreach( wp_get_post_tags( $post->ID ) as $tag ) {
 	array_push( $tags, $tag->slug );
 }
 
-$related_posts = UCF_FAQ_Common::get_related_faqs( $tags, "" );
+$related_posts = UCF_FAQ_Common::get_related_faqs( $tags, array( $post->ID ) );
 $related_faq_html = null;
 ?>
 
