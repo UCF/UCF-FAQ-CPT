@@ -67,7 +67,8 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 		public static function format_options( $list ) {
 			foreach ( $list as $key => $val ) {
 				switch ( $key ) {
-					case 'include_athena_classes' || 'disable_faq_archive':
+					case 'include_athena_classes':
+					case 'disable_faq_archive':
 						$list[$key] = filter_var( $val, FILTER_VALIDATE_BOOLEAN );
 					default:
 						break;
