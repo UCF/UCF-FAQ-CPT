@@ -20,7 +20,8 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 				'topic_class'       => 'h4',
 				'question_element'  => 'h3',
 				'question_class'    => 'h6',
-				'show'              => ''
+				'show'              => '',
+				'tags'              => ''
 			), $atts, 'ucf-faq-list' );
 
 			$args = array(
@@ -55,7 +56,22 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 				}
 			}
 
-			return UCF_FAQ_List_Common::display_faqs( $items, $atts['layout'], $atts );
+			$faqs = UCF_FAQ_List_Common::display_faqs( $items, $atts['layout'], $atts );
+
+			$related_faqs_html = "";
+
+			if( $atts['tags'] !== '' ) {
+
+				$related_posts = UCF_FAQ_Common::get_related_faqs( $atts['tags'], $items );
+
+				$related_faqs_html = '<h2 class="h4 mt-4">Related FAQs</h2>';
+
+				foreach( $related_posts as $post ) {
+					$related_faqs_html .=  UCF_FAQ_Common::display_faq( $post, $atts );
+				}
+			}
+
+			return $faqs . $related_faqs_html;
 		}
 	}
 
@@ -63,6 +79,7 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 		add_shortcode( 'ucf-faq-list', array( 'UCF_FAQ_List_Shortcode', 'shortcode' ) );
 	}
 }
+
 
 /**
  * Defines the faq-topic-list shortcode
