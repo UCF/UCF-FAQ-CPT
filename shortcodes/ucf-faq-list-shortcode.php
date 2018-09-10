@@ -20,6 +20,7 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 				'topic_class'       => 'h4',
 				'question_element'  => 'h3',
 				'question_class'    => 'h6',
+				'show'              => ''
 			), $atts, 'ucf-faq-list' );
 
 			$args = array(
