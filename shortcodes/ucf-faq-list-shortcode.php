@@ -33,7 +33,7 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 			if ( $atts['order_by_sort_meta'] ) {
 				$args['meta_key'] = 'faq_question_sort_order';
 
-				// Order by title first, then meta_value
+				// Order by meta_value first, then title
 				$args['orderby'] = array(
 					'meta_value' => 'ASC',
 					'title'      => 'ASC'
