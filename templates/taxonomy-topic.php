@@ -7,7 +7,7 @@ $container_classes = " container mb-5";
 $atts['show'] = ( get_field( 'faq-topic-show-answers', get_queried_object() ) ) ?  " show" : "";
 $topic_description = term_description();
 $spotlight = false;
-if( in_array('UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters('active_plugins', get_option('active_plugins'))) ) {
+if ( in_array( 'UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 	$spotlight = get_field( 'faq-topic-spotlight', get_queried_object() );
 }
 ?>
@@ -33,8 +33,8 @@ if( in_array('UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters('active_pl
 					// Save FAQ and tag list to filter out of related FAQs section
 					array_push( $faqs, $post->ID );
 
-					foreach( wp_get_post_tags( $post->ID ) as $tag ) {
-						if( !in_array( $tag, $tags ) ) {
+					foreach ( wp_get_post_tags( $post->ID ) as $tag ) {
+						if ( ! in_array( $tag, $tags ) ) {
 							array_push( $tags, $tag->slug );
 						}
 					}
@@ -45,11 +45,11 @@ if( in_array('UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters('active_pl
 				$related_posts = UCF_FAQ_Common::get_related_faqs( $tags, $faqs );
 				$related_faq_html = null;
 
-				foreach( $related_posts as $post ) {
+				foreach ( $related_posts as $post ) {
 					$related_faq_html .=  UCF_FAQ_Common::display_faq( $post, $atts );
 				}
 
-				if( $related_faq_html ) :
+				if ( $related_faq_html ) :
 				?>
 					<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 mt-5 mb-4' ); ?>">
 						<?php echo get_field( 'related-faq-title', get_queried_object() ); ?>
@@ -58,7 +58,7 @@ if( in_array('UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters('active_pl
 					echo $related_faq_html;
 				endif;
 
-				if( $cta_text = get_field( 'faq-topic-footer-cta-text', get_queried_object() ) ) :
+				if ( $cta_text = get_field( 'faq-topic-footer-cta-text', get_queried_object() ) ) :
 			?>
 					<a href="<?php echo site_url() . get_field( 'faq-topic-footer-cta-url', get_queried_object() ); ?>"
 						class="<?php UCF_FAQ_Config::add_athena_attr( 'btn btn-primary mt-4' ); ?>">
@@ -69,7 +69,7 @@ if( in_array('UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters('active_pl
 			?>
 				</div>
 
-				<?php if( $spotlight ) : ?>
+				<?php if ( $spotlight ) : ?>
 					<div class="col-lg-4 offset-lg-1 mt-5 mt-md-2">
 						<?php echo do_shortcode( '[ucf-spotlight slug="' . $spotlight->post_name . '"]' ); ?>
 					</div>

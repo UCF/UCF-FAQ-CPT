@@ -13,20 +13,20 @@ $title_classes = " mb-4";
 			$posts = $wp_query->posts;
 			$items = array();
 
-			foreach( $posts as $post ) {
+			foreach ( $posts as $post ) {
 				$topics = wp_get_post_terms( $post->ID, 'topic' );
 
-				foreach( $topics as $topic ) {
+				foreach ( $topics as $topic ) {
 					$items[$topic->name][] = $post;
 				}
 			}
 
-			foreach( $items as $key => $item ) :
+			foreach ( $items as $key => $item ) :
 				$topic_title_classes = " mt-4 mb-3 h5";
 			?>
 				<h2 class="ucf-faq-topic<?php UCF_FAQ_Config::add_athena_attr( $topic_title_classes ); ?>"><?php echo $key; ?></h2>
 			<?php
-				foreach( $item as $post ) :
+				foreach ( $item as $post ) :
 					$unique_id = wp_rand();
 					$question_classes = " mt-3 h6";
 					$question_attrs = ' data-toggle="collapse" href="#post' . $post->ID . $unique_id . '"';

@@ -29,7 +29,7 @@ if ( ! function_exists( 'ucf_faq_topic_list_display_card' ) ) {
 	?>
 			<div class="row">
 	<?php
-			foreach( $items as $key => $item ) :
+			foreach ( $items as $key => $item ) :
 				$is_description = ( $item->description );
 				$margin_class = ( $is_description ) ? "" : " mb-0";
 	?>
