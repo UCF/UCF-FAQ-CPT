@@ -49,10 +49,6 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 				'rewrite'                    => array( 'slug' => 'faq' )
 			);
 
-			if ( UCF_FAQ_Config::get_option_or_default( UCF_FAQ_Config::$option_prefix . 'disable_frontend_topics' ) ) {
-				$args['public'] = false;
-			}
-
 			return $args;
 		}
 	}
