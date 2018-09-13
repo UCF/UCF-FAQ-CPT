@@ -1,20 +1,20 @@
 <?php
 get_header();
-$show = ( get_field( 'faq-topic-show-answers', get_queried_object() ) ) ?  " show" : "";
+$atts['show'] = ( get_field( 'faq-topic-show-answers', get_queried_object() ) ) ?  " show" : "";
 $container_classes = " container my-5";
 $title_classes = " mb-4";
 $answer_classes = " col-lg-8 mt-2 mb-4";
 $tags = array();
 $topic = wp_get_post_terms( $post->ID, 'topic' );
 
-if( $topic && is_array( $topic ) ) {
+if ( $topic && is_array( $topic ) ) {
 	$topic = $topic[0];
 }
 
 $cta_text = get_field( 'faq-topic-footer-cta-text', $topic );
 $cta_url = site_url() . get_field( 'faq-topic-footer-cta-url', $topic );
 
-foreach( wp_get_post_tags( $post->ID ) as $tag ) {
+foreach ( wp_get_post_tags( $post->ID ) as $tag ) {
 	array_push( $tags, $tag->slug );
 }
 
@@ -28,11 +28,11 @@ $related_faq_html = null;
 			<?php
 			echo apply_filters( 'the_content', $post->post_content );
 
-			foreach( $related_posts as $post ) {
-				$related_faq_html .=  UCF_FAQ_Common::display_faq( $post, $show, 'h5' );
+			foreach ( $related_posts as $post ) {
+				$related_faq_html .=  UCF_FAQ_Common::display_faq( $post, $atts );
 			}
 
-			if( $related_faq_html ) :
+			if ( $related_faq_html ) :
 			?>
 				<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 mt-5 mb-4' ); ?>">
 				<?php echo get_field( 'related-faq-title', $topic ); ?>
@@ -41,7 +41,7 @@ $related_faq_html = null;
 				echo $related_faq_html;
 			endif;
 
-			if( $cta_text && $cta_url ) :
+			if ( $cta_text && $cta_url ) :
 			?>
 				<a href="<?php echo $cta_url; ?>"
 					class="<?php UCF_FAQ_Config::add_athena_attr( 'btn btn-primary mt-4' ); ?>">

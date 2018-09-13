@@ -20,6 +20,10 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 				'topic_class'        => 'h4',
 				'question_element'   => 'h3',
 				'question_class'     => 'h6',
+				'related_element'    => 'h3',
+				'related_class'      => 'h4',
+				'show'               => '',
+				'tags'               => '',
 				'order_by_sort_meta' => true,
 			), $atts, 'ucf-faq-list' );
 
@@ -51,15 +55,15 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 				);
 			}
 
-			if( $atts['topic'] ) {
+			if ( $atts['topic'] ) {
 				$term = get_term_by( 'slug', $atts['topic'], 'topic' );
 
-				if( !empty( $term ) ) {
+				if ( ! empty( $term ) ) {
 					$args['tax_query'] = array(
 						array(
-						'taxonomy' => 'topic',
-						'field' => 'id',
-						'terms' => $term->term_id
+							'taxonomy' => 'topic',
+							'field' => 'id',
+							'terms' => $term->term_id
 						)
 					);
 				}
@@ -68,15 +72,29 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 			$posts = get_posts( $args );
 			$items = array();
 
-			foreach( $posts as $post ) {
+			foreach ( $posts as $post ) {
 				$topics = wp_get_post_terms( $post->ID, 'topic' );
 
-				foreach( $topics as $topic ) {
+				foreach ( $topics as $topic ) {
 					$items[$topic->name][] = $post;
 				}
 			}
 
-			return UCF_FAQ_List_Common::display_faqs( $items, $atts['layout'], $atts );
+			$faqs = UCF_FAQ_List_Common::display_faqs( $items, $atts['layout'], $atts );
+
+			$related_faqs_html = "";
+
+			if ( $atts['tags'] !== '' ) {
+
+				$related_posts = UCF_FAQ_Common::get_related_faqs( $atts['tags'], $items );
+				$related_faqs_html = '<' . $atts['related_element'] . ' class="' . $atts['related_class'] . '">Related FAQs</' . $atts['related_element'] . '>';
+
+				foreach ( $related_posts as $post ) {
+					$related_faqs_html .=  UCF_FAQ_Common::display_faq( $post, $atts );
+				}
+			}
+
+			return $faqs . $related_faqs_html;
 		}
 	}
 
@@ -84,6 +102,7 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 		add_shortcode( 'ucf-faq-list', array( 'UCF_FAQ_List_Shortcode', 'shortcode' ) );
 	}
 }
+
 
 /**
  * Defines the faq-topic-list shortcode
@@ -106,7 +125,7 @@ if ( ! class_exists( 'UCF_FAQ_Topic_List_Shortcode' ) ) {
 			), $atts, 'ucf-faq-list' );
 
 			$topics = get_terms( 'topic', array(
-				'post_type' => array('faq')
+				'post_type' => array( 'faq' )
 			) );
 
 			return UCF_FAQ_Topic_List_Common::display_faq_topics( $topics, $atts['layout'], $atts );
