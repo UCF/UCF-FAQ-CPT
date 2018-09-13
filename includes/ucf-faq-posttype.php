@@ -84,7 +84,7 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 				'capability_type'       => 'post',
 			);
 
-			if( UCF_FAQ_Config::get_option_or_default( UCF_FAQ_Config::$option_prefix . 'disable_faq_archive' ) ) {
+			if ( UCF_FAQ_Config::get_option_or_default( UCF_FAQ_Config::$option_prefix . 'disable_faq_archive' ) ) {
 				$args['has_archive'] = false;
 			}
 
@@ -108,7 +108,7 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 
 			$taxonomies = apply_filters( self::$text_domain . '_taxonomies', $taxonomies );
 
-			foreach( $taxonomies as $taxonomy ) {
+			foreach ( $taxonomies as $taxonomy ) {
 				if ( taxonomy_exists( $taxonomy ) ) {
 					$retval[] = $taxonomy;
 				}

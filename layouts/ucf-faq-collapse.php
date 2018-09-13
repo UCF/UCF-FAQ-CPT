@@ -24,15 +24,15 @@ if ( ! function_exists( 'ucf_faq_list_display_collapse_title' ) ) {
 if ( ! function_exists( 'ucf_faq_list_display_collapse' ) ) {
 	function ucf_faq_list_display_collapse( $content, $items, $args ) {
 		ob_start();
-		if( $items ):
-			$show = ($args['show'] === "true") ? " show" : "";
+		if ( $items ):
+			$show = ( $args['show'] === "true" ) ? " show" : "";
 
-			foreach( $items as $key => $item ) :
+			foreach ( $items as $key => $item ) :
 				$unique_id = wp_rand();
 	?>
 				<<?php echo $args['topic_element']; ?> class="ucf-faq-topic mt-4 mb-3 <?php echo $args['topic_class']; ?>"><?php echo $key; ?></<?php echo $args['topic_element']; ?>>
 	<?php
-				foreach( $item as $post ) :
+				foreach ( $item as $post ) :
 	?>
 					<a href="<?php echo get_permalink( $post->ID ); ?>"><<?php echo $args['question_element']; ?> class="ucf-faq-question mt-3 <?php echo $args['question_class']; ?>" data-toggle="collapse" href="#post<?php echo $post->ID . $unique_id; ?>">
 						<?php echo $post->post_title; ?></<?php echo $args['question_element']; ?>>
