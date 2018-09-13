@@ -46,6 +46,7 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 				'show_admin_column'          => true,
 				'show_in_nav_menus'          => true,
 				'show_tagcloud'              => true,
+				'rewrite'                    => array( 'slug' => 'faq' ), //custom slug for topic pages
 			);
 		}
 	}
