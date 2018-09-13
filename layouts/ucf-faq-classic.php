@@ -25,12 +25,12 @@ if ( ! function_exists( 'ucf_faq_list_display_classic_title' ) ) {
 if ( ! function_exists( 'ucf_faq_list_display_classic' ) ) {
 	function ucf_faq_list_display_classic( $content, $items, $args ) {
 		ob_start();
-		if( $items ):
-			foreach( $items as $key => $item ) :
+		if ( $items ):
+			foreach ( $items as $key => $item ) :
 	?>
 				<<?php echo $args['topic_element']; ?> class="ucf-faq-topic <?php echo $args['topic_class']; ?>"><?php echo $key; ?></<?php echo $args['topic_element']; ?>>
 	<?php
-				foreach( $item as $post ) :
+				foreach ( $item as $post ) :
 	?>
 					<<?php echo $args['question_element']; ?> class="ucf-faq-question <?php echo $args['question_class']; ?>"><?php echo $post->post_title; ?></<?php echo $args['question_element']; ?>>
 					<div class="ucf-faq-answer">
