@@ -6,8 +6,9 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 	class UCF_FAQ_Config {
 		public static $option_prefix = 'ucf_faq_',
 		$option_defaults = array(
-			'include_athena_classes' => true,
-			'disable_faq_archive' => false,
+			'include_athena_classes'  => true,
+			'disable_faq_archive'     => false,
+			'disable_frontend_topics' => false
 		);
 
 
@@ -21,6 +22,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			$defaults = self::$option_defaults; // don't use self::get_option_defaults() here (default options haven't been set yet)
 			add_option( self::$option_prefix . 'include_athena_classes', $defaults['include_athena_classes'] );
 			add_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] );
+			add_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_frontend_topics'] );
 		}
 
 
@@ -33,6 +35,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 		public static function delete_options() {
 			delete_option( self::$option_prefix . 'include_athena_classes' );
 			delete_option( self::$option_prefix . 'disable_faq_archive' );
+			delete_option( self::$option_prefix . 'disable_frontend_topics' );
 		}
 
 
@@ -47,8 +50,9 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 
 			// Apply default values configurable within the options page:
 			$configurable_defaults = array(
-				'include_athena_classes' => get_option( self::$option_prefix . 'include_athena_classes', $defaults['include_athena_classes'] ),
-				'disable_faq_archive' => get_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] ),
+				'include_athena_classes'  => get_option( self::$option_prefix . 'include_athena_classes', $defaults['include_athena_classes'] ),
+				'disable_faq_archive'     => get_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] ),
+				'disable_frontend_topics' => get_option( self::$option_prefix . 'disable_frontend_topics', $defaults['disable_frontend_topics'] ),
 			);
 
 			// Force configurable options to override $defaults, even if they are empty:
@@ -69,6 +73,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 				switch ( $key ) {
 					case 'include_athena_classes':
 					case 'disable_faq_archive':
+					case 'disable_frontend_topics':
 						$list[$key] = filter_var( $val, FILTER_VALIDATE_BOOLEAN );
 					default:
 						break;
@@ -125,6 +130,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			// Register settings
 			register_setting( 'ucf_faq', self::$option_prefix . 'include_athena_classes' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'disable_faq_archive' );
+			register_setting( 'ucf_faq', self::$option_prefix . 'disable_frontend_topics' );
 
 			// Register setting sections
 			add_settings_section(
@@ -157,6 +163,19 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 				array(  // extra arguments to pass to the callback function
 					'label_for'   => self::$option_prefix . 'disable_faq_archive',
 					'description' => 'If checked the FAQ Archive will be disabled.',
+					'type'        => 'checkbox'
+				)
+			);
+
+			add_settings_field(
+				self::$option_prefix . 'disable_frontend_topics',
+				'Disable Frontend Topics',  // formatted field title
+				array( 'UCF_FAQ_Config', 'display_settings_field' ),  // display callback
+					'ucf_faq',  // settings page slug
+					'ucf_faq_section_general',  // option section slug
+				array(  // extra arguments to pass to the callback function
+					'label_for'   => self::$option_prefix . 'disable_frontend_topics',
+					'description' => 'If checked, frontend Topic views will be disabled.  You should uncheck this box if you plan on using Pages with shortcodes to display Topics and FAQs instead of this plugin\'s included Topic views.',
 					'type'        => 'checkbox'
 				)
 			);
