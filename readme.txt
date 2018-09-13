@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/copyleft/gpl-3.0.html
 
 == Description ==
 
-Provides a custom post type for describing FAQs and creates supporting shortcodes. This plugin supports the [UCF Athena Framework](https://github.com/UCF/Athena-Framework).
+Provides a custom post type for describing FAQs and creates supporting shortcodes. This plugin supports the [UCF Athena Framework](https://github.com/UCF/Athena-Framework) (Required by the card and collapse layouts).
 
 The following templates can be overwritten in the plugin.
 * single-faq.php
