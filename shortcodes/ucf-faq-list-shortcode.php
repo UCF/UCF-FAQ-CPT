@@ -85,8 +85,11 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 			if ( $atts['tags'] !== '' ) {
 
 				$related_posts = UCF_FAQ_Common::get_related_faqs( $atts['tags'], $items );
-
-				$related_faqs_html = '<h2 class="h4 mt-4">Related FAQs</h2>';
+				ob_start();
+			?>
+				<<?php echo $atts['topic_element']; ?> class="<?php UCF_FAQ_Config::add_athena_attr('h4 mt-4') ?>">Related FAQs</<?php echo $atts['topic_element'] ?>>
+			<?php
+				$related_faqs_html = ob_get_clean();
 
 				foreach ( $related_posts as $post ) {
 					$related_faqs_html .=  UCF_FAQ_Common::display_faq( $post, $atts );
