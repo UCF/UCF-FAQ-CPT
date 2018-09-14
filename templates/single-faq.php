@@ -2,6 +2,7 @@
 get_header();
 $atts['show'] = ( get_field( 'faq-topic-show-answers', get_queried_object() ) ) ?  " show" : "";
 $container_classes = " container my-5";
+$row_classes = " row";
 $title_classes = " mb-4";
 $answer_classes = " col-lg-8 mt-2 mb-4";
 $tags = array();
@@ -23,14 +24,16 @@ $related_posts = UCF_FAQ_Common::get_related_faqs( $tags, array( $post->ID ) );
 
 <article>
 	<div class="ucf-faq-list<?php UCF_FAQ_Config::add_athena_attr( $container_classes ); ?>">
-		<div class="ucf-faq-topic-answer<?php UCF_FAQ_Config::add_athena_attr( $answer_classes ); ?>">
-		<?php
-			echo apply_filters( 'the_content', $post->post_content );
+		<div class="ucf-faq-list-inner<?php UCF_FAQ_Config::add_athena_attr( $row_classes ); ?>">
+			<div class="ucf-faq-topic-answer<?php UCF_FAQ_Config::add_athena_attr( $answer_classes ); ?>">
+				<?php
+				echo apply_filters( 'the_content', $post->post_content );
 
-			echo UCF_FAQ_Common::display_related_faqs( $related_posts, get_field( 'related-faq-title', $topic ), $atts );
+				echo UCF_FAQ_Common::display_related_faqs( $related_posts, get_field( 'related-faq-title', $topic ), $atts );
 
-			echo UCF_FAQ_Common::display_footer_cta( $cta_text, $cta_url );
-		?>
+				echo UCF_FAQ_Common::display_footer_cta( $cta_text, $cta_url );
+				?>
+			</div>
 		</div>
 	</div>
 </article>

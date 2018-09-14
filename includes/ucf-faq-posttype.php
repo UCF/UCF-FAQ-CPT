@@ -78,7 +78,7 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 				'show_in_nav_menus'     => true,
 				'can_export'            => true,
 				'has_archive'           => true,
-				'rewrite'               => array( 'slug' => 'faq/question' ), //custom slug for single question pages
+				'rewrite'               => array( 'slug' => 'question' ), //custom slug for single question pages
 				'exclude_from_search'   => false,
 				'publicly_queryable'    => true,
 				'capability_type'       => 'post',

@@ -37,16 +37,19 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 				'items_list_navigation'      => __( 'Topics list navigation', self::$text_domain ),
 			);
 		}
+
 		public static function args() {
-			return array(
+			$args = array(
 				'labels'                     => self::labels(),
 				'hierarchical'               => false,
 				'public'                     => true,
 				'show_ui'                    => true,
 				'show_admin_column'          => true,
-				'show_in_nav_menus'          => true,
 				'show_tagcloud'              => true,
+				'rewrite'                    => array( 'slug' => 'faq' )
 			);
+
+			return $args;
 		}
 	}
 }
