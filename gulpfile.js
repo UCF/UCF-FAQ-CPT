@@ -1,3 +1,4 @@
+const fs           = require('fs');
 const gulp         = require('gulp');
 const browserSync  = require('browser-sync').create();
 const autoprefixer = require('gulp-autoprefixer');
@@ -7,6 +8,7 @@ const readme       = require('gulp-readme-to-markdown');
 const rename       = require('gulp-rename');
 const sass         = require('gulp-sass');
 const sassLint     = require('gulp-sass-lint');
+const merge        = require('merge');
 
 let config = {
   src: {
@@ -16,7 +18,17 @@ let config = {
     cssPath: './static/css',
   },
   packagesPath: './node_modules',
+  sync: false,
+  syncTarget: 'http://localhost/wordpress/'
 };
+
+/* eslint-disable no-sync */
+if (fs.existsSync('./gulp-config.json')) {
+  const overrides = JSON.parse(fs.readFileSync('./gulp-config.json'));
+  config = merge(config, overrides);
+}
+/* eslint-enable no-sync */
+
 
 //
 // Helper functions
