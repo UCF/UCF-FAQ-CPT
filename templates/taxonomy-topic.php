@@ -35,7 +35,7 @@ $topic = get_queried_object();
 		}
 	?>
 
-	<div class="ucf-faq-topic-list<?php UCF_FAQ_Config::add_athena_attr( ' container mb-5' ); ?>">
+	<div class="ucf-faq-topic-list<?php UCF_FAQ_Config::add_athena_attr( ' container mt-4 mt-sm-5 mb-5' ); ?>">
 		<div class="<?php UCF_FAQ_Config::add_athena_attr( 'row' ); ?>">
 			<div class="ucf-faq-topic-description<?php UCF_FAQ_Config::add_athena_attr( ' col-lg-7 mb-4' ); ?>">
 
