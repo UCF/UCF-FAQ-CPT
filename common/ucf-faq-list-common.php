@@ -90,15 +90,14 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			ob_start();
 
 			$atts['question_element'] = ( isset( $atts['question_element'] ) ) ? $atts['question_element'] : 'h3';
-			$atts['question_class'] = ( isset( $atts['question_class'] ) ) ? $atts['question_class'] : 'h5';
+			$atts['question_class'] = ( isset( $atts['question_class'] ) ) ? $atts['question_class'] : ' h5';
 
-			$question_classes = " mt-4 " . $atts['question_class'];
 			$question_attrs   = ' data-toggle="collapse" href="#post' . $post->ID . '"';
-			$answer_classes   = " mt-2 mb-4 collapse" . $atts['show'];
+			$answer_classes   = " collapse" . $atts['show'];
 			$answer_attrs     = ' id="post' . $post->ID . '"';
 		?>
-			<a href="<?php echo get_permalink( $post->ID ); ?>">
-				<<?php echo $atts['question_element']; ?> class="ucf-faq-question<?php UCF_FAQ_Config::add_athena_attr( $question_classes ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>>
+			<a href="<?php echo get_permalink( $post->ID ); ?>" class="<?php UCF_FAQ_Config::add_athena_attr( 'd-block pt-3' ); ?>">
+				<<?php echo $atts['question_element']; ?> class="ucf-faq-question<?php UCF_FAQ_Config::add_athena_attr( $atts['question_class'] ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>>
 					<?php echo $post->post_title; ?>
 				</<?php echo $atts['question_element']; ?>>
 			</a>
