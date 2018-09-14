@@ -28,9 +28,9 @@ $title_classes = " mb-4";
 			<?php
 				foreach ( $item as $post ) :
 					$unique_id = wp_rand();
-					$question_classes = " mt-3 h6";
+					$question_classes = " h6";
 					$question_attrs = ' data-toggle="collapse" href="#post' . $post->ID . $unique_id . '"';
-					$answer_classes = " mt-2 mb-4 collapse";
+					$answer_classes = " collapse";
 					$answer_attrs = ' id="post' . $post->ID . $unique_id . '"';
 			?>
 					<a href="<?php echo get_permalink( $post->ID ); ?>">

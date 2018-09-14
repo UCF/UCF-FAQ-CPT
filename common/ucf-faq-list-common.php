@@ -97,7 +97,7 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			$answer_attrs     = ' id="post' . $post->ID . '"';
 		?>
 			<a href="<?php echo get_permalink( $post->ID ); ?>" class="<?php UCF_FAQ_Config::add_athena_attr( 'd-block pt-3' ); ?>">
-				<<?php echo $atts['question_element']; ?> class="ucf-faq-question<?php UCF_FAQ_Config::add_athena_attr( $atts['question_class'] ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>>
+				<<?php echo $atts['question_element']; ?> class="ucf-faq-question <?php UCF_FAQ_Config::add_athena_attr( $atts['question_class'] ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>>
 					<?php echo $post->post_title; ?>
 				</<?php echo $atts['question_element']; ?>>
 			</a>
