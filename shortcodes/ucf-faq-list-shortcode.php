@@ -82,19 +82,12 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 
 			$faqs = UCF_FAQ_List_Common::display_faqs( $items, $atts['layout'], $atts );
 
-			$related_faqs_html = "";
+			$related_posts = UCF_FAQ_Common::get_related_faqs( $atts['tags'], $items );
+			$related_faqs = UCF_FAQ_Common::display_related_faqs( $related_posts, "Related FAQs", $atts );
 
-			if ( $atts['tags'] !== '' ) {
+			$cta =  UCF_FAQ_Common::display_footer_cta( "View All FAQs", "/faq/" );
 
-				$related_posts = UCF_FAQ_Common::get_related_faqs( $atts['tags'], $items );
-				$related_faqs_html = '<' . $atts['related_element'] . ' class="pt-5 ' . $atts['related_class'] . '">Related FAQs</' . $atts['related_element'] . '>';
-
-				foreach ( $related_posts as $post ) {
-					$related_faqs_html .=  UCF_FAQ_Common::display_faq( $post, $atts );
-				}
-			}
-
-			return $faqs . $related_faqs_html;
+			return $faqs . $related_faqs . $cta;
 		}
 	}
 

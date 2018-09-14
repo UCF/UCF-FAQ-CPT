@@ -111,6 +111,60 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 
 
 		/**
+		 * Method to output the related faq question and answers with title.
+		 * @author RJ Bruneel
+		 * @since 1.0.0
+		 **/
+		public static function display_related_faqs( $posts, $title, $atts ) {
+			$retval = "";
+
+			ob_start();
+
+			if ( $posts ) :
+
+			?>
+				<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 pt-4' ); ?>">
+					<?php echo $title; ?>
+				</h2>
+			<?php
+
+				foreach ( $posts as $post ) {
+					echo UCF_FAQ_Common::display_faq( $post, $atts );
+				}
+
+				$retval = ob_get_clean();
+
+			endif;
+
+			return $retval;
+		}
+
+
+
+		/**
+		 * Method to output the footer CTA.
+		 * @author RJ Bruneel
+		 * @since 1.0.0
+		 **/
+		public static function display_footer_cta( $cta_text, $cta_url ) {
+			$retval = "";
+
+			ob_start();
+			if ( $cta_text && $cta_url ) :
+			?>
+				<a href="<?php echo $cta_url; ?>"
+					class="<?php UCF_FAQ_Config::add_athena_attr( 'btn btn-primary mt-4' ); ?>">
+					<?php echo $cta_text; ?>
+				</a>
+			<?php
+				$retval = ob_get_clean();
+			endif;
+
+			return $retval;
+		}
+
+
+		/**
 		 * Get related FAQs by tag excluding faqs already on the page.
 		 * @author RJ Bruneel
 		 * @since 1.0.0
