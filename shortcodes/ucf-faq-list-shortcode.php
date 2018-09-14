@@ -87,7 +87,7 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 			if ( $atts['tags'] !== '' ) {
 
 				$related_posts = UCF_FAQ_Common::get_related_faqs( $atts['tags'], $items );
-				$related_faqs_html = '<' . $atts['related_element'] . ' class="pt-4 ' . $atts['related_class'] . '">Related FAQs</' . $atts['related_element'] . '>';
+				$related_faqs_html = '<' . $atts['related_element'] . ' class="pt-5 ' . $atts['related_class'] . '">Related FAQs</' . $atts['related_element'] . '>';
 
 				foreach ( $related_posts as $post ) {
 					$related_faqs_html .=  UCF_FAQ_Common::display_faq( $post, $atts );
