@@ -122,7 +122,7 @@ if ( ! class_exists( 'UCF_FAQ_Topic_List_Shortcode' ) ) {
 				'title'          => '',
 				'topic_element'  => 'h2',
 				'topic_class'    => 'h5',
-			), $atts, 'ucf-faq-list' );
+			), $atts, 'ucf-faq-topic-list' );
 
 			$topics = get_terms( 'topic', array(
 				'post_type' => array( 'faq' )
