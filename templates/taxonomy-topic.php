@@ -12,7 +12,7 @@ $topic = get_queried_object();
 	if ( get_field( 'faq-topic-view-type', $topic ) === 'custom' ) :
 
 		// Display custom markup only
-		echo apply_filters( 'the_content', get_field( 'faq-topic-custom-content', $topic ) );
+		echo get_field( 'faq-topic-custom-content', $topic );
 
 	else:
 		$tags              = array();
@@ -70,7 +70,8 @@ $topic = get_queried_object();
 
 						<?php
 						// Display each individual FAQ
-						echo UCF_FAQ_Common::display_faq( $post, $faq_atts );
+						$unique_id = wp_rand();
+						echo UCF_FAQ_Common::display_faq( $post, $faq_atts, $unique_id );
 						?>
 
 					<?php
