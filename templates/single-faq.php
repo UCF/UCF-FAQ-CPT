@@ -36,8 +36,8 @@ $related_faq_html = null;
 
 				if ( $related_faq_html ) :
 				?>
-					<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 mt-5 mb-4' ); ?>">
-					<?php echo get_field( 'related-faq-title', $topic ); ?>
+					<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 mt-5' ); ?>">
+						<?php echo get_field( 'related-faq-title', $topic ); ?>
 					</h2>
 				<?php
 					echo $related_faq_html;

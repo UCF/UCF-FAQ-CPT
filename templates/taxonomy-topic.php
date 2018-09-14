@@ -98,7 +98,7 @@ $topic = get_queried_object();
 				if ( $related_faq_html ) :
 				?>
 					<?php if ( $related_faq_title ): ?>
-					<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 mt-5 mb-4' ); ?>">
+					<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 pt-4' ); ?>">
 						<?php echo wptexturize( $related_faq_title ); ?>
 					</h2>
 					<?php endif; ?>
