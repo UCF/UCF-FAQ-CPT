@@ -25,8 +25,8 @@ if ( ! function_exists( 'ucf_faq_topic_list_display_classic_title' ) ) {
 if ( ! function_exists( 'ucf_faq_topic_list_display_classic' ) ) {
 	function ucf_faq_topic_list_display_classic( $content, $items, $args ) {
 		ob_start();
-		if( $items ):
-			foreach( $items as $item ) :
+		if ( $items ):
+			foreach ( $items as $item ) :
 	?>
 				<a href="<?php echo get_term_link( $item->term_id ); ?>">
 					<<?php echo $args['topic_element']; ?> class="ucf-faq-topic-title <?php echo $args['topic_class']; ?>"><?php echo $item->name; ?></<?php echo $args['topic_element']; ?>>
