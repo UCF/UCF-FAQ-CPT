@@ -4,6 +4,41 @@
         "title": "Topic Fields",
         "fields": [
             {
+                "key": "field_5b9ace1a451fb",
+                "label": "Display Settings",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_5b85b5c65fe52",
+                "label": "Show FAQ Answers",
+                "name": "faq-topic-show-answers",
+                "type": "true_false",
+                "instructions": "If checked the FAQ answer will be visible on page load.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
                 "key": "field_5b8598c5aeaa9",
                 "label": "FAQ Topic Image",
                 "name": "faq-topic-image",
@@ -26,47 +61,6 @@
                 "max_height": 500,
                 "max_size": "",
                 "mime_types": "jpg, png"
-            },
-            {
-                "key": "field_5b85b5c65fe52",
-                "label": "FAQ Show Answers",
-                "name": "faq-topic-show-answers",
-                "type": "true_false",
-                "instructions": "If checked the FAQ answer will be visible on page load.",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "message": "",
-                "default_value": 0,
-                "ui": 0,
-                "ui_on_text": "",
-                "ui_off_text": ""
-            },
-            {
-                "key": "field_5b90050373b29",
-                "label": "FAQ Topic Spotlight",
-                "name": "faq-topic-spotlight",
-                "type": "post_object",
-                "instructions": "Select a Spotlight to be displayed on the topic list page.",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "post_type": [
-                    "ucf_spotlight"
-                ],
-                "taxonomy": [],
-                "allow_null": 0,
-                "multiple": 0,
-                "return_format": "object",
-                "ui": 1
             },
             {
                 "key": "field_5b9028cb19703",
@@ -124,6 +118,106 @@
                 "prepend": "",
                 "append": "",
                 "maxlength": ""
+            },
+            {
+                "key": "field_5b9acdc1451f9",
+                "label": "Frontend Topic Contents",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_5b9ace2d451fc",
+                "label": "Single Topic View",
+                "name": "faq-topic-view-type",
+                "type": "select",
+                "instructions": "Select how this Topic's template should be displayed on the frontend.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "default": "Default",
+                    "custom": "Custom Content"
+                },
+                "default_value": [
+                    "default"
+                ],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "ajax": 0,
+                "return_format": "value",
+                "placeholder": ""
+            },
+            {
+                "key": "field_5b90050373b29",
+                "label": "Topic Spotlight",
+                "name": "faq-topic-spotlight",
+                "type": "post_object",
+                "instructions": "Select a Spotlight to be displayed on the topic list page.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5b9ace2d451fc",
+                            "operator": "==",
+                            "value": "default"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "ucf_spotlight"
+                ],
+                "taxonomy": [],
+                "allow_null": 0,
+                "multiple": 0,
+                "return_format": "object",
+                "ui": 1
+            },
+            {
+                "key": "field_5b9ad0b9451fd",
+                "label": "Topic Custom Content",
+                "name": "faq-topic-custom-content",
+                "type": "wysiwyg",
+                "instructions": "Custom content to use on the single Topic view, in lieu of the template provided by the UCF FAQ Plugin.  You will need to include FAQ lists yourself using the <code>[ucf-faq-list]<\/code> shortcode.",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5b9ace2d451fc",
+                            "operator": "==",
+                            "value": "custom"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 1,
+                "delay": 0
             }
         ],
         "location": [

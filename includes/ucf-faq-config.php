@@ -6,9 +6,9 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 	class UCF_FAQ_Config {
 		public static $option_prefix = 'ucf_faq_',
 		$option_defaults = array(
-			'include_athena_classes' => true,
-			'disable_faq_archive' => false,
-			'include_css' => true,
+			'include_athena_classes'  => true,
+			'include_css'             => true,
+			'disable_faq_archive'     => false
 		);
 
 
@@ -51,8 +51,8 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			// Apply default values configurable within the options page:
 			$configurable_defaults = array(
 				'include_athena_classes' => get_option( self::$option_prefix . 'include_athena_classes', $defaults['include_athena_classes'] ),
-				'include_css' => get_option( self::$option_prefix . 'include_css', $defaults['include_css'] ),
-				'disable_faq_archive' => get_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] ),
+				'include_css'            => get_option( self::$option_prefix . 'include_css', $defaults['include_css'] ),
+				'disable_faq_archive'    => get_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] ),
 			);
 
 			// Force configurable options to override $defaults, even if they are empty:
