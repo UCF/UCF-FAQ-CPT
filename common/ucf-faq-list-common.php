@@ -1,4 +1,17 @@
 <?php
+if ( ! function_exists( 'ucf_faq_enqueue_assets' ) ) {
+	function ucf_faq_enqueue_assets() {
+		// CSS
+		$include_css = UCF_FAQ_Config::get_option_or_default( 'include_css' );
+		$css_deps = apply_filters( 'ucf_faq_style_deps', array() );
+		if ( $include_css ) {
+			wp_enqueue_style( 'ucf_faq_css', plugins_url( 'static/css/ucf-faq.min.css', UCF_FAQ__PLUGIN_FILE ), $css_deps, false, 'screen' );
+		}
+	}
+	add_action( 'wp_enqueue_scripts', 'ucf_faq_enqueue_assets' );
+}
+
+
 /**
  * Defines hooks for displaying a list of FAQs.
  * @author RJ Bruneel
