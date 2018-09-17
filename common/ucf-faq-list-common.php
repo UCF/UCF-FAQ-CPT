@@ -86,15 +86,15 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 		 * @author RJ Bruneel
 		 * @since 1.0.0
 		 **/
-		public static function display_faq( $post, $atts ) {
+		public static function display_faq( $post, $atts, $unique_id ) {
 			ob_start();
 
 			$atts['question_element'] = ( isset( $atts['question_element'] ) ) ? $atts['question_element'] : 'h3';
 			$atts['question_class'] = ( isset( $atts['question_class'] ) ) ? $atts['question_class'] : ' h5';
 
-			$question_attrs   = ' data-toggle="collapse" href="#post' . $post->ID . '"';
+			$question_attrs   = ' data-toggle="collapse" href="#post' . $post->ID . $unique_id .'"';
 			$answer_classes   = " collapse" . $atts['show'];
-			$answer_attrs     = ' id="post' . $post->ID . '"';
+			$answer_attrs     = ' id="post' . $post->ID . $unique_id . '"';
 		?>
 			<a href="<?php echo get_permalink( $post->ID ); ?>" class="<?php UCF_FAQ_Config::add_athena_attr( 'd-block pt-3' ); ?>">
 				<<?php echo $atts['question_element']; ?> class="ucf-faq-question <?php UCF_FAQ_Config::add_athena_attr( $atts['question_class'] ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>>
@@ -107,6 +107,58 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			</div>
 		<?php
 			return ob_get_clean();
+		}
+
+
+		/**
+		 * Method to output the related faq question and answers with title.
+		 * @author RJ Bruneel
+		 * @since 1.0.0
+		 **/
+		public static function display_related_faqs( $posts, $title, $atts ) {
+			$retval = "";
+
+			ob_start();
+
+			if ( $posts ) :
+
+			?>
+				<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 pt-4' ); ?>">
+					<?php echo $title; ?>
+				</h2>
+			<?php
+				$unique_id = wp_rand();
+
+				foreach ( $posts as $post ) {
+					echo UCF_FAQ_Common::display_faq( $post, $atts, $unique_id );
+				}
+
+				$retval = ob_get_clean();
+
+			endif;
+
+			return $retval;
+		}
+
+
+
+		/**
+		 * Method to output the footer CTA.
+		 * @author RJ Bruneel
+		 * @since 1.0.0
+		 **/
+		public static function display_footer_cta( $cta_text, $cta_url ) {
+			$retval = "";
+
+			ob_start();
+			if ( $cta_text && $cta_url ) :
+			?>
+				<a href="<?php echo $cta_url; ?>" class="<?php UCF_FAQ_Config::add_athena_attr( 'btn btn-primary mt-4' ); ?>"><?php echo $cta_text; ?></a>
+			<?php
+				$retval = ob_get_clean();
+			endif;
+
+			return $retval;
 		}
 
 
