@@ -292,12 +292,23 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 		public static function add_athena_attr( $attr ) {
 			echo ( self::get_option_or_default( self::$option_prefix . 'include_athena_classes' ) ) ? $attr : "";
 		}
+
+
+		/**
+		 * Flush Rewrite Rules when the faq archive option is updated.
+		 * @author RJ Bruneel
+		 * @since 1.0.0
+		 **/
+		public static function faq_archive_option_updated() {
+			flush_rewrite_rules();
+		}
 	}
 }
 
 // Register settings and options.
 add_action( 'admin_init', array( 'UCF_FAQ_Config', 'settings_init' ) );
 add_action( 'admin_menu', array( 'UCF_FAQ_Config', 'add_options_page' ) );
+add_action( 'update_option_ucf_faq_disable_faq_archive', array( 'UCF_FAQ_Config', 'faq_archive_option_updated' ), 10, 0 );
 
 // Apply custom formatting to shortcode attributes and options.
 UCF_FAQ_Config::add_option_formatting_filters();
