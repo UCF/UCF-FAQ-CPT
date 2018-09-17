@@ -29,10 +29,6 @@ $topic = get_queried_object();
 		if ( in_array( 'UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 			$spotlight = get_field( 'faq-topic-spotlight', $topic );
 		}
-
-		if ( substr( $cta_url, 0, 1 ) === '/' ) {
-			$cta_url = site_url(). $cta_url;
-		}
 	?>
 
 	<div class="ucf-faq-topic-list<?php UCF_FAQ_Config::add_athena_attr( ' container mt-4 mt-sm-5 mb-5' ); ?>">
@@ -90,6 +86,7 @@ $topic = get_queried_object();
 				$related_posts = UCF_FAQ_Common::get_related_faqs( $tags, $faqs );
 				echo UCF_FAQ_Common::display_related_faqs( $related_posts, get_field( 'related-faq-title', $topic ), $faq_atts );
 
+				// Display CTA Footer
 				echo UCF_FAQ_Common::display_footer_cta( $cta_text, $cta_url );
 				?>
 

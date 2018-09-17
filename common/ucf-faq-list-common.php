@@ -133,9 +133,9 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 					echo UCF_FAQ_Common::display_faq( $post, $atts, $unique_id );
 				}
 
-				$retval = ob_get_clean();
-
 			endif;
+
+			$retval = ob_get_clean();
 
 			return $retval;
 		}
@@ -150,13 +150,19 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 		public static function display_footer_cta( $cta_text, $cta_url ) {
 			$retval = "";
 
+			if ( substr( $cta_url, 0, 1 ) === '/' ) {
+				$cta_url = site_url() . $cta_url;
+			}
+
 			ob_start();
+
 			if ( $cta_text && $cta_url ) :
 			?>
 				<a href="<?php echo $cta_url; ?>" class="<?php UCF_FAQ_Config::add_athena_attr( 'btn btn-primary mt-4' ); ?>"><?php echo $cta_text; ?></a>
 			<?php
-				$retval = ob_get_clean();
 			endif;
+
+			$retval = ob_get_clean();
 
 			return $retval;
 		}
