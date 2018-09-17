@@ -1,5 +1,5 @@
 <?php
-if ( ! function_exists( 'ucf_faq_enqueue_assets' ) ) {
+if ( ! function_exists( 'ucf_faq_enqueue_assets' ) && UCF_FAQ_Config::get_option_or_default( 'ucf_faq_include_athena_classes' ) ) {
 	function ucf_faq_enqueue_assets() {
 		// CSS
 		$include_css = UCF_FAQ_Config::get_option_or_default( 'include_css' );
