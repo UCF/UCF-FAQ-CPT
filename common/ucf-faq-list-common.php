@@ -1,4 +1,17 @@
 <?php
+if ( ! function_exists( 'ucf_faq_enqueue_assets' ) ) {
+	function ucf_faq_enqueue_assets() {
+		// CSS
+		$include_athena_classes = UCF_FAQ_Config::get_option_or_default( 'include_athena_classes' );
+		$css_deps = apply_filters( 'ucf_faq_style_deps', array() );
+		if ( $include_athena_classes ) {
+			wp_enqueue_style( 'ucf_faq_css', plugins_url( 'static/css/ucf-faq.min.css', UCF_FAQ__PLUGIN_FILE ), $css_deps, false, 'screen' );
+		}
+	}
+	add_action( 'wp_enqueue_scripts', 'ucf_faq_enqueue_assets' );
+}
+
+
 /**
  * Defines hooks for displaying a list of FAQs.
  * @author RJ Bruneel
@@ -96,14 +109,18 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			$answer_classes   = " collapse" . $atts['show'];
 			$answer_attrs     = ' id="post' . $post->ID . $unique_id . '"';
 		?>
-			<a href="<?php echo get_permalink( $post->ID ); ?>" class="<?php UCF_FAQ_Config::add_athena_attr( 'd-block pt-3' ); ?>">
-				<<?php echo $atts['question_element']; ?> class="ucf-faq-question <?php UCF_FAQ_Config::add_athena_attr( $atts['question_class'] ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>>
-					<?php echo $post->post_title; ?>
-				</<?php echo $atts['question_element']; ?>>
-			</a>
-
-			<div class="ucf-faq-topic-answer<?php UCF_FAQ_Config::add_athena_attr( $answer_classes ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $answer_attrs ); ?>>
-				<?php echo apply_filters( 'the_content', $post->post_content ); ?>
+			<div class="<?php UCF_FAQ_Config::add_athena_attr( 'd-flex mb-4 flex-column' ); ?>">
+				<a href="<?php echo get_permalink( $post->ID ); ?>" class="ucf-faq-question-link <?php UCF_FAQ_Config::add_athena_attr( 'd-flex' ); ?>">
+					<div class="ucf-faq-collapse-icon-container <?php UCF_FAQ_Config::add_athena_attr( 'mr-2 mr-md-3' ); ?>">
+						<span class="ucf-faq-collapse-icon <?php UCF_FAQ_Config::add_athena_attr( 'collapsed' ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>></span>
+					</div>
+					<<?php echo $atts['question_element']; ?> class="ucf-faq-question <?php UCF_FAQ_Config::add_athena_attr( 'collapsed align-self-center mb-0 ' . $atts['question_class'] ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>>
+						<?php echo $post->post_title; ?>
+					</<?php echo $atts['question_element']; ?>>
+				</a>
+				<div class="ucf-faq-topic-answer <?php UCF_FAQ_Config::add_athena_attr( $answer_classes . ' ml-2 ml-md-3 mt-2' ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $answer_attrs ); ?>>
+					<?php echo apply_filters( 'the_content', $post->post_content ); ?>
+				</div>
 			</div>
 		<?php
 			return ob_get_clean();
@@ -123,7 +140,7 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			if ( $posts ) :
 
 			?>
-				<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 pt-4' ); ?>">
+				<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 pt-5 mb-4 heading-underline' ); ?>">
 					<?php echo $title; ?>
 				</h2>
 			<?php
@@ -202,7 +219,13 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 				),
 			);
 
-			return get_posts( $args );
+			$related_posts = get_posts( $args );
+
+			if ( isset( $related_posts ) ) {
+				return $related_posts;
+			} else {
+				return;
+			}
 		}
 	}
 }

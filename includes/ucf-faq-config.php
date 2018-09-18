@@ -47,8 +47,8 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 
 			// Apply default values configurable within the options page:
 			$configurable_defaults = array(
-				'include_athena_classes'  => get_option( self::$option_prefix . 'include_athena_classes', $defaults['include_athena_classes'] ),
-				'disable_faq_archive'     => get_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] ),
+				'include_athena_classes' => get_option( self::$option_prefix . 'include_athena_classes', $defaults['include_athena_classes'] ),
+				'disable_faq_archive'    => get_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] ),
 			);
 
 			// Force configurable options to override $defaults, even if they are empty:
@@ -70,6 +70,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 					case 'include_athena_classes':
 					case 'disable_faq_archive':
 						$list[$key] = filter_var( $val, FILTER_VALIDATE_BOOLEAN );
+						break;
 					default:
 						break;
 				}
@@ -137,13 +138,13 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			// Register fields - general
 			add_settings_field(
 				self::$option_prefix . 'include_athena_classes',
-				'Include Athena Classes',  // formatted field title
+				'Include Athena Classes and Helper Styles',  // formatted field title
 				array( 'UCF_FAQ_Config', 'display_settings_field' ),  // display callback
 					'ucf_faq',  // settings page slug
 					'ucf_faq_section_general',  // option section slug
 				array(  // extra arguments to pass to the callback function
 					'label_for'   => self::$option_prefix . 'include_athena_classes',
-					'description' => 'Include the UCF Athena Framework classes in HTML.<br>Leave this checkbox checked if you are using a theme that includes the UCF Athena Framework.',
+					'description' => 'Include the UCF Athena Framework classes in HTML and the Athena-specific plugin stylesheet.<br>Leave this checkbox <strong>checked</strong> if you are using a theme that includes the UCF Athena Framework.',
 					'type'        => 'checkbox'
 				)
 			);
