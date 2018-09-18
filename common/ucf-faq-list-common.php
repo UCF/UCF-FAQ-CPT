@@ -109,14 +109,18 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			$answer_classes   = " collapse" . $atts['show'];
 			$answer_attrs     = ' id="post' . $post->ID . '"';
 		?>
-			<a href="<?php echo get_permalink( $post->ID ); ?>" class="<?php UCF_FAQ_Config::add_athena_attr( 'd-block pt-3' ); ?>">
-				<<?php echo $atts['question_element']; ?> class="ucf-faq-question <?php UCF_FAQ_Config::add_athena_attr( $atts['question_class'] ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>>
-					<?php echo $post->post_title; ?>
-				</<?php echo $atts['question_element']; ?>>
-			</a>
-
-			<div class="ucf-faq-topic-answer<?php UCF_FAQ_Config::add_athena_attr( $answer_classes ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $answer_attrs ); ?>>
-				<?php echo apply_filters( 'the_content', $post->post_content ); ?>
+			<div class="<?php UCF_FAQ_Config::add_athena_attr( 'd-flex mb-4 flex-column' ); ?>">
+				<a href="<?php echo get_permalink( $post->ID ); ?>" class="ucf-faq-question-link <?php UCF_FAQ_Config::add_athena_attr( 'd-flex' ); ?>">
+					<div class="ucf-faq-collapse-icon-container <?php UCF_FAQ_Config::add_athena_attr( 'mr-2 mr-md-3' ); ?>">
+						<span class="ucf-faq-collapse-icon <?php UCF_FAQ_Config::add_athena_attr( 'collapsed' ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>></span>
+					</div>
+					<<?php echo $atts['question_element']; ?> class="ucf-faq-question <?php UCF_FAQ_Config::add_athena_attr( 'collapsed align-self-center mb-0 ' . $atts['question_class'] ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>>
+						<?php echo $post->post_title; ?>
+					</<?php echo $atts['question_element']; ?>>
+				</a>
+				<div class="ucf-faq-topic-answer <?php UCF_FAQ_Config::add_athena_attr( $answer_classes . ' ml-2 ml-md-3 mt-2' ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $answer_attrs ); ?>>
+					<?php echo apply_filters( 'the_content', $post->post_content ); ?>
+				</div>
 			</div>
 		<?php
 			return ob_get_clean();
