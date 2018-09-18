@@ -7,7 +7,6 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 		public static $option_prefix = 'ucf_faq_',
 		$option_defaults = array(
 			'include_athena_classes'  => true,
-			'include_css'             => true,
 			'disable_faq_archive'     => false
 		);
 
@@ -21,7 +20,6 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 		public static function add_options() {
 			$defaults = self::$option_defaults; // don't use self::get_option_defaults() here (default options haven't been set yet)
 			add_option( self::$option_prefix . 'include_athena_classes', $defaults['include_athena_classes'] );
-			add_option( self::$option_prefix . 'include_css', $defaults['include_css'] );
 			add_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] );
 		}
 
@@ -34,7 +32,6 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 		 **/
 		public static function delete_options() {
 			delete_option( self::$option_prefix . 'include_athena_classes' );
-			delete_option( self::$option_prefix . 'include_css' );
 			delete_option( self::$option_prefix . 'disable_faq_archive' );
 		}
 
@@ -51,7 +48,6 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			// Apply default values configurable within the options page:
 			$configurable_defaults = array(
 				'include_athena_classes' => get_option( self::$option_prefix . 'include_athena_classes', $defaults['include_athena_classes'] ),
-				'include_css'            => get_option( self::$option_prefix . 'include_css', $defaults['include_css'] ),
 				'disable_faq_archive'    => get_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] ),
 			);
 
@@ -72,7 +68,6 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			foreach ( $list as $key => $val ) {
 				switch ( $key ) {
 					case 'include_athena_classes':
-					case 'include_css':
 					case 'disable_faq_archive':
 						$list[$key] = filter_var( $val, FILTER_VALIDATE_BOOLEAN );
 						break;
@@ -130,7 +125,6 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 		public static function settings_init() {
 			// Register settings
 			register_setting( 'ucf_faq', self::$option_prefix . 'include_athena_classes' );
-			register_setting( 'ucf_faq', self::$option_prefix . 'include_css' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'disable_faq_archive' );
 
 			// Register setting sections
@@ -144,26 +138,13 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			// Register fields - general
 			add_settings_field(
 				self::$option_prefix . 'include_athena_classes',
-				'Include Athena Classes and Helper Styles',  // formatted field title
+				'Include Athena Classes and Styles',  // formatted field title
 				array( 'UCF_FAQ_Config', 'display_settings_field' ),  // display callback
 					'ucf_faq',  // settings page slug
 					'ucf_faq_section_general',  // option section slug
 				array(  // extra arguments to pass to the callback function
 					'label_for'   => self::$option_prefix . 'include_athena_classes',
-					'description' => 'Include the UCF Athena Framework classes in HTML and plugin-specific helper styles.<br>Leave this checkbox <strong>checked</strong> if you are using a theme that includes the UCF Athena Framework.',
-					'type'        => 'checkbox'
-				)
-			);
-
-			add_settings_field(
-				self::$option_prefix . 'include_css',
-				'Include Default CSS',  // formatted field title
-				array( 'UCF_FAQ_Config', 'display_settings_field' ),  // display callback
-					'ucf_faq',  // settings page slug
-					'ucf_faq_section_general',  // option section slug
-				array(  // extra arguments to pass to the callback function
-					'label_for'   => self::$option_prefix . 'include_css',
-					'description' => 'Include the default stylesheet for FAQs.',
+					'description' => 'Include the UCF Athena Framework classes in HTML and the Athena-specific CSS.<br>Leave this checkbox <strong>checked</strong> if you are using a theme that includes the UCF Athena Framework.',
 					'type'        => 'checkbox'
 				)
 			);

@@ -1,10 +1,10 @@
 <?php
-if ( ! function_exists( 'ucf_faq_enqueue_assets' ) && UCF_FAQ_Config::get_option_or_default( 'ucf_faq_include_athena_classes' ) ) {
+if ( ! function_exists( 'ucf_faq_enqueue_assets' ) ) {
 	function ucf_faq_enqueue_assets() {
 		// CSS
-		$include_css = UCF_FAQ_Config::get_option_or_default( 'include_css' );
+		$include_athena_classes = UCF_FAQ_Config::get_option_or_default( 'include_athena_classes' );
 		$css_deps = apply_filters( 'ucf_faq_style_deps', array() );
-		if ( $include_css ) {
+		if ( $include_athena_classes ) {
 			wp_enqueue_style( 'ucf_faq_css', plugins_url( 'static/css/ucf-faq.min.css', UCF_FAQ__PLUGIN_FILE ), $css_deps, false, 'screen' );
 		}
 	}
@@ -140,7 +140,7 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			if ( $posts ) :
 
 			?>
-				<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 pt-4' ); ?>">
+				<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 pt-5 mb-4 heading-underline' ); ?>">
 					<?php echo $title; ?>
 				</h2>
 			<?php
@@ -219,7 +219,13 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 				),
 			);
 
-			return get_posts( $args );
+			$related_posts = get_posts( $args );
+
+			if ( isset( $related_posts ) ) {
+				return $related_posts;
+			} else {
+				return;
+			}
 		}
 	}
 }
