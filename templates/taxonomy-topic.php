@@ -12,7 +12,7 @@ $topic = get_queried_object();
 	if ( get_field( 'faq-topic-view-type', $topic ) === 'custom' ) :
 
 		// Display custom markup only
-		echo apply_filters( 'the_content', get_field( 'faq-topic-custom-content', $topic ) );
+		echo get_field( 'faq-topic-custom-content', $topic );
 
 	else:
 		$tags              = array();
@@ -28,10 +28,6 @@ $topic = get_queried_object();
 
 		if ( in_array( 'UCF-Spotlights-Plugin/ucf-spotlight.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 			$spotlight = get_field( 'faq-topic-spotlight', $topic );
-		}
-
-		if ( substr( $cta_url, 0, 1 ) === '/' ) {
-			$cta_url = site_url(). $cta_url;
 		}
 	?>
 
@@ -70,7 +66,8 @@ $topic = get_queried_object();
 
 						<?php
 						// Display each individual FAQ
-						echo UCF_FAQ_Common::display_faq( $post, $faq_atts );
+						$unique_id = wp_rand();
+						echo UCF_FAQ_Common::display_faq( $post, $faq_atts, $unique_id );
 						?>
 
 					<?php
@@ -87,33 +84,11 @@ $topic = get_queried_object();
 				<?php
 				// Generate Related FAQs markup
 				$related_posts = UCF_FAQ_Common::get_related_faqs( $tags, $faqs );
+				echo UCF_FAQ_Common::display_related_faqs( $related_posts, get_field( 'related-faq-title', $topic ), $faq_atts );
 
-				foreach ( $related_posts as $post ) {
-					$related_faq_html .= UCF_FAQ_Common::display_faq( $post, $faq_atts );
-				}
-				?>
-
-				<?php
-				// Display Related FAQs
-				if ( $related_faq_html ) :
-				?>
-					<?php if ( $related_faq_title ): ?>
-					<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 pt-4' ); ?>">
-						<?php echo wptexturize( $related_faq_title ); ?>
-					</h2>
-					<?php endif; ?>
-
-					<?php echo $related_faq_html; ?>
-				<?php endif; ?>
-
-				<?php
 				// Display CTA Footer
-				if ( $cta_text && $cta_url ):
+				echo UCF_FAQ_Common::display_footer_cta( $cta_text, $cta_url );
 				?>
-				<a href="<?php echo $cta_url; ?>" class="<?php UCF_FAQ_Config::add_athena_attr( 'btn btn-primary mt-4' ); ?>">
-					<?php echo wptexturize( $cta_text ); ?>
-				</a>
-				<?php endif; ?>
 
 			</div>
 
