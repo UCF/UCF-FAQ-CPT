@@ -140,7 +140,8 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			if ( $posts ) :
 
 			?>
-				<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 pt-5 mb-4 heading-underline' ); ?>">
+				<hr class="my-5">
+				<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 mb-4 heading-underline' ); ?>">
 					<?php echo $title; ?>
 				</h2>
 			<?php
