@@ -10,12 +10,23 @@
   &:focus {
     color: $black;
   }
+
+  .ucf-faq-question {
+    font-size: 1rem;
+  }
 }
 
-.ucf-faq-answer,
 .ucf-faq-topic-answer {
-  color: $gray-darker;
   padding-left: 16px;
+
+  .card-block {
+    p:last-child,
+    ul:last-child,
+    ol:last-child,
+    a:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .ucf-faq-collapse-icon {
@@ -23,7 +34,6 @@
   background-repeat: no-repeat;
   display: block;
   height: 16px;
-  margin-top: 2px;
   width: 16px;
 
   &.collapsed {
