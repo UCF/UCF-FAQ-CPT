@@ -7,11 +7,12 @@ $title_classes = " mb-4";
 $answer_classes = " col-lg-8 mt-2 mb-4";
 $tags = array();
 $topic = wp_get_post_terms( $post->ID, 'topic' );
-$related_faq_title = ( get_field( 'related-faq-title', $topic ) ) ? get_field( 'related-faq-title', $topic ) : 'Related FAQs';
 
 if ( $topic && is_array( $topic ) ) {
 	$topic = $topic[0];
 }
+
+$related_faq_title = ( get_field( 'related-faq-title', $topic ) ) ? get_field( 'related-faq-title', $topic ) : 'Related FAQs';
 
 $cta_text = get_field( 'faq-topic-footer-cta-text', $topic );
 $cta_url = site_url() . get_field( 'faq-topic-footer-cta-url', $topic );
