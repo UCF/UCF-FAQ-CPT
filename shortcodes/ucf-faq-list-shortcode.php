@@ -19,7 +19,7 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 				'topic_element'      => 'h2',
 				'topic_class'        => 'h4',
 				'question_element'   => 'h3',
-				'question_class'     => 'h6',
+				'question_class'     => '',
 				'related_element'    => 'h3',
 				'related_class'      => 'h4',
 				'show'               => '',
