@@ -219,13 +219,7 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 				),
 			);
 
-			$related_posts = get_posts( $args );
-
-			if ( isset( $related_posts ) ) {
-				return $related_posts;
-			} else {
-				return;
-			}
+			return get_posts( $args );
 		}
 	}
 }
