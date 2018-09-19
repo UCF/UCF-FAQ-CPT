@@ -33,7 +33,7 @@ if ( ! function_exists( 'ucf_faq_topic_list_display_card' ) ) {
 				$is_description = ( $item->description );
 				$margin_class = ( $is_description ) ? "" : " mb-0";
 	?>
-				<div class="col-md-4 mb-4">
+				<div class="col-md-6 col-lg-4 mb-4">
 					<a href="<?php echo get_term_link( $item->term_id ); ?>">
 						<div class="card h-100">
 

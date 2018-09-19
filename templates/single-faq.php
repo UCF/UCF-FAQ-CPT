@@ -18,10 +18,7 @@ $related_faq_title = ( get_field( 'related-faq-title', $topic ) ) ? get_field( '
 $cta_text = get_field( 'faq-topic-footer-cta-text', $topic );
 $cta_url = site_url() . get_field( 'faq-topic-footer-cta-url', $topic );
 
-foreach ( wp_get_post_tags( $post->ID ) as $tag ) {
-	array_push( $tags, $tag->slug );
-}
-
+$tags = wp_get_post_tags( $post->ID, array( 'fields' => 'slugs' ) );
 $related_posts = UCF_FAQ_Common::get_related_faqs( $tags, array( $post->ID ) );
 ?>
 
