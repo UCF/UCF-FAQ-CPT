@@ -8,12 +8,14 @@ if ( ! class_exists( 'UCF_FAQ_List_Common' ) ) {
 	class UCF_FAQ_List_Common {
 		public static function display_faqs( $items, $layout, $args ) {
 			ob_start();
+
 			// Display before
 			$layout_before = ucf_faq_list_display_classic_before( '', $items, $args );
 			if ( has_filter( 'ucf_faq_list_display_' . $layout . '_before' ) ) {
 				$layout_before = apply_filters( 'ucf_faq_list_display_' . $layout . '_before', $layout_before, $items, $args );
 			}
 			echo $layout_before;
+
 			// Display title
 			$layout_title = ucf_faq_list_display_classic_title( '', $items, $args );
 			if ( has_filter( 'ucf_faq_list_display_' . $layout . '_title' ) ) {
@@ -48,12 +50,14 @@ if ( ! class_exists( 'UCF_FAQ_Topic_List_Common' ) ) {
 	class UCF_FAQ_Topic_List_Common {
 		public static function display_faq_topics( $items, $layout, $args ) {
 			ob_start();
+
 			// Display before
 			$layout_before = ucf_faq_topic_list_display_classic_before( '', $items, $args );
 			if ( has_filter( 'ucf_faq_topic_list_display_' . $layout . '_before' ) ) {
 				$layout_before = apply_filters( 'ucf_faq_topic_list_display_' . $layout . '_before', $layout_before, $items, $args );
 			}
 			echo $layout_before;
+
 			// Display title
 			$layout_title = ucf_faq_topic_list_display_classic_title( '', $items, $args );
 			if ( has_filter( 'ucf_faq_topic_list_display_' . $layout . '_title' ) ) {
@@ -73,6 +77,7 @@ if ( ! class_exists( 'UCF_FAQ_Topic_List_Common' ) ) {
 				$layout_after = apply_filters( 'ucf_faq_topic_list_display_' . $layout . '_after', $layout_after, $items, $args );
 			}
 			echo $layout_after;
+
 			return ob_get_clean();
 		}
 	}
@@ -173,11 +178,15 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 		 * @author RJ Bruneel
 		 * @since 1.0.0
 		 **/
-		public static function get_related_faqs( $tags, $faqs ) {
+		public static function get_related_faqs( $tags, $excluded_faqs ) {
+			if ( empty( $tags ) || ! is_array( $tags ) ) {
+				return array();
+			}
+
 			$args = array(
 				'post_type'      => 'faq',
 				'posts_per_page' => -1,
-				'post__not_in'   => $faqs,
+				'post__not_in'   => $excluded_faqs,
 				'orderby'        => array(
 					'meta_value' => 'ASC',
 					'title'      => 'ASC'
