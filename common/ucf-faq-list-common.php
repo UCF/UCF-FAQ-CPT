@@ -117,7 +117,7 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			<div class="<?php UCF_FAQ_Config::add_athena_attr( 'd-flex mb-4 flex-column' ); ?>">
 				<a href="<?php echo get_permalink( $post->ID ); ?>" class="ucf-faq-question-link <?php UCF_FAQ_Config::add_athena_attr( 'd-flex' ); ?>">
 					<div class="ucf-faq-collapse-icon-container <?php UCF_FAQ_Config::add_athena_attr( 'mr-2 mr-md-3' ); ?>">
-						<span class="ucf-faq-collapse-icon <?php UCF_FAQ_Config::add_athena_attr( 'collapsed' ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>></span>
+						<span class="ucf-faq-collapse-icon <?php UCF_FAQ_Config::add_athena_attr( 'collapsed' ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?> aria-hidden="true"></span>
 					</div>
 					<<?php echo $atts['question_element']; ?> class="ucf-faq-question <?php UCF_FAQ_Config::add_athena_attr( 'collapsed align-self-center mb-0 ' . $atts['question_class'] ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>>
 						<?php echo $post->post_title; ?>
@@ -149,7 +149,7 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			if ( $posts ) :
 
 			?>
-				<hr class="my-5">
+				<hr class="<?php UCF_FAQ_Config::add_athena_attr( 'my-5' ); ?>">
 				<h2 class="<?php UCF_FAQ_Config::add_athena_attr( 'h4 mb-4 heading-underline' ); ?>">
 					<?php echo $title; ?>
 				</h2>
