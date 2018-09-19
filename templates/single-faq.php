@@ -5,7 +5,6 @@ $container_classes = " container my-5";
 $row_classes = " row";
 $title_classes = " mb-4";
 $answer_classes = " col-lg-8 mt-2 mb-4";
-$tags = array();
 $topic = wp_get_post_terms( $post->ID, 'topic' );
 
 if ( $topic && is_array( $topic ) ) {
@@ -15,10 +14,7 @@ if ( $topic && is_array( $topic ) ) {
 $cta_text = get_field( 'faq-topic-footer-cta-text', $topic );
 $cta_url = site_url() . get_field( 'faq-topic-footer-cta-url', $topic );
 
-foreach ( wp_get_post_tags( $post->ID ) as $tag ) {
-	array_push( $tags, $tag->slug );
-}
-
+$tags = wp_get_post_tags( $post->ID, array( 'fields' => 'slugs' ) );
 $related_posts = UCF_FAQ_Common::get_related_faqs( $tags, array( $post->ID ) );
 ?>
 
