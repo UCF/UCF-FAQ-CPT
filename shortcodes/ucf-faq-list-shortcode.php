@@ -15,7 +15,9 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 			$atts = shortcode_atts( array(
 				'layout'             => 'classic',
 				'title'              => '',
-				'topic'              => '',
+				'topics'             => '',
+				'tags'               => '',
+				'related_tags'       => '',
 				'topic_element'      => 'h2',
 				'topic_class'        => 'h4',
 				'question_element'   => 'h3',
@@ -23,7 +25,7 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 				'related_element'    => 'h3',
 				'related_class'      => 'h4',
 				'show'               => '',
-				'tags'               => '',
+				'group_by'           => 'topic',
 				'order_by_sort_meta' => true,
 			), $atts, 'ucf-faq-list' );
 
@@ -33,7 +35,12 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 				'post_type'      => 'faq',
 				'posts_per_page' => -1
 			);
+			$tax_query = array();
+			$topics = array();
+			$tags = array();
+			$related_tags = array();
 
+			// Generate orderby post query args
 			if ( $atts['order_by_sort_meta'] ) {
 
 				// Order by meta_value first, then title
@@ -55,39 +62,72 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 				);
 			}
 
-			if ( $atts['topic'] ) {
-				$term = get_term_by( 'slug', $atts['topic'], 'topic' );
-
-				if ( ! empty( $term ) ) {
-					$args['tax_query'] = array(
-						array(
-							'taxonomy' => 'topic',
-							'field' => 'id',
-							'terms' => $term->term_id
-						)
-					);
-				}
+			// Generate topic-related query args
+			if ( $atts['topics'] ) {
+				$topics = explode( ',', $atts['topics'] );
+				$tax_query[] = array(
+					'taxonomy' => 'topic',
+					'field' => 'slug',
+					'terms' => $topics
+				);
 			}
 
+			// Generate tag-related query args
+			if ( $atts['tags'] ) {
+				$tags = explode( ',', $atts['tags'] );
+				$tax_query[] = array(
+					'taxonomy' => 'post_tag',
+					'field' => 'slug',
+					'terms' => $tags
+				);
+			}
+
+			// Add tax_query to query args if valid args are defined
+			if ( ! empty( $tax_query ) ) {
+				$args['tax_query'] = $tax_query;
+			}
+
+			// Fetch posts and group them
 			$posts = get_posts( $args );
 			$items = array();
 
-			foreach ( $posts as $post ) {
-				$topics = wp_get_post_terms( $post->ID, 'topic' );
+			if ( $atts['group_by'] === 'topic' ) {
+				foreach ( $posts as $post ) {
+					$post_topics = wp_get_post_terms( $post->ID, 'topic' );
 
-				foreach ( $topics as $topic ) {
-					$items[$topic->name][] = $post;
+					// NOTE: FAQs not belonging to at least one topic will NOT be
+					// listed in shortcode results when grouping by topic is
+					// enabled
+					foreach ( $post_topics as $topic ) {
+						if (
+							( $atts['topics'] && in_array( $topic->slug, $topics ) )
+							|| empty( $atts['topics'] )
+						) {
+							$items[$topic->name][] = $post;
+						}
+					}
 				}
 			}
+			else {
+				$items['All'] = $posts;
+			}
 
+			// Display results
 			$faqs = UCF_FAQ_List_Common::display_faqs( $items, $atts['layout'], $atts );
 
-			$related_posts = UCF_FAQ_Common::get_related_faqs( $atts['tags'], $items );
-			$related_faqs = UCF_FAQ_Common::display_related_faqs( $related_posts, "Related FAQs", $atts );
+			$related_faq_markup = '';
+			if ( ! empty( $atts['related_tags'] ) ) {
+				$related_tags = explode( ',', $atts['related_tags'] );
+				$related_exclude = array_map( function( $value ) {
+					return $value->ID;
+				}, $posts );
+				$related_posts = UCF_FAQ_Common::get_related_faqs( $related_tags, $related_exclude );
+				$related_faq_markup = UCF_FAQ_Common::display_related_faqs( $related_posts, 'Related FAQs', $atts );
+			}
 
-			$cta =  UCF_FAQ_Common::display_footer_cta( "View All FAQs", "/faq/" );
+			$cta = UCF_FAQ_Common::display_footer_cta( 'View All FAQs', '/faq/' );
 
-			return $faqs . $related_faqs . $cta;
+			return $faqs . $related_faq_markup . $cta;
 		}
 	}
 

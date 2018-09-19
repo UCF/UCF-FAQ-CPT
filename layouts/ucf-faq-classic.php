@@ -27,16 +27,14 @@ if ( ! function_exists( 'ucf_faq_list_display_classic' ) ) {
 		ob_start();
 		if ( $items ):
 			foreach ( $items as $key => $item ) :
+				$unique_id = wp_rand();
 	?>
-				<<?php echo $args['topic_element']; ?> class="ucf-faq-topic <?php echo $args['topic_class']; ?>"><?php echo $key; ?></<?php echo $args['topic_element']; ?>>
+				<?php if ( $key !== 'All' ): ?>
+					<<?php echo $args['topic_element']; ?> class="ucf-faq-topic <?php echo $args['topic_class']; ?>"><?php echo $key; ?></<?php echo $args['topic_element']; ?>>
+				<?php endif; ?>
 	<?php
-				foreach ( $item as $post ) :
-	?>
-					<<?php echo $args['question_element']; ?> class="ucf-faq-question <?php echo $args['question_class']; ?>"><?php echo $post->post_title; ?></<?php echo $args['question_element']; ?>>
-					<div class="ucf-faq-answer">
-						<?php echo apply_filters( 'the_content', $post->post_content ); ?>
-					</div>
-	<?php
+				foreach ( $item as $post ):
+					echo UCF_FAQ_Common::display_faq( $post, $args, $unique_id );
 				endforeach;
 			endforeach;
 		else:
