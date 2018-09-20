@@ -24,7 +24,6 @@ include_once 'templates/templates.php';
 include_once 'shortcodes/ucf-faq-list-shortcode.php';
 
 include_once 'layouts/ucf-faq-classic.php';
-include_once 'layouts/ucf-faq-collapse.php';
 include_once 'layouts/ucf-faq-topic-classic.php';
 include_once 'layouts/ucf-faq-topic-card.php';
 
