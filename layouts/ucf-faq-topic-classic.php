@@ -32,7 +32,7 @@ if ( ! function_exists( 'ucf_faq_topic_list_display_classic' ) ) {
 					<<?php echo $args['topic_element']; ?> class="ucf-faq-topic-title <?php echo $args['topic_class']; ?>"><?php echo $item->name; ?></<?php echo $args['topic_element']; ?>>
 				</a>
 				<div class="ucf-faq-topic-content">
-					<?php echo $item->description; ?>
+					<?php echo apply_filters( 'the_content', $item->description ); ?>
 				</div>
 	<?php
 			endforeach;
