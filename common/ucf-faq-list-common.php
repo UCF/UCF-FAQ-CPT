@@ -124,8 +124,8 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 					</<?php echo $atts['question_element']; ?>>
 				</a>
 				<div class="ucf-faq-topic-answer <?php UCF_FAQ_Config::add_athena_attr( $answer_classes . ' ml-2 ml-md-3 mt-2' ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $answer_attrs ); ?>>
-					<div class="card">
-						<div class="card-block">
+					<div class="<?php UCF_FAQ_Config::add_athena_attr( 'card' ); ?>">
+						<div class="<?php UCF_FAQ_Config::add_athena_attr( 'card-block' ); ?>">
 							<?php echo apply_filters( 'the_content', $post->post_content ); ?>
 						</div>
 					</div>
