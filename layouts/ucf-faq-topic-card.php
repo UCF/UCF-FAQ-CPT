@@ -55,12 +55,6 @@ if ( ! function_exists( 'ucf_faq_topic_list_display_card' ) ) {
 					</a>
 				</div>
 	<?php
-				if ( $key > 0 && ( $key + 1 ) % 3 === 0 ) :
-	?>
-					</div>
-					<div class="row">
-	<?php
-				endif;
 			endforeach;
 	?>
 			</div>
