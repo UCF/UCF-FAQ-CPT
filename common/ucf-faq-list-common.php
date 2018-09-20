@@ -108,10 +108,11 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			ob_start();
 
 			$atts['question_element'] = ( isset( $atts['question_element'] ) ) ? $atts['question_element'] : 'h3';
-			$atts['question_class'] = ( isset( $atts['question_class'] ) ) ? $atts['question_class'] : '';
+			$atts['question_class']   = ( isset( $atts['question_class'] ) ) ? $atts['question_class'] : '';
+			$atts['show']             = ( $atts['show'] === 'true' ) ? ' show' : '';
 
 			$question_attrs   = ' data-toggle="collapse" href="#post' . $post->ID . $unique_id .'"';
-			$answer_classes   = " collapse" . $atts['show'];
+			$answer_classes   = ' collapse' . $atts['show'];
 			$answer_attrs     = ' id="post' . $post->ID . $unique_id . '"';
 
 			$collapsed_class  = ( $atts['show'] === 'true' ) ? '' : ' collapsed';
@@ -125,7 +126,7 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 						<?php echo $post->post_title; ?>
 					</<?php echo $atts['question_element']; ?>>
 				</a>
-				<div class="ucf-faq-topic-answer <?php UCF_FAQ_Config::add_athena_attr( $answer_classes . ' ml-2 ml-md-3 mt-2' ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $answer_attrs ); ?>>
+				<div class="ucf-faq-topic-answer<?php UCF_FAQ_Config::add_athena_attr( $answer_classes . ' ml-2 ml-md-3 mt-2' ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $answer_attrs ); ?>>
 					<div class="<?php UCF_FAQ_Config::add_athena_attr( 'card' ); ?>">
 						<div class="<?php UCF_FAQ_Config::add_athena_attr( 'card-block' ); ?>">
 							<?php echo apply_filters( 'the_content', $post->post_content ); ?>
