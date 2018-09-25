@@ -107,7 +107,7 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 		public static function display_faq( $post, $atts, $unique_id ) {
 			ob_start();
 
-			$collapsed_class  = ( $atts['show'] === 'true' ) ? '' : ' collapsed';
+			$collapsed_class  = ( $atts['show'] === 'true' ) ? '' : 'collapsed';
 
 			$atts['question_element'] = ( isset( $atts['question_element'] ) ) ? $atts['question_element'] : 'h3';
 			$atts['question_class']   = ( isset( $atts['question_class'] ) ) ? $atts['question_class'] : '';
