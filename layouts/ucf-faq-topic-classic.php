@@ -40,7 +40,7 @@ if ( ! function_exists( 'ucf_faq_topic_list_display_classic' ) ) {
 			endforeach;
 		else:
 	?>
-		<div class="ucf-faq-list-error">No results found.</div>
+			<div class="ucf-faq-list-error">No results found.</div>
 	<?php
 		endif;
 		return ob_get_clean();
