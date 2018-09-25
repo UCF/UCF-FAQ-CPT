@@ -31,14 +31,16 @@ if ( ! function_exists( 'ucf_faq_topic_list_display_classic' ) ) {
 				<a href="<?php echo get_term_link( $item->term_id ); ?>">
 					<<?php echo $args['topic_element']; ?> class="ucf-faq-topic-title <?php echo $args['topic_class']; ?>"><?php echo $item->name; ?></<?php echo $args['topic_element']; ?>>
 				</a>
-				<div class="ucf-faq-topic-content">
-					<?php echo apply_filters( 'the_content', $item->description ); ?>
-				</div>
+				<?php if ( $item->description ) : ?>
+					<div class="ucf-faq-topic-content">
+						<?php echo apply_filters( 'the_content', $item->description ); ?>
+					</div>
+				<?php endif; ?>
 	<?php
 			endforeach;
 		else:
 	?>
-			<div class="ucf-faq-list-error">No results found.</div>
+		<div class="ucf-faq-list-error">No results found.</div>
 	<?php
 		endif;
 		return ob_get_clean();
