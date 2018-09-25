@@ -107,6 +107,8 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 		public static function display_faq( $post, $atts, $unique_id ) {
 			ob_start();
 
+			$collapsed_class  = ( $atts['show'] === 'true' ) ? '' : ' collapsed';
+
 			$atts['question_element'] = ( isset( $atts['question_element'] ) ) ? $atts['question_element'] : 'h3';
 			$atts['question_class']   = ( isset( $atts['question_class'] ) ) ? $atts['question_class'] : '';
 			$atts['show']             = ( $atts['show'] === 'true' ) ? ' show' : '';
@@ -114,8 +116,6 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			$question_attrs   = ' data-toggle="collapse" href="#post' . $post->ID . $unique_id .'"';
 			$answer_classes   = ' collapse' . $atts['show'];
 			$answer_attrs     = ' id="post' . $post->ID . $unique_id . '"';
-
-			$collapsed_class  = ( $atts['show'] === 'true' ) ? '' : ' collapsed';
 		?>
 			<div class="<?php UCF_FAQ_Config::add_athena_attr( 'd-flex mb-4 flex-column' ); ?>">
 				<a href="<?php echo get_permalink( $post->ID ); ?>" class="ucf-faq-question-link <?php UCF_FAQ_Config::add_athena_attr( 'd-flex' ); ?>">
