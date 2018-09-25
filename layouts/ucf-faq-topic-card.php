@@ -27,37 +27,41 @@ if ( ! function_exists( 'ucf_faq_topic_list_display_card' ) ) {
 		ob_start();
 		if ( $items ):
 	?>
-		<div class="<?php UCF_FAQ_Config::add_athena_attr( 'row' ); ?>">
+			<div class="<?php UCF_FAQ_Config::add_athena_attr( 'row' ); ?>">
 	<?php
-		foreach ( $items as $key => $item ) :
-			$is_description = ( $item->description );
-			$margin_class = ( $is_description ) ? "" : " mb-0";
+			foreach ( $items as $key => $item ) :
+				$is_description = ( $item->description );
+				$margin_class = ( $is_description ) ? "" : " mb-0";
 	?>
-		<div class="<?php UCF_FAQ_Config::add_athena_attr( 'col-md-6 col-lg-4 mb-4' ); ?>">
-			<a href="<?php echo get_term_link( $item->term_id ); ?>">
-				<div class="<?php UCF_FAQ_Config::add_athena_attr( 'card h-100' ); ?>">
+				<div class="<?php UCF_FAQ_Config::add_athena_attr( 'col-md-6 col-lg-4 mb-4' ); ?>">
+					<a href="<?php echo get_term_link( $item->term_id ); ?>">
+						<div class="<?php UCF_FAQ_Config::add_athena_attr( 'card h-100' ); ?>">
 
-					<?php if ( $image_url = get_field( 'faq-topic-image', $item ) ) :?>
-						<img class="ucf-faq-topic-image <?php UCF_FAQ_Config::add_athena_attr( 'card-img-top' ); ?>" src="<?php echo $image_url['url']; ?>" alt="<?php echo $item->name; ?>">
-					<?php endif; ?>
+							<?php if ( $image_url = get_field( 'faq-topic-image', $item ) ) :?>
+								<img class="ucf-faq-topic-image <?php UCF_FAQ_Config::add_athena_attr( 'card-img-top' ); ?>" src="<?php echo $image_url['url']; ?>" alt="<?php echo $item->name; ?>">
+							<?php endif; ?>
 
-					<div class="<?php UCF_FAQ_Config::add_athena_attr( 'card-block' ); ?>">
-						<<?php echo $args['topic_element']; ?> class="ucf-faq-topic-title <?php UCF_FAQ_Config::add_athena_attr( 'card-title' . $margin_class ); ?> <?php echo $args['topic_class']; ?>">
-							<?php echo $item->name; ?>
-						</<?php echo $args['topic_element']; ?>>
+							<div class="<?php UCF_FAQ_Config::add_athena_attr( 'card-block' ); ?>">
+								<<?php echo $args['topic_element']; ?> class="ucf-faq-topic-title <?php UCF_FAQ_Config::add_athena_attr( 'card-title' . $margin_class ); ?> <?php echo $args['topic_class']; ?>">
+									<?php echo $item->name; ?>
+								</<?php echo $args['topic_element']; ?>>
 
-						<?php if ( $is_description ) : ?>
-							<div class="ucf-faq-topic-description <?php UCF_FAQ_Config::add_athena_attr( 'card-text text-secondary' ); ?>"><?php echo $item->description; ?></div>
-						<?php endif; ?>
+								<?php if ( $is_description ) : ?>
+									<div class="ucf-faq-topic-description <?php UCF_FAQ_Config::add_athena_attr( 'card-text text-secondary' ); ?>"><?php echo $item->description; ?></div>
+								<?php endif; ?>
 
-					</div>
+							</div>
+						</div>
+					</a>
 				</div>
-			</a>
-		</div>
-	<?php endforeach; ?>
-		</div>
-	<?php else : ?>
-		<div class="ucf-faq-list-error">No results found.</div>
+	<?php
+			endforeach;
+	?>
+			</div>
+	<?php
+		else:
+	?>
+			<div class="ucf-faq-list-error">No results found.</div>
 	<?php
 		endif;
 		return ob_get_clean();
