@@ -30,7 +30,7 @@ if ( ! function_exists( 'ucf_faq_list_display_classic' ) ) {
 				$unique_id = wp_rand();
 	?>
 				<?php if ( $key !== 'All' ): ?>
-					<<?php echo $args['topic_element']; ?> class="ucf-faq-topic <?php UCF_FAQ_Config::add_athena_attr( 'd-block pt-3' ); ?> <?php echo $args['topic_class']; ?>"><?php echo $key; ?></<?php echo $args['topic_element']; ?>>
+					<<?php echo $args['topic_element']; ?> class="ucf-faq-topic <?php UCF_FAQ_Config::add_athena_attr( 'd-block pt-3 mb-3' ); ?> <?php echo $args['topic_class']; ?>"><?php echo $key; ?></<?php echo $args['topic_element']; ?>>
 				<?php endif; ?>
 	<?php
 				foreach ( $item as $post ):
