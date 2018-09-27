@@ -41,11 +41,10 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 		public static function args() {
 			$args = array(
 				'labels'                     => self::labels(),
-				'hierarchical'               => false,
+				'hierarchical'               => true,
 				'public'                     => true,
 				'show_ui'                    => true,
 				'show_admin_column'          => true,
-				'show_tagcloud'              => true,
 				'rewrite'                    => array( 'slug' => 'faq' )
 			);
 
