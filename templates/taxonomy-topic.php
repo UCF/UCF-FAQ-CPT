@@ -31,17 +31,19 @@ $topic = get_queried_object();
 		}
 	?>
 
+	<?php
+	// Display term description, if available
+	$topic_description = term_description();
+	if ( ! empty( $topic_description ) ):
+	?>
+	<div class="ucf-faq-topic-description<?php UCF_FAQ_Config::add_athena_attr( ' container lead mt-4 mt-sm-5 mb-5' ); ?>">
+		<?php echo $topic_description; ?>
+	</div>
+	<?php endif; ?>
+
 	<div class="ucf-faq-topic-list<?php UCF_FAQ_Config::add_athena_attr( ' container mt-4 mt-sm-5 mb-5' ); ?>">
 		<div class="<?php UCF_FAQ_Config::add_athena_attr( 'row' ); ?>">
-			<div class="ucf-faq-topic-description<?php UCF_FAQ_Config::add_athena_attr( ' col-lg-7 mb-4' ); ?>">
-
-				<?php
-				// Display term description, if available
-				$topic_description = term_description();
-				if ( ! empty( $topic_description ) ) {
-					UCF_FAQ_Config::add_athena_attr( $topic_description );
-				}
-				?>
+			<div class="ucf-faq-topic-list-items<?php UCF_FAQ_Config::add_athena_attr( ' col-lg-7 mb-4' ); ?>">
 
 				<?php if ( ! have_posts() ): ?>
 
