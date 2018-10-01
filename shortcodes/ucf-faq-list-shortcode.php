@@ -121,7 +121,7 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 				$related_exclude = array_map( function( $value ) {
 					return $value->ID;
 				}, $posts );
-				$related_posts = UCF_FAQ_Common::get_related_faqs( $related_tags, $related_exclude );
+				$related_posts = UCF_FAQ_Common::get_related_faqs_by_tag( $related_tags, $related_exclude );
 				$related_faq_markup = UCF_FAQ_Common::display_related_faqs( $related_posts, 'Related FAQs', $atts );
 			}
 

@@ -19,7 +19,7 @@ $cta_text = get_field( 'faq-topic-footer-cta-text', $topic );
 $cta_url = site_url() . get_field( 'faq-topic-footer-cta-url', $topic );
 
 $tags = wp_get_post_tags( $post->ID, array( 'fields' => 'slugs' ) );
-$related_posts = UCF_FAQ_Common::get_related_faqs( $tags, array( $post->ID ) );
+$related_posts = UCF_FAQ_Common::get_related_faqs_by_tag( $tags, array( $post->ID ) );
 ?>
 
 <article>
