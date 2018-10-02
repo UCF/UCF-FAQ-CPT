@@ -82,6 +82,32 @@
                 "maxlength": ""
             },
             {
+                "key": "field_5bb370e9c4c2f",
+                "label": "Related FAQs",
+                "name": "related_faqs",
+                "type": "relationship",
+                "instructions": "The related FAQs that will be displayed as \\\"Related FAQs\\\" when using the [ucf-faq-list] and [ucf-faq-topic-list] shortcodes.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "faq"
+                ],
+                "taxonomy": [],
+                "filters": [
+                    "search",
+                    "taxonomy"
+                ],
+                "elements": "",
+                "min": "",
+                "max": "",
+                "return_format": "object"
+            },
+            {
                 "key": "field_5b90292019704",
                 "label": "FAQ Topic Footer CTA Text",
                 "name": "faq-topic-footer-cta-text",

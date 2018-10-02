@@ -197,13 +197,40 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			return $retval;
 		}
 
+		/**
+		 * Get related FAQs by topic excluding faqs already on the page.
+		 * @author Jim Barnes
+		 * @since 1.0.0
+		 **/
+		public static function get_related_faqs_by_topic( $topics, $excluded_faqs ) {
+			if ( empty( $topics ) || ! is_array( $topics ) ) {
+				return array();
+			}
+
+			$retval = array();
+
+			foreach( $topics as $topic ) {
+				$related = get_field( 'related_faqs', "topic_{$topic->term_id}" );
+				$retval = array_merge( $retval, $related );
+			}
+
+			$retval = array_filter( $retval, function( $faq ) use( $excluded_faqs ) {
+				if ( in_array( $faq->ID, $excluded_faqs ) ) {
+					return false;
+				}
+
+				return true;
+			} );
+
+			return $retval;
+		}
 
 		/**
 		 * Get related FAQs by tag excluding faqs already on the page.
 		 * @author RJ Bruneel
 		 * @since 1.0.0
 		 **/
-		public static function get_related_faqs( $tags, $excluded_faqs ) {
+		public static function get_related_faqs_by_tag( $tags, $excluded_faqs ) {
 			if ( empty( $tags ) || ! is_array( $tags ) ) {
 				return array();
 			}
