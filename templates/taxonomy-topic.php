@@ -54,19 +54,8 @@ $topic = get_queried_object();
 					<?php
 					// Display the main FAQ post loop:
 					while ( have_posts() ) : the_post();
-					?>
-						<?php
-						// Save FAQ and tag list to filter out of related FAQs section
-						array_push( $faqs, $post->ID );
+						$faqs[] = $post->ID;
 
-						foreach ( wp_get_post_tags( $post->ID ) as $tag ) {
-							if ( ! in_array( $tag, $tags ) ) {
-								array_push( $tags, $tag->slug );
-							}
-						}
-						?>
-
-						<?php
 						// Display each individual FAQ
 						$unique_id = wp_rand();
 						echo UCF_FAQ_Common::display_faq( $post, $faq_atts, $unique_id );
@@ -85,7 +74,7 @@ $topic = get_queried_object();
 
 				<?php
 				// Generate Related FAQs markup
-				$related_posts = UCF_FAQ_Common::get_related_faqs( $tags, $faqs );
+				$related_posts = UCF_FAQ_Common::get_related_faqs_by_topic( array( $topic ), $faqs );
 				echo UCF_FAQ_Common::display_related_faqs( $related_posts, $related_faq_title, $faq_atts );
 
 				// Display CTA Footer
