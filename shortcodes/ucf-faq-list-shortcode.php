@@ -157,8 +157,37 @@ if ( ! class_exists( 'UCF_FAQ_Topic_List_Shortcode' ) ) {
 				'topic_class'    => 'h5',
 			), $atts, 'ucf-faq-topic-list' );
 
+			$args = array(
+				'post_type'      => 'faq',
+				'posts_per_page' => -1
+			);
+
+			// Generate orderby post query args
+			// if ( $atts['order_by_sort_meta'] ) {
+
+				// Order by meta_value first, then title
+				$args['orderby'] = array(
+					'meta_value' => 'ASC',
+					'name'       => 'ASC'
+				);
+
+				$args['meta_query'] = array(
+					'relation' => 'OR',
+					array(
+						'key'     => 'topic_sort_order',
+						'compare' => 'EXISTS',
+					),
+					array(
+						'key'     => 'topic_sort_order',
+						'compare' => 'NOT EXISTS'
+					)
+				);
+			// }
+
+			var_dump($args);
+
 			$topics = get_terms( 'topic', array(
-				'post_type' => array( 'faq' )
+				$args
 			) );
 
 			return UCF_FAQ_Topic_List_Common::display_faq_topics( $topics, $atts['layout'], $atts );
