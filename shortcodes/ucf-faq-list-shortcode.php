@@ -186,9 +186,7 @@ if ( ! class_exists( 'UCF_FAQ_Topic_List_Shortcode' ) ) {
 
 			var_dump($args);
 
-			$topics = get_terms( 'topic', array(
-				$args
-			) );
+			$topics = get_terms( 'topic', $args );
 
 			return UCF_FAQ_Topic_List_Common::display_faq_topics( $topics, $atts['layout'], $atts );
 		}
