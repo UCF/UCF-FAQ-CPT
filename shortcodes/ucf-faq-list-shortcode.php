@@ -167,7 +167,7 @@ if ( ! class_exists( 'UCF_FAQ_Topic_List_Shortcode' ) ) {
 
 			foreach ( $terms as $index=>$term ) {
 				$sort_order = get_field( 'topic_sort_order', $taxonomy.'_'.$terms[$index]->term_id );
-				$terms[$index]->sort_order = ( $sort_order === NULL ) ? "0" : $sort_order;
+				$terms[$index]->sort_order = ( $sort_order ) ? (int)$sort_order : 0;
 			}
 
 			usort( $terms, 'UCF_FAQ_Common::sort_terms' );
