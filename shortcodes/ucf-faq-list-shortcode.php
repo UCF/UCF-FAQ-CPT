@@ -162,33 +162,17 @@ if ( ! class_exists( 'UCF_FAQ_Topic_List_Shortcode' ) ) {
 				'posts_per_page' => -1
 			);
 
-			// Generate orderby post query args
-			// if ( $atts['order_by_sort_meta'] ) {
+			$taxonomy = 'topic';
+			$terms = get_terms( $taxonomy, $args );
 
-				// Order by meta_value first, then title
-				$args['orderby'] = array(
-					'meta_value' => 'ASC',
-					'name'       => 'ASC'
-				);
+			foreach ( $terms as $index=>$term ) {
+				$sort_order = get_field( 'topic_sort_order', $taxonomy.'_'.$terms[$index]->term_id );
+				$terms[$index]->sort_order = ( $sort_order === NULL ) ? "0" : $sort_order;
+			}
 
-				$args['meta_query'] = array(
-					'relation' => 'OR',
-					array(
-						'key'     => 'topic_sort_order',
-						'compare' => 'EXISTS',
-					),
-					array(
-						'key'     => 'topic_sort_order',
-						'compare' => 'NOT EXISTS'
-					)
-				);
-			// }
+			usort( $terms, 'UCF_FAQ_Common::sort_terms' );
 
-			var_dump($args);
-
-			$topics = get_terms( 'topic', $args );
-
-			return UCF_FAQ_Topic_List_Common::display_faq_topics( $topics, $atts['layout'], $atts );
+			return UCF_FAQ_Topic_List_Common::display_faq_topics( $terms, $atts['layout'], $atts );
 		}
 	}
 
