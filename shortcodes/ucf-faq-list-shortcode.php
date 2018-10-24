@@ -157,13 +157,8 @@ if ( ! class_exists( 'UCF_FAQ_Topic_List_Shortcode' ) ) {
 				'topic_class'    => 'h5',
 			), $atts, 'ucf-faq-topic-list' );
 
-			$args = array(
-				'post_type'      => 'faq',
-				'posts_per_page' => -1
-			);
-
 			$taxonomy = 'topic';
-			$terms = get_terms( $taxonomy, $args );
+			$terms = get_terms( $taxonomy );
 
 			foreach ( $terms as $index=>$term ) {
 				$sort_order = get_field( 'topic_sort_order', $taxonomy.'_'.$terms[$index]->term_id );
