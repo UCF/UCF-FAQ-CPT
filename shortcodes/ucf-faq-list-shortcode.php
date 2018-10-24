@@ -157,11 +157,17 @@ if ( ! class_exists( 'UCF_FAQ_Topic_List_Shortcode' ) ) {
 				'topic_class'    => 'h5',
 			), $atts, 'ucf-faq-topic-list' );
 
-			$topics = get_terms( 'topic', array(
-				'post_type' => array( 'faq' )
-			) );
+			$taxonomy = 'topic';
+			$terms = get_terms( $taxonomy );
 
-			return UCF_FAQ_Topic_List_Common::display_faq_topics( $topics, $atts['layout'], $atts );
+			foreach ( $terms as $index=>$term ) {
+				$sort_order = get_field( 'topic_sort_order', $taxonomy.'_'.$terms[$index]->term_id );
+				$terms[$index]->sort_order = ( $sort_order ) ? (int)$sort_order : 0;
+			}
+
+			usort( $terms, 'UCF_FAQ_Common::sort_terms' );
+
+			return UCF_FAQ_Topic_List_Common::display_faq_topics( $terms, $atts['layout'], $atts );
 		}
 	}
 

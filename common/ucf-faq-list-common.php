@@ -265,5 +265,22 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 
 			return get_posts( $args );
 		}
+
+		/**
+		 * Utility function to sort terms.
+		 * @author RJ Bruneel
+		 * @since 1.0.0
+		 **/
+		public static function sort_terms( $a, $b ) {
+			// this function expects that items to be sorted are objects and
+			// that the property to sort by is $object->sort_order
+			if ( $a->sort_order == $b->sort_order ) {
+			  return 0;
+			} elseif ( $a->sort_order < $b->sort_order ) {
+			  return -1;
+			} else {
+			  return 1;
+			}
+		  }
 	}
 }

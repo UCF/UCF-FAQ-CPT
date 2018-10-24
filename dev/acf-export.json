@@ -86,7 +86,7 @@
                 "label": "Related FAQs",
                 "name": "related_faqs",
                 "type": "relationship",
-                "instructions": "The related FAQs that will be displayed as \\\"Related FAQs\\\" when using the [ucf-faq-list] and [ucf-faq-topic-list] shortcodes.",
+                "instructions": "The related FAQs that will be displayed as \"Related FAQs\" when using the [ucf-faq-list] and [ucf-faq-topic-list] shortcodes.",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -144,6 +144,27 @@
                 "prepend": "",
                 "append": "",
                 "maxlength": ""
+            },
+            {
+                "key": "field_5bcf50f2ba743",
+                "label": "Topic Sort Order",
+                "name": "topic_sort_order",
+                "type": "number",
+                "instructions": "Enter an order value by which this topic should be sorted when displayed in a topic list. Topics with lower sort order values will be placed at the top of the list. If a value isn't provided, this topic will be sorted alphabetically.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "min": "",
+                "max": "",
+                "step": ""
             },
             {
                 "key": "field_5b9acdc1451f9",
