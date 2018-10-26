@@ -1,18 +1,34 @@
-*.log
-.htaccess
-sitemap.xml
-sitemap.xml.gz
-wp-config.php
-wp-content/advanced-cache.php
-wp-content/backup-db/
-wp-content/backups/
-wp-content/blogs.dir/
-wp-content/cache/
-wp-content/upgrade/
-wp-content/uploads/
-wp-content/wp-cache-config.php
-wp-content/plugins/hello.php
+# osx noise
+.DS_Store
+profile
 
-/readme.html
-/license.txt
+# xcode noise
+build/*
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspective
+*.perspectivev3
+*.pbxuser
+*.xcworkspace
+xcuserdata
 
+# svn & cvs
+.svn
+CVS
+=======
+*~
+._*
+.DS_Store
+Thumbs.db
+
+# npm, bower, and other dependencies
+node_modules
+bower_components
+src/components/*
+gulp-config.json
+typings
+.sass-cache/
+
+# debug files
+npm-debug.log
