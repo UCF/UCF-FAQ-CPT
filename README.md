@@ -34,6 +34,9 @@ The plugins listed below are extended upon in this plugin--this may include cust
 
 ## Changelog ##
 
+### 1.0.1 ###
+* Fixed a debug log message
+
 ### 1.0.0 ###
 * Initial release
 
