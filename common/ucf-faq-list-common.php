@@ -211,7 +211,9 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 
 			foreach( $topics as $topic ) {
 				$related = get_field( 'related_faqs', "topic_{$topic->term_id}" );
-				$retval = array_merge( $retval, $related );
+				if( $related && is_array( $related ) ) {
+					$retval = array_merge( $retval, $related );
+				}
 			}
 
 			$retval = array_filter( $retval, function( $faq ) use( $excluded_faqs ) {
