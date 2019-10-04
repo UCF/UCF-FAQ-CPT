@@ -117,5 +117,54 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 			return $retval;
 		}
 
+		/**
+		 * Registers the ACF fields
+		 * @author Jim Barnes
+		 * @since 1.1.0
+		 * @return void
+		 */
+		public static function fields() {
+			// Can't add a local field group, return.
+			if ( ! function_exists( 'acf_add_local_field_group' ) ) return;
+
+			$fields = array();
+
+			/**
+			 * Add Sort Order field
+			 * @author Jim Barnes
+			 * @since 1.1.0
+			 */
+			$fields[] = array(
+				'key' => 'field_5b917a3820356',
+				'label' => 'FAQ Question Sort Order',
+				'name' => 'faq_question_sort_order',
+				'type' => 'number',
+				'instructions' => '',
+				'required' => 0
+			);
+
+			/**
+			 * Define field group
+			 * @author Jim Banes
+			 * @since 1.1.0
+			 */
+			$field_group = array(
+				'key' => 'group_5b917a2fa04ba',
+				'title' => 'FAQ Question Fields',
+				'fields' => $fields,
+				'location' => array(
+					array(
+						array(
+							'param' => 'post_type',
+							'operator' => '==',
+							'value' => 'faq',
+						),
+					),
+				),
+				'active' => true,
+			);
+
+			acf_add_local_field_group( $field_group );
+		}
 	}
 }
