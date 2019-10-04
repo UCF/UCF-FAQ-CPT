@@ -17,6 +17,8 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 			$singular = apply_filters( self::$text_domain . '_singular_label', 'FAQ' );
 			$plural = apply_filters( self::$text_domain . '_plural_label', 'FAQs' );
 			register_post_type( 'faq', self::args( $singular, $plural ) );
+
+			add_action( 'acf/init', array( 'UCF_FAQ_PostType', 'fields' ), 10, 0 );
 		}
 
 		/**
@@ -117,5 +119,64 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 			return $retval;
 		}
 
+		/**
+		 * Registers the ACF fields
+		 * @author Jim Barnes
+		 * @since 1.1.0
+		 * @return void
+		 */
+		public static function fields() {
+			// Can't add a local field group, return.
+			if ( ! function_exists( 'acf_add_local_field_group' ) ) return;
+
+			$fields = array();
+
+			$fields[] = array(
+				'key' => 'field_5b917a3820356',
+				'label' => 'FAQ Question Sort Order',
+				'name' => 'faq_question_sort_order',
+				'type' => 'number',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'min' => '',
+				'max' => '',
+				'step' => '',
+			);
+
+			$field_group = array(
+				'key' => 'group_5b917a2fa04ba',
+				'title' => 'FAQ Question Fields',
+				'fields' => $fields,
+				'location' => array(
+					array(
+						array(
+							'param' => 'post_type',
+							'operator' => '==',
+							'value' => 'faq',
+						),
+					),
+				),
+				'menu_order' => 0,
+				'position' => 'normal',
+				'style' => 'default',
+				'label_placement' => 'top',
+				'instruction_placement' => 'label',
+				'hide_on_screen' => '',
+				'active' => true,
+				'description' => '',
+			);
+
+			acf_add_local_field_group( $field_group );
+		}
 	}
 }
