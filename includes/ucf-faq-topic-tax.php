@@ -11,8 +11,6 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 
 		public static function register_topic() {
 			register_taxonomy( 'topic', array( 'faq' ), self::args() );
-
-			add_action( 'acf/init', array( 'UCF_FAQ_Topic', 'fields' ), 10, 0 );
 		}
 
 		public static function labels() {

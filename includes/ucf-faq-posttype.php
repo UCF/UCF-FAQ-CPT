@@ -17,8 +17,6 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 			$singular = apply_filters( self::$text_domain . '_singular_label', 'FAQ' );
 			$plural = apply_filters( self::$text_domain . '_plural_label', 'FAQs' );
 			register_post_type( 'faq', self::args( $singular, $plural ) );
-
-			add_action( 'acf/init', array( 'UCF_FAQ_PostType', 'fields' ), 10, 0 );
 		}
 
 		/**
