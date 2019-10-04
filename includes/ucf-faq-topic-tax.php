@@ -63,6 +63,11 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 
 			$fields = array();
 
+			/**
+			 * Add Display Settings tab
+			 * @author Jim Barnes
+			 * @since 1.1.0
+			 */
 			$fields[] = array(
 				'key' => 'field_5b9ace1a451fb',
 				'label' => 'Display Settings',
@@ -71,15 +76,15 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 				'instructions' => '',
 				'required' => 0,
 				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
 				'placement' => 'top',
 				'endpoint' => 0,
 			);
 
+			/**
+			 * Add show answers toggle
+			 * @author Jim Barnes
+			 * @since 1.1.0
+			 */
 			$fields[] = array(
 				'key' => 'field_5b85b5c65fe52',
 				'label' => 'Show FAQ Answers',
@@ -87,19 +92,14 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 				'type' => 'true_false',
 				'instructions' => 'If checked the FAQ answer will be visible on page load.',
 				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'message' => '',
-				'default_value' => 0,
-				'ui' => 0,
-				'ui_on_text' => '',
-				'ui_off_text' => '',
+				'ui' => 0
 			);
 
+			/**
+			 * Add topic image
+			 * @author Jim Barnes
+			 * @since 1.1.0
+			 */
 			$fields[] = array(
 				'key' => 'field_5b8598c5aeaa9',
 				'label' => 'FAQ Topic Image',
@@ -107,12 +107,6 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 				'type' => 'image',
 				'instructions' => 'An image displayed above the topic title on the card layout using the ucf-faq-topic-list shortcode.',
 				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
 				'return_format' => 'array',
 				'preview_size' => 'thumbnail',
 				'library' => 'all',
@@ -125,6 +119,11 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 				'mime_types' => 'jpg, png',
 			);
 
+			/**
+			 * Add title field
+			 * @author Jim Barnes
+			 * @since 1.1.0
+			 */
 			$fields[] = array(
 				'key' => 'field_5b9028cb19703',
 				'label' => 'Related FAQ Title',
@@ -132,19 +131,14 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 				'type' => 'text',
 				'instructions' => 'Title displayed above the related FAQ below topic FAQs.',
 				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => 'Related FAQs',
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
-				'maxlength' => '',
+				'default_value' => 'Related FAQs'
 			);
 
+			/**
+			 * Add related faq field
+			 * @author Jim Barnes
+			 * @since 1.1.0
+			 */
 			$fields[] = array(
 				'key' => 'field_5bb370e9c4c2f',
 				'label' => 'Related FAQs',
@@ -152,27 +146,21 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 				'type' => 'relationship',
 				'instructions' => 'The related FAQs that will be displayed as "Related FAQs" when using the [ucf-faq-list] and [ucf-faq-topic-list] shortcodes.',
 				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
 				'post_type' => array(
 					0 => 'faq',
-				),
-				'taxonomy' => array(
 				),
 				'filters' => array(
 					0 => 'search',
 					1 => 'taxonomy',
 				),
-				'elements' => '',
-				'min' => '',
-				'max' => '',
 				'return_format' => 'object',
 			);
 
+			/**
+			 * Add CTA Text field
+			 * @author Jim Barnes
+			 * @since 1.1.0
+			 */
 			$fields[] = array(
 				'key' => 'field_5b90292019704',
 				'label' => 'FAQ Topic Footer CTA Text',
@@ -180,19 +168,14 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 				'type' => 'text',
 				'instructions' => 'The text for the topic footer CTA link.',
 				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => 'View All FAQs',
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
-				'maxlength' => '',
+				'default_value' => 'View All FAQs'
 			);
 
+			/**
+			 * Add CTA URL field
+			 * @author Jim Barnes
+			 * @since 1.1.0
+			 */
 			$fields[] = array(
 				'key' => 'field_5b9029c019705',
 				'label' => 'FAQ Topic Footer CTA URL',
@@ -200,41 +183,26 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 				'type' => 'text',
 				'instructions' => 'The url for the topic footer CTA link.',
 				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => '/faq/',
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
-				'maxlength' => '',
+				'default_value' => '/faq/'
 			);
 
+			/**
+			 * Add sort order field
+			 */
 			$fields[] = array(
 				'key' => 'field_5bcf50f2ba743',
 				'label' => 'Topic Sort Order',
 				'name' => 'topic_sort_order',
 				'type' => 'number',
 				'instructions' => 'Enter an order value by which this topic should be sorted when displayed in a topic list. Topics with lower sort order values will be placed at the top of the list. If a value isn\'t provided, this topic will be sorted alphabetically.',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => '',
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
-				'min' => '',
-				'max' => '',
-				'step' => '',
+				'required' => 0
 			);
 
+			/**
+			 * Add contents tab
+			 * @author Jim Barnes
+			 * @since 1.1.0
+			 */
 			$fields[] = array(
 				'key' => 'field_5b9acdc1451f9',
 				'label' => 'Frontend Topic Contents',
@@ -242,16 +210,15 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 				'type' => 'tab',
 				'instructions' => '',
 				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
 				'placement' => 'top',
 				'endpoint' => 0,
 			);
 
+			/**
+			 * Add single topic view field
+			 * @author Jim Barnes
+			 * @since 1.1.0
+			 */
 			$fields[] = array(
 				'key' => 'field_5b9ace2d451fc',
 				'label' => 'Single Topic View',
@@ -259,12 +226,6 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 				'type' => 'select',
 				'instructions' => 'Select how this Topic\'s template should be displayed on the frontend.',
 				'required' => 1,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
 				'choices' => array(
 					'default' => 'Default',
 					'custom' => 'Custom Content',
@@ -276,10 +237,14 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 				'multiple' => 0,
 				'ui' => 0,
 				'ajax' => 0,
-				'return_format' => 'value',
-				'placeholder' => '',
+				'return_format' => 'value'
 			);
 
+			/**
+			 * Add topic spotlight field
+			 * @author Jim Barnes
+			 * @since 1.1.0
+			 */
 			$fields[] = array(
 				'key' => 'field_5b90050373b29',
 				'label' => 'Topic Spotlight',
@@ -296,15 +261,8 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 						),
 					),
 				),
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
 				'post_type' => array(
 					0 => 'ucf_spotlight',
-				),
-				'taxonomy' => array(
 				),
 				'allow_null' => 0,
 				'multiple' => 0,
@@ -312,6 +270,11 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 				'ui' => 1,
 			);
 
+			/**
+			 * Add custom content field
+			 * @author Jim Barnes
+			 * @since 1.1.0
+			 */
 			$fields[] = array(
 				'key' => 'field_5b9ad0b9451fd',
 				'label' => 'Topic Custom Content',
@@ -328,11 +291,6 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 						),
 					),
 				),
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
 				'default_value' => '',
 				'tabs' => 'all',
 				'toolbar' => 'full',
@@ -340,6 +298,11 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 				'delay' => 0,
 			);
 
+			/**
+			 * Define field group
+			 * @author Jim Barnes
+			 * @since 1.1.0
+			 */
 			$field_group = array(
 				'key' => 'group_5b8598adb88f3',
 				'title' => 'Topic Fields',
@@ -359,8 +322,7 @@ if ( ! class_exists( 'UCF_FAQ_Topic' ) ) {
 				'label_placement' => 'top',
 				'instruction_placement' => 'label',
 				'hide_on_screen' => '',
-				'active' => true,
-				'description' => '',
+				'active' => true
 			);
 
 			acf_add_local_field_group( $field_group );

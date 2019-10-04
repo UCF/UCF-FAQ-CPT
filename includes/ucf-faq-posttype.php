@@ -129,28 +129,25 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 
 			$fields = array();
 
+			/**
+			 * Add Sort Order field
+			 * @author Jim Barnes
+			 * @since 1.1.0
+			 */
 			$fields[] = array(
 				'key' => 'field_5b917a3820356',
 				'label' => 'FAQ Question Sort Order',
 				'name' => 'faq_question_sort_order',
 				'type' => 'number',
 				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => '',
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
-				'min' => '',
-				'max' => '',
-				'step' => '',
+				'required' => 0
 			);
 
+			/**
+			 * Define field group
+			 * @author Jim Banes
+			 * @since 1.1.0
+			 */
 			$field_group = array(
 				'key' => 'group_5b917a2fa04ba',
 				'title' => 'FAQ Question Fields',
@@ -164,14 +161,7 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 						),
 					),
 				),
-				'menu_order' => 0,
-				'position' => 'normal',
-				'style' => 'default',
-				'label_placement' => 'top',
-				'instruction_placement' => 'label',
-				'hide_on_screen' => '',
 				'active' => true,
-				'description' => '',
 			);
 
 			acf_add_local_field_group( $field_group );
