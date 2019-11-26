@@ -61,6 +61,9 @@ if ( ! function_exists( 'ucf_faq_init' ) ) {
 	function ucf_faq_init() {
 		add_action( 'init', array( 'UCF_FAQ_Topic', 'register_topic'), 10, 0 );
 		add_action( 'admin_menu', array( 'UCF_FAQ_Config', 'add_options_page' ) );
+
+		add_action( 'acf/init', array( 'UCF_FAQ_PostType', 'fields' ), 10, 0 );
+		add_action( 'acf/init', array( 'UCF_FAQ_Topic', 'fields' ), 10, 0 );
 	}
 	add_action( 'plugins_loaded', 'ucf_faq_init' );
 }
