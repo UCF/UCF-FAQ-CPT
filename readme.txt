@@ -41,6 +41,12 @@ The plugins listed below are extended upon in this plugin--this may include cust
 
 == Changelog ==
 
+= 1.1.0 =
+* Upgraded packages to latest versions
+* Moved topic and question fields to code
+* Fixed pagination on admin FAQ list views
+* Added line-height style to `.ucf-faq-question`
+
 = 1.0.1 =
 * Fixed a debug log message
 
