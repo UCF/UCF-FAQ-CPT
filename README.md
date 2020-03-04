@@ -34,6 +34,9 @@ The plugins listed below are extended upon in this plugin--this may include cust
 
 ## Changelog ##
 
+### 1.1.1 ###
+* Added ability to customize (and remove) View All FAQs call-to-action button on FAQ lists (`footer_cta_text` and `footer_cta_url` shortcode params).  Either of these new shortcode params can be set to a blank value (e.g. `footer_cta_text=""` to disable the button entirely.)
+
 ### 1.1.0 ###
 * Upgraded packages to latest versions
 * Moved topic and question fields to code
