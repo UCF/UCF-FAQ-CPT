@@ -27,6 +27,8 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 				'show'               => '',
 				'group_by'           => 'topic',
 				'order_by_sort_meta' => true,
+				'footer_cta_text'    => 'View All FAQs',
+				'footer_cta_url'     => '/faq/'
 			), $atts, 'ucf-faq-list' );
 
 			$atts['order_by_sort_meta'] = filter_var( $atts['order_by_sort_meta'], FILTER_VALIDATE_BOOLEAN );
@@ -125,7 +127,7 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 				$related_faq_markup = UCF_FAQ_Common::display_related_faqs( $related_posts, 'Related FAQs', $atts );
 			}
 
-			$cta = UCF_FAQ_Common::display_footer_cta( 'View All FAQs', '/faq/' );
+			$cta = UCF_FAQ_Common::display_footer_cta( $atts['footer_cta_text'], $atts['footer_cta_url'] );
 
 			return $faqs . $related_faq_markup . $cta;
 		}
