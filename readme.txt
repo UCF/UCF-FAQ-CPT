@@ -2,8 +2,8 @@
 Contributors: ucfwebcom
 Tags: ucf, faq, ucf-plugin, custom post type
 Requires at least: 4.7.3
-Tested up to: 4.9.6
-Stable tag: 1.0.1
+Tested up to: 5.3
+Stable tag: 1.1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
 
@@ -40,6 +40,9 @@ The plugins listed below are extended upon in this plugin--this may include cust
 * Import field groups (`dev/acf-fields.json`) using the ACF importer under Custom Fields > Tools.
 
 == Changelog ==
+
+= 1.1.1 =
+* Added ability to customize (and remove) View All FAQs call-to-action button on FAQ lists (`footer_cta_text` and `footer_cta_url` shortcode params).  Either of these new shortcode params can be set to a blank value (e.g. `footer_cta_text=""` to disable the button entirely.)
 
 = 1.1.0 =
 * Upgraded packages to latest versions
