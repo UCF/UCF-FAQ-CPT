@@ -107,7 +107,8 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 		public static function display_faq( $post, $atts, $unique_id ) {
 			ob_start();
 
-			$collapsed_class  = ( $atts['show'] === 'true' ) ? '' : 'collapsed';
+			$collapsed_class = ( $atts['show'] === 'true' ) ? '' : 'collapsed';
+			$expanded_value  = ( $atts['show'] === 'true' ) ? 'true' : 'false';
 
 			$atts['question_element'] = ( isset( $atts['question_element'] ) ) ? $atts['question_element'] : 'h3';
 			$atts['question_class']   = ( isset( $atts['question_class'] ) ) ? $atts['question_class'] : '';
@@ -118,7 +119,7 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			$answer_attrs     = ' id="post' . $post->ID . $unique_id . '"';
 		?>
 			<div class="<?php UCF_FAQ_Config::add_athena_attr( 'd-flex mb-4 flex-column' ); ?>">
-				<a href="<?php echo get_permalink( $post->ID ); ?>" class="ucf-faq-question-link <?php UCF_FAQ_Config::add_athena_attr( $collapsed_class ); ?> <?php UCF_FAQ_Config::add_athena_attr( 'd-flex' ); ?>" <?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>>
+				<a href="<?php echo get_permalink( $post->ID ); ?>" aria-expanded="<?php echo $expanded_value; ?>" class="ucf-faq-question-link <?php UCF_FAQ_Config::add_athena_attr( $collapsed_class ); ?> <?php UCF_FAQ_Config::add_athena_attr( 'd-flex' ); ?>" <?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>>
 					<div class="ucf-faq-collapse-icon-container <?php UCF_FAQ_Config::add_athena_attr( 'mr-2 mr-md-3' ); ?>">
 						<span class="ucf-faq-collapse-icon" aria-hidden="true"></span>
 					</div>
