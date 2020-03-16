@@ -243,8 +243,8 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 				'posts_per_page' => -1,
 				'post__not_in'   => $excluded_faqs,
 				'orderby'        => array(
-					'meta_value' => 'ASC',
-					'title'      => 'ASC'
+					'meta_value_num' => 'ASC',
+					'title'          => 'ASC'
 				),
 				'meta_query'     => array(
 					'relation' => 'OR',

@@ -47,8 +47,8 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 
 				// Order by meta_value first, then title
 				$args['orderby'] = array(
-					'meta_value' => 'ASC',
-					'title'      => 'ASC'
+					'meta_value_num' => 'ASC',
+					'title'          => 'ASC'
 				);
 
 				$args['meta_query'] = array(
