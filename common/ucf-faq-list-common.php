@@ -5,7 +5,9 @@ if ( ! function_exists( 'ucf_faq_enqueue_assets' ) ) {
 		$include_athena_classes = UCF_FAQ_Config::get_option_or_default( 'include_athena_classes' );
 		$css_deps = apply_filters( 'ucf_faq_style_deps', array() );
 		if ( $include_athena_classes ) {
-			wp_enqueue_style( 'ucf_faq_css', plugins_url( 'static/css/ucf-faq.min.css', UCF_FAQ__PLUGIN_FILE ), $css_deps, false, 'screen' );
+			$plugin_data   = get_plugin_data( UCF_FAQ__PLUGIN_FILE, false, false );
+			$version       = $plugin_data['Version'];
+			wp_enqueue_style( 'ucf_faq_css', plugins_url( 'static/css/ucf-faq.min.css', UCF_FAQ__PLUGIN_FILE ), $css_deps, $version, 'screen' );
 		}
 	}
 	add_action( 'wp_enqueue_scripts', 'ucf_faq_enqueue_assets' );
@@ -243,8 +245,8 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 				'posts_per_page' => -1,
 				'post__not_in'   => $excluded_faqs,
 				'orderby'        => array(
-					'meta_value' => 'ASC',
-					'title'      => 'ASC'
+					'meta_value_num' => 'ASC',
+					'title'          => 'ASC'
 				),
 				'meta_query'     => array(
 					'relation' => 'OR',
