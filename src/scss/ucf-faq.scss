@@ -13,8 +13,12 @@
 }
 
 .ucf-faq-question {
-  font-size: 1rem;
+  font-size: .875rem;
   line-height: 1.2;
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
 }
 
 .ucf-faq-topic-answer {
