@@ -75,8 +75,8 @@ function ucf_faq_sort_order( $query ) {
 		)
 	) {
 		$orderby = array(
-			'meta_value' => 'ASC',
-			'title'      => 'ASC'
+			'meta_value_num' => 'ASC',
+			'title'          => 'ASC'
 		);
 
 		$query->set( 'orderby', $orderby );
