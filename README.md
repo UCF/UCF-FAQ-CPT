@@ -34,6 +34,14 @@ The plugins listed below are extended upon in this plugin--this may include cust
 
 ## Changelog ##
 
+### 1.1.3 ###
+Enhancements:
+* Appended plugin version number to enqueued stylesheet to ensure cache-busting between releases
+* Reduced font size of FAQ questions to match Athena Framework font sizing at mobile
+
+Bug fixes:
+* Fixed issue with FAQ sort order values not working as expected
+
 ### 1.1.2 ###
 Enhancements:
 * Moved collapse classes/attrs up to the FAQ's parent `<a>` tag to prevent issues with misclicks opening the single FAQ post instead of toggling the accordion

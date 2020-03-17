@@ -3,7 +3,7 @@ Contributors: ucfwebcom
 Tags: ucf, faq, ucf-plugin, custom post type
 Requires at least: 4.7.3
 Tested up to: 5.3
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
 
@@ -40,6 +40,14 @@ The plugins listed below are extended upon in this plugin--this may include cust
 * Import field groups (`dev/acf-fields.json`) using the ACF importer under Custom Fields > Tools.
 
 == Changelog ==
+
+= 1.1.3 =
+Enhancements:
+* Appended plugin version number to enqueued stylesheet to ensure cache-busting between releases
+* Reduced font size of FAQ questions to match Athena Framework font sizing at mobile
+
+Bug fixes:
+* Fixed issue with FAQ sort order values not working as expected
 
 = 1.1.2 =
 Enhancements:
