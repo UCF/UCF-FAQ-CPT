@@ -160,12 +160,12 @@ if ( ! function_exists( 'ucf_resource_link_display_faq' ) ) {
 			switch ( $id ) {
 				case 'resource-search-alpha':
 					if ( $args['default_sorting'] === 'term' ) {
-						$hide = True;
+						$hide = true;
 					}
 					break;
 				case 'resource-search-term':
 					if ( $args['default_sorting'] === 'alpha' ) {
-						$hide = True;
+						$hide = true;
 					}
 					break;
 			}
