@@ -34,6 +34,10 @@ The plugins listed below are extended upon in this plugin--this may include cust
 
 ## Changelog ##
 
+### 1.1.4 ###
+Enhancements:
+* Added a Resource Link Search layout specifically for FAQs.
+
 ### 1.1.3 ###
 Enhancements:
 * Appended plugin version number to enqueued stylesheet to ensure cache-busting between releases

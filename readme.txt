@@ -3,7 +3,7 @@ Contributors: ucfwebcom
 Tags: ucf, faq, ucf-plugin, custom post type
 Requires at least: 4.7.3
 Tested up to: 5.3
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
 
@@ -40,6 +40,10 @@ The plugins listed below are extended upon in this plugin--this may include cust
 * Import field groups (`dev/acf-fields.json`) using the ACF importer under Custom Fields > Tools.
 
 == Changelog ==
+
+= 1.1.4 =
+Enhancements:
+* Added a Resource Link Search layout specifically for FAQs.
 
 = 1.1.3 =
 Enhancements:
