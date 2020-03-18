@@ -153,7 +153,7 @@ if ( ! function_exists( 'ucf_resource_link_display_faq' ) ) {
 					<input type="text" id="resource-search-input" name="resource-search-input" class="resource-search-input form-control" placeholder="<?php echo $args['default_search_text']; ?>">
 				</form>
 			</div>
-			<div class="resource-search-results"></div>
+			<div class="resource-search-results faq mt-4"></div>
 		<?php
 		foreach ( $sections as $id => $section ):
 			$hide = false;
