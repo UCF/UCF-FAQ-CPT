@@ -82,6 +82,7 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 				'exclude_from_search'   => false,
 				'publicly_queryable'    => true,
 				'capability_type'       => 'post',
+				'show_in_rest'          => true
 			);
 
 			if ( UCF_FAQ_Config::get_option_or_default( UCF_FAQ_Config::$option_prefix . 'disable_faq_archive' ) ) {
