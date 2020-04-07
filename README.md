@@ -34,6 +34,10 @@ The plugins listed below are extended upon in this plugin--this may include cust
 
 ## Changelog ##
 
+### 1.1.5 ###
+Enhancements:
+* Added REST API endpoint for FAQs
+
 ### 1.1.4 ###
 Enhancements:
 * Added a Resource Link Search layout specifically for FAQs.
