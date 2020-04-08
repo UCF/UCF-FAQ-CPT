@@ -170,13 +170,13 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 
 			add_settings_field(
 				self::$option_prefix . 'default_sort_order',
-				'Set Default Value',
+				'Set high default FAQ sort order',
 				array( 'UCF_FAQ_CONFIG', 'display_settings_field' ),
 				'ucf_faq',
 				'ucf_faq_section_general',
 				array(
 					'label_for'   => self::$option_prefix . 'default_sort_order',
-					'description' => 'If checked a default value will be set on each FAQ sort order.',
+					'description' => 'If checked, new FAQs will have a default sort order value that pushes them to the end of sorted FAQ lists. When left unchecked, new FAQs will not have a default sort order value set, and will be shown at the beginning of sorted FAQ lists.',
 					'type'        => 'checkbox'
 				)
 			);
