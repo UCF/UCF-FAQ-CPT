@@ -105,18 +105,18 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			$answer_classes   = ' collapse' . $atts['show'];
 			$answer_attrs     = ' id="post' . $post->ID . $unique_id . '"';
 		?>
-			<div class="<?php UCF_FAQ_Config::add_athena_attr( 'd-flex mb-4 flex-column' ); ?>">
+			<div class="<?php UCF_FAQ_Config::add_athena_attr( 'd-flex mb-4 flex-column' ); ?>"<?php echo UCF_FAQ_Common::add_microdata( 'wrapper' ); ?>>
 				<a href="<?php echo get_permalink( $post->ID ); ?>" class="ucf-faq-question-link <?php UCF_FAQ_Config::add_athena_attr( $collapsed_class ); ?> <?php UCF_FAQ_Config::add_athena_attr( 'd-flex' ); ?>" <?php UCF_FAQ_Config::add_athena_attr( $question_attrs ); ?>>
 					<div class="ucf-faq-collapse-icon-container <?php UCF_FAQ_Config::add_athena_attr( 'mr-2 mr-md-3' ); ?>">
 						<span class="ucf-faq-collapse-icon" aria-hidden="true"></span>
 					</div>
-					<<?php echo $atts['question_element']; ?> class="ucf-faq-question <?php UCF_FAQ_Config::add_athena_attr( 'align-self-center mb-0 ' . $atts['question_class'] ); ?>">
+					<<?php echo $atts['question_element']; ?> class="ucf-faq-question <?php UCF_FAQ_Config::add_athena_attr( 'align-self-center mb-0 ' . $atts['question_class'] ); ?>"<?php echo UCF_FAQ_Common::add_microdata( 'question' ); ?>>
 						<?php echo $post->post_title; ?>
 					</<?php echo $atts['question_element']; ?>>
 				</a>
-				<div class="ucf-faq-topic-answer<?php UCF_FAQ_Config::add_athena_attr( $answer_classes . ' ml-2 ml-md-3 mt-2' ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $answer_attrs ); ?>>
+				<div class="ucf-faq-topic-answer<?php UCF_FAQ_Config::add_athena_attr( $answer_classes . ' ml-2 ml-md-3 mt-2' ); ?>"<?php UCF_FAQ_Config::add_athena_attr( $answer_attrs ); ?><?php echo UCF_FAQ_Common::add_microdata( 'answer_wrapper' ); ?>>
 					<div class="<?php UCF_FAQ_Config::add_athena_attr( 'card' ); ?>">
-						<div class="<?php UCF_FAQ_Config::add_athena_attr( 'card-block' ); ?>">
+						<div class="<?php UCF_FAQ_Config::add_athena_attr( 'card-block' ); ?>"<?php echo UCF_FAQ_Common::add_microdata( 'answer_text' ); ?>>
 							<?php echo apply_filters( 'the_content', $post->post_content ); ?>
 						</div>
 					</div>
@@ -273,6 +273,11 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			}
 		}
 
+		/**
+		 * Enqueues the stastic assets
+		 * @author Cadie Brown
+		 * @since 1.0.0
+		 */
 		public static function enqueue_assets() {
 			// CSS
 			$include_athena_classes = UCF_FAQ_Config::get_option_or_default( 'include_athena_classes' );
@@ -281,6 +286,30 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 				$plugin_data   = get_plugin_data( UCF_FAQ__PLUGIN_FILE, false, false );
 				$version       = $plugin_data['Version'];
 				wp_enqueue_style( 'ucf_faq_css', plugins_url( 'static/css/ucf-faq.min.css', UCF_FAQ__PLUGIN_FILE ), $css_deps, $version, 'screen' );
+			}
+		}
+
+		/**
+		 * Adds the microdata markup
+		 * @author Jim Barnes
+		 * @since 1.1.6
+		 * @param string $element The element flag so the function knows how to mark it up
+		 * @return string
+		 */
+		public static function add_microdata( $element ) {
+			if ( ! UCF_FAQ_Config::get_option_or_default( 'add_microdata' ) ) return '';
+
+			switch( $element ) {
+				case 'wrapper':
+					return ' itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"';
+				case 'question':
+					return ' itemprop="name"';
+				case 'answer_wrapper':
+					return ' itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"';
+				case 'answer_text':
+					return ' itemprop="text"';
+				default:
+					return '';
 			}
 		}
 	}

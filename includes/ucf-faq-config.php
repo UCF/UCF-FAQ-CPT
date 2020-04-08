@@ -8,7 +8,8 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 		$option_defaults = array(
 			'include_athena_classes'  => true,
 			'disable_faq_archive'     => false,
-			'default_sort_order'      => false
+			'default_sort_order'      => false,
+			'add_microdata'           => false
 		);
 
 
@@ -23,6 +24,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			add_option( self::$option_prefix . 'include_athena_classes', $defaults['include_athena_classes'] );
 			add_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] );
 			add_option( self::$option_prefix . 'default_sort_order', $defaults['default_sort_order'] );
+			add_option( self::$option_prefix . 'add_microdata', $defaults['add_microdata'] );
 		}
 
 
@@ -36,6 +38,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			delete_option( self::$option_prefix . 'include_athena_classes' );
 			delete_option( self::$option_prefix . 'disable_faq_archive' );
 			delete_option( self::$option_prefix . 'default_sort_order' );
+			delete_option( self::$option_prefix . 'add_microdata' );
 		}
 
 
@@ -53,6 +56,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 				'include_athena_classes' => get_option( self::$option_prefix . 'include_athena_classes', $defaults['include_athena_classes'] ),
 				'disable_faq_archive'    => get_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] ),
 				'default_sort_order'     => get_option( self::$option_prefix . 'default_sort_order', $defaults['default_sort_order'] ),
+				'add_microdata'          => get_option( self::$option_prefix . 'add_microdata', $defaults['add_microdata'] ),
 			);
 
 			// Force configurable options to override $defaults, even if they are empty:
@@ -74,6 +78,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 					case 'include_athena_classes':
 					case 'disable_faq_archive':
 					case 'default_sort_order':
+					case 'add_microdata':
 						$list[$key] = filter_var( $val, FILTER_VALIDATE_BOOLEAN );
 						break;
 					default:
@@ -132,6 +137,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			register_setting( 'ucf_faq', self::$option_prefix . 'include_athena_classes' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'disable_faq_archive' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'default_sort_order' );
+			register_setting( 'ucf_faq', self::$option_prefix . 'add_microdata' );
 
 			// Register setting sections
 			add_settings_section(
@@ -171,12 +177,25 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			add_settings_field(
 				self::$option_prefix . 'default_sort_order',
 				'Set high default FAQ sort order',
-				array( 'UCF_FAQ_CONFIG', 'display_settings_field' ),
+				array( 'UCF_FAQ_Config', 'display_settings_field' ),
 				'ucf_faq',
 				'ucf_faq_section_general',
 				array(
 					'label_for'   => self::$option_prefix . 'default_sort_order',
 					'description' => 'If checked, new FAQs will have a default sort order value that pushes them to the end of sorted FAQ lists. When left unchecked, new FAQs will not have a default sort order value set, and will be shown at the beginning of sorted FAQ lists.',
+					'type'        => 'checkbox'
+				)
+			);
+
+			add_settings_field(
+				self::$option_prefix . 'add_microdata',
+				'Add microdata to FAQs',
+				array( 'UCF_FAQ_Config', 'display_settings_field' ),
+				'ucf_faq',
+				'ucf_faq_section_general',
+				array(
+					'label_for'   => self::$option_prefix . 'add_microdata',
+					'description' => 'If checked, microdata will be added to FAQ markup.',
 					'type'        => 'checkbox'
 				)
 			);
