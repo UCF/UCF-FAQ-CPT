@@ -135,7 +135,7 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 			 * @author Jim Barnes
 			 * @since 1.1.0
 			 */
-			$fields[] = array(
+			$sort_order = array(
 				'key' => 'field_5b917a3820356',
 				'label' => 'FAQ Question Sort Order',
 				'name' => 'faq_question_sort_order',
@@ -143,6 +143,12 @@ if ( ! class_exists( 'UCF_FAQ_PostType' ) ) {
 				'instructions' => '',
 				'required' => 0
 			);
+
+			if ( UCF_FAQ_Config::get_option_or_default( 'default_sort_order' ) ) {
+				$sort_order['default_value'] = 99999;
+			}
+
+			$fields[] = $sort_order;
 
 			/**
 			 * Define field group
