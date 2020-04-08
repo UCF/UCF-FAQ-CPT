@@ -7,7 +7,8 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 		public static $option_prefix = 'ucf_faq_',
 		$option_defaults = array(
 			'include_athena_classes'  => true,
-			'disable_faq_archive'     => false
+			'disable_faq_archive'     => false,
+			'default_sort_order'      => false
 		);
 
 
@@ -21,6 +22,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			$defaults = self::$option_defaults; // don't use self::get_option_defaults() here (default options haven't been set yet)
 			add_option( self::$option_prefix . 'include_athena_classes', $defaults['include_athena_classes'] );
 			add_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] );
+			add_option( self::$option_prefix . 'default_sort_order', $defaults['default_sort_order'] );
 		}
 
 
@@ -33,6 +35,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 		public static function delete_options() {
 			delete_option( self::$option_prefix . 'include_athena_classes' );
 			delete_option( self::$option_prefix . 'disable_faq_archive' );
+			delete_option( self::$option_prefix . 'default_sort_order' );
 		}
 
 
@@ -49,6 +52,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			$configurable_defaults = array(
 				'include_athena_classes' => get_option( self::$option_prefix . 'include_athena_classes', $defaults['include_athena_classes'] ),
 				'disable_faq_archive'    => get_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] ),
+				'default_sort_order'     => get_option( self::$option_prefix . 'default_sort_order', $defaults['default_sort_order'] ),
 			);
 
 			// Force configurable options to override $defaults, even if they are empty:
@@ -69,6 +73,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 				switch ( $key ) {
 					case 'include_athena_classes':
 					case 'disable_faq_archive':
+					case 'default_sort_order':
 						$list[$key] = filter_var( $val, FILTER_VALIDATE_BOOLEAN );
 						break;
 					default:
@@ -126,6 +131,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			// Register settings
 			register_setting( 'ucf_faq', self::$option_prefix . 'include_athena_classes' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'disable_faq_archive' );
+			register_setting( 'ucf_faq', self::$option_prefix . 'default_sort_order' );
 
 			// Register setting sections
 			add_settings_section(
@@ -158,6 +164,19 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 				array(  // extra arguments to pass to the callback function
 					'label_for'   => self::$option_prefix . 'disable_faq_archive',
 					'description' => 'If checked the FAQ Archive will be disabled.',
+					'type'        => 'checkbox'
+				)
+			);
+
+			add_settings_field(
+				self::$option_prefix . 'default_sort_order',
+				'Set Default Value',
+				array( 'UCF_FAQ_CONFIG', 'display_settings_field' ),
+				'ucf_faq',
+				'ucf_faq_section_general',
+				array(
+					'label_for'   => self::$option_prefix . 'default_sort_order',
+					'description' => 'If checked a default value will be set on each FAQ sort order.',
 					'type'        => 'checkbox'
 				)
 			);
