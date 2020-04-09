@@ -34,6 +34,10 @@ The plugins listed below are extended upon in this plugin--this may include cust
 
 ## Changelog ##
 
+### 1.1.6 ###
+Enhancements:
+* Added option that sets the default sort order values to new FAQs to a very high number, which pushes them to the bottom of sorted FAQ lists.
+
 ### 1.1.5 ###
 Enhancements:
 * Added REST API endpoint for FAQs
