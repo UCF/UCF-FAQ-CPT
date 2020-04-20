@@ -2,8 +2,8 @@
 Contributors: ucfwebcom
 Tags: ucf, faq, ucf-plugin, custom post type
 Requires at least: 4.7.3
-Tested up to: 5.3
-Stable tag: 1.1.6
+Tested up to: 5.4
+Stable tag: 1.2.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
 
@@ -40,6 +40,10 @@ The plugins listed below are extended upon in this plugin--this may include cust
 * Import field groups (`dev/acf-fields.json`) using the ACF importer under Custom Fields > Tools.
 
 == Changelog ==
+
+= 1.2.0 =
+Enhancements:
+* Adds the option to add structured microdata to FAQs.
 
 = 1.1.6 =
 Enhancements:
