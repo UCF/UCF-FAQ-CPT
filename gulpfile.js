@@ -18,11 +18,11 @@ const merge        = require('merge');
 let config = {
   src: {
     scssPath: './src/scss',
-    jsPath: './src/js',
+    jsPath: './src/js'
   },
   dist: {
     cssPath: './static/css',
-    jsPath: './static/js',
+    jsPath: './static/js'
   },
   packagesPath: './node_modules',
   sync: false,
@@ -133,9 +133,9 @@ gulp.task('scss-build-plugin', () => {
 // All plugin css-related tasks
 gulp.task('css', gulp.series('scss-lint-plugin', 'scss-build-plugin'));
 
-///
-/// JavaScript
-///
+//
+// Javascript
+//
 
 // Run eslint on js files in src.jsPath
 gulp.task('es-lint-plugin', () => {
@@ -144,7 +144,7 @@ gulp.task('es-lint-plugin', () => {
 
 // Concat and uglify js files through babel
 gulp.task('js-build-plugin', () => {
-  return buildJS(`${config.src.jsPath}/script.js`, config.dist.jsPath);
+  return buildJS(`${config.src.jsPath}/ucf-faq-script.js`, config.dist.jsPath);
 });
 
 // All js-related tasks

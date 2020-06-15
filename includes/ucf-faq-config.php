@@ -9,7 +9,9 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			'include_athena_classes'  => true,
 			'disable_faq_archive'     => false,
 			'default_sort_order'      => false,
-			'add_microdata'           => false
+			'add_microdata'           => false,
+			'enqueue_typeahead'       => false,
+			'typeahead_handle'        => 'typeaheadjs',
 		);
 
 
@@ -25,6 +27,8 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			add_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] );
 			add_option( self::$option_prefix . 'default_sort_order', $defaults['default_sort_order'] );
 			add_option( self::$option_prefix . 'add_microdata', $defaults['add_microdata'] );
+			add_option( self::$option_prefix . 'enqueue_typeahead', $defaults['enqueue_typeahead'] );
+			add_option( self::$option_prefix . 'typeahead_handle', $defaults['typeahead_handle'] );
 		}
 
 
@@ -39,6 +43,8 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			delete_option( self::$option_prefix . 'disable_faq_archive' );
 			delete_option( self::$option_prefix . 'default_sort_order' );
 			delete_option( self::$option_prefix . 'add_microdata' );
+			delete_option( self::$option_prefix . 'enqueue_typeahead' );
+			delete_option( self::$option_prefix . 'typeahead_handle' );
 		}
 
 
@@ -57,6 +63,8 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 				'disable_faq_archive'    => get_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] ),
 				'default_sort_order'     => get_option( self::$option_prefix . 'default_sort_order', $defaults['default_sort_order'] ),
 				'add_microdata'          => get_option( self::$option_prefix . 'add_microdata', $defaults['add_microdata'] ),
+				'enqueue_typeahead'      => get_option( self::$option_prefix . 'enqueue_typeahead', $defaults['enqueue_typeahead'] ),
+				'typeahead_handle'       => get_option( self::$option_prefix . 'typeahead_handle', $defaults['typeahead_handle'] ),
 			);
 
 			// Force configurable options to override $defaults, even if they are empty:
@@ -79,6 +87,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 					case 'disable_faq_archive':
 					case 'default_sort_order':
 					case 'add_microdata':
+					case 'enqueue_typeahead':
 						$list[$key] = filter_var( $val, FILTER_VALIDATE_BOOLEAN );
 						break;
 					default:
@@ -138,6 +147,8 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			register_setting( 'ucf_faq', self::$option_prefix . 'disable_faq_archive' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'default_sort_order' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'add_microdata' );
+			register_setting( 'ucf_faq', self::$option_prefix . 'enqueue_typeahead' );
+			register_setting( 'ucf_faq', self::$option_prefix . 'typeahead_handle' );
 
 			// Register setting sections
 			add_settings_section(
@@ -145,6 +156,14 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 				'General Settings', // formatted title
 				'', // callback that echoes any content at the top of the section
 				'ucf_faq' // settings page slug
+			);
+
+			// Register search sections
+			add_settings_section(
+				'ucf_faq_section_search',
+				'Search Settings',
+				'',
+				'ucf_faq'
 			);
 
 			// Register fields - general
@@ -197,6 +216,36 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 					'label_for'   => self::$option_prefix . 'add_microdata',
 					'description' => 'If checked, microdata will be added to FAQ markup.',
 					'type'        => 'checkbox'
+				)
+			);
+
+			/**
+			 * Search Settings
+			 */
+			add_settings_field(
+				self::$option_prefix . 'enqueue_typeahead',
+				'Enqueue Typeahead JS',
+				array( 'UCF_FAQ_Config', 'display_settings_field' ),
+				'ucf_faq',
+				'ucf_faq_section_search',
+				array(
+					'label_for'   => self::$option_prefix . 'enqueue_typeahead',
+					'description' => 'If checked, the typeahead js library will be loaded from a CDN.',
+					'type'        => 'checkbox'
+				)
+			);
+
+			add_settings_field(
+				self::$option_prefix . 'typeahead_handle',
+				'Typeahead Handle',
+				array( 'UCF_FAQ_Config', 'display_settings_field' ),
+				'ucf_faq',
+				'ucf_faq_section_search',
+				array(
+					'label_for'   => self::$option_prefix . 'typeahead_handle',
+					'description' => 'Allows the WordPress handle for the typeahead js script to be specified. If using the typeahead from another plugin, you can define the handle here.',
+					'type'        => 'text'
+
 				)
 			);
 		}
