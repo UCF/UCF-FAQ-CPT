@@ -8,6 +8,8 @@
       "amd": true
     },
     "globals": {
+      "Bloodhound": true,
+      "UCF_FAQ_SEARCH": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
