@@ -1,7 +1,7 @@
 $(document).ready(() => {
   const engine = new Bloodhound({
     remote: {
-      url: UCF_FAQ_SEARCH.remote_path,
+      url: `${UCF_FAQ_SEARCH.remote_path}?search=%q`,
       wildcard: '%q'
     },
     queryTokenizer: (q) => {
