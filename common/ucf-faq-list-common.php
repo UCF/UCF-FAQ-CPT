@@ -287,6 +287,24 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 				$version       = $plugin_data['Version'];
 				wp_enqueue_style( 'ucf_faq_css', plugins_url( 'static/css/ucf-faq.min.css', UCF_FAQ__PLUGIN_FILE ), $css_deps, $version, 'screen' );
 			}
+
+			$enqueue_typeahead = UCF_FAQ_Config::get_option_or_default( 'enqueue_typeahead' );
+			$typeahead_handle = UCF_FAQ_Config::get_option_or_default( 'typeahead_handle' );
+
+			if ( $enqueue_typeahead ) {
+				wp_enqueue_script( $typeahead_handle, 'https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.11.0/jquery.typeahead.min.js', null, null, true );
+			}
+
+			// Enqueue the plugin script
+			wp_register_script( 'ucf_faq_script', plugins_url( 'static/js/ucf-faq-script.min.js', UCF_FAQ__PLUGIN_FILE ), array( $typeahead_handle ), $version, true );
+
+			$localization = array(
+				'remote_path' => get_rest_url( null, '/wp/v2/faq/' )
+			);
+
+			wp_localize_script( 'ucf_faq_script', 'UCF_FAQ_SEARCH', $localization );
+
+			wp_enqueue_script( 'ucf_faq_script' );
 		}
 
 		/**
