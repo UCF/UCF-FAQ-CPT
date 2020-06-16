@@ -302,7 +302,7 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			}
 
 			// Enqueue the plugin script
-			wp_register_script( 'ucf_faq_script', plugins_url( 'static/js/ucf-faq-script.min.js', UCF_FAQ__PLUGIN_FILE ), array( $typeahead_handle ), $version, true );
+			wp_register_script( 'ucf_faq_script', plugins_url( 'static/js/ucf-faq-script.min.js', UCF_FAQ__PLUGIN_FILE ), array( $typeahead_handle, $handlebars_handle ), $version, true );
 
 			$localization = array(
 				'remote_path' => get_rest_url( null, '/wp/v2/faq/' )
