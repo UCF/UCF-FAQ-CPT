@@ -288,11 +288,17 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 				wp_enqueue_style( 'ucf_faq_css', plugins_url( 'static/css/ucf-faq.min.css', UCF_FAQ__PLUGIN_FILE ), $css_deps, $version, 'screen' );
 			}
 
-			$enqueue_typeahead = UCF_FAQ_Config::get_option_or_default( 'enqueue_typeahead' );
-			$typeahead_handle = UCF_FAQ_Config::get_option_or_default( 'typeahead_handle' );
+			$enqueue_typeahead  = UCF_FAQ_Config::get_option_or_default( 'enqueue_typeahead' );
+			$typeahead_handle   = UCF_FAQ_Config::get_option_or_default( 'typeahead_handle' );
+			$enqueue_handlebars = UCF_FAQ_Config::get_option_or_default( 'enqueue_handlebars' );
+			$handlebars_handle  = UCF_FAQ_Config::get_option_or_default( 'handlebars_handle' );
 
 			if ( $enqueue_typeahead ) {
-				wp_enqueue_script( $typeahead_handle, 'https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.11.0/jquery.typeahead.min.js', null, null, true );
+				wp_enqueue_script( $typeahead_handle, 'https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.3.1/typeahead.bundle.min.js', array( 'jquery' ), null, true );
+			}
+
+			if ( $enqueue_handlebars ) {
+				wp_enqueue_script( $handlebars_handle, 'https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js', null, null, true );
 			}
 
 			// Enqueue the plugin script
