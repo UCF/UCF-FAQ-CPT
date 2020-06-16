@@ -7,19 +7,20 @@ if ( ! class_exists( 'UCF_FAQ_Search_Shortcode' ) ) {
 		public static function shortcode( $atts ) {
 			$atts = shortcode_atts( array(
 				'title'         => 'Search All FAQs',
-				'title_tag'     => 'h2',
 				'title_classes' => 'h3 text-secondary',
 				'placeholder'   => 'Search&hellip;'
 			), $atts );
 
 			$title         = $atts['title'];
-			$title_tag     = $atts['title_tag'];
 			$title_classes = $atts['title_classes'];
+
+			$random_hash = substr( md5( rand( 0, 500 ) ), 0, 16 );
+			$id          = "faq-typeahead-$random_hash";
 
 			ob_start();
 		?>
-			<<?php echo $title_tag; ?> class="<?php echo $title_classes; ?>"><?php echo $title; ?></<?php echo $title_tag; ?>>
-			<input class="faq-typeahead form-control" type="text" placeholder="<?php echo $atts['placeholder']; ?>">
+			<label class="<?php echo $title_classes; ?>" for="<?php echo $id; ?>"><?php echo $title; ?></label>
+			<input id="<?php echo $id; ?>" class="faq-typeahead form-control" type="text" placeholder="<?php echo $atts['placeholder']; ?>">
 		<?php
 			return ob_get_clean();
 		}
