@@ -22,6 +22,7 @@ include_once 'includes/ucf-faq-posttype.php';
 include_once 'common/ucf-faq-list-common.php';
 include_once 'templates/templates.php';
 include_once 'shortcodes/ucf-faq-list-shortcode.php';
+include_once 'shortcodes/ucf-faq-search-shortcode.php';
 
 include_once 'layouts/ucf-faq-classic.php';
 include_once 'layouts/ucf-faq-topic-classic.php';
