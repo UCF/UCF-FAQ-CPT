@@ -250,7 +250,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 				array(
 					'label_for'   => self::$option_prefix . 'typeahead_result_limit',
 					'description' => 'The number of results to display under the typeahead.',
-					'type'        => 'number'
+					'type'        => 'text'
 				)
 			);
 
