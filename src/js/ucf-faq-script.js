@@ -30,7 +30,7 @@ $(document).ready(() => {
   {
     name: 'faq-search',
     limit: limit,
-    displayKey: (faq) => {
+    display: (faq) => {
       return decodeHTMLEntities(faq.title.rendered);
     },
     source: engine.ttAdapter(),
