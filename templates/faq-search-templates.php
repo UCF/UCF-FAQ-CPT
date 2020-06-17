@@ -16,7 +16,7 @@ class UCF_FAQ_Search_Templates {
 	public static function empty() {
 		ob_start();
 	?>
-		<span class="faq-typeahead-empty tt-empty">No FAQs found.</span>
+		<div class="faq-typeahead-empty tt-empty">No FAQs found.</div>
 	<?php
 		return apply_filters( 'ucf_faq_search_empty_template', ob_get_clean() );
 	}
