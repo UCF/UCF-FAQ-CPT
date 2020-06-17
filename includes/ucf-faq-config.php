@@ -13,7 +13,8 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			'enqueue_typeahead'       => false,
 			'typeahead_handle'        => 'typeaheadjs',
 			'enqueue_handlebars'      => false,
-			'handlebars_handle'       => 'handlebarsjs'
+			'handlebars_handle'       => 'handlebarsjs',
+			'typeahead_result_limit'  => 5,
 		);
 
 
@@ -33,6 +34,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			add_option( self::$option_prefix . 'typeahead_handle', $defaults['typeahead_handle'] );
 			add_option( self::$option_prefix . 'enqueue_handlebars', $defaults['enqueue_handlebars'] );
 			add_option( self::$option_prefix . 'handlebars_handle', $defaults['handlebars_handle'] );
+			add_option( self::$option_prefix . 'typeahead_result_limit', $defaults['typeahead_result_limit'] );
 		}
 
 
@@ -51,6 +53,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			delete_option( self::$option_prefix . 'typeahead_handle' );
 			delete_option( self::$option_prefix . 'enqueue_handlebars' );
 			delete_option( self::$option_prefix . 'handlebars_handle' );
+			delete_option( self::$option_prefix . 'typeahead_result_limit' );
 		}
 
 
@@ -73,6 +76,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 				'typeahead_handle'       => get_option( self::$option_prefix . 'typeahead_handle', $defaults['typeahead_handle'] ),
 				'enqueue_handlebars'     => get_option( self::$option_prefix . 'enqueue_handlebars', $defaults['enqueue_handlebars'] ),
 				'handlebars_handle'      => get_option( self::$option_prefix . 'handlebars_handle', $defaults['handlebars_handle'] ),
+				'typeahead_result_limit' => get_option( self::$option_prefix . 'typeahead_result_limit', $defaults['typeahead_result_limit'] ),
 			);
 
 			// Force configurable options to override $defaults, even if they are empty:
@@ -98,6 +102,9 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 					case 'enqueue_typeahead':
 					case 'handlebars_handle':
 						$list[$key] = filter_var( $val, FILTER_VALIDATE_BOOLEAN );
+						break;
+					case 'typeahead_result_limit':
+						$list[$key] = intval( $val );
 						break;
 					default:
 						break;
@@ -160,6 +167,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			register_setting( 'ucf_faq', self::$option_prefix . 'typeahead_handle' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'enqueue_handlebars' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'handlebars_handle' );
+			register_setting( 'ucf_faq', self::$option_prefix . 'typeahead_result_limit' );
 
 			// Register setting sections
 			add_settings_section(
@@ -233,6 +241,19 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			/**
 			 * Search Settings
 			 */
+			add_settings_field(
+				self::$option_prefix . 'typeahead_result_limit',
+				'Typeahead Result Limit',
+				array( 'UCF_FAQ_Config', 'display_settings_field' ),
+				'ucf_faq',
+				'ucf_faq_section_search',
+				array(
+					'label_for'   => self::$option_prefix . 'typeahead_result_limit',
+					'description' => 'The number of results to display under the typeahead.',
+					'type'        => 'text'
+				)
+			);
+
 			add_settings_field(
 				self::$option_prefix . 'enqueue_typeahead',
 				'Enqueue Typeahead JS',

@@ -292,6 +292,7 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			$typeahead_handle   = UCF_FAQ_Config::get_option_or_default( 'typeahead_handle' );
 			$enqueue_handlebars = UCF_FAQ_Config::get_option_or_default( 'enqueue_handlebars' );
 			$handlebars_handle  = UCF_FAQ_Config::get_option_or_default( 'handlebars_handle' );
+			$limit              = UCF_FAQ_Config::get_option_or_default( 'typeahead_result_limit' );
 
 			if ( $enqueue_typeahead ) {
 				wp_enqueue_script( $typeahead_handle, 'https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.3.1/typeahead.bundle.min.js', array( 'jquery' ), null, true );
@@ -301,14 +302,20 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 				wp_enqueue_script( $handlebars_handle, 'https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js', null, null, true );
 			}
 
+			$dependencies = array(
+				$typeahead_handle,
+				$handlebars_handle
+			);
+
 			// Enqueue the plugin script
-			wp_register_script( 'ucf_faq_script', plugins_url( 'static/js/ucf-faq-script.min.js', UCF_FAQ__PLUGIN_FILE ), array( $typeahead_handle, $handlebars_handle ), $version, true );
+			wp_register_script( 'ucf_faq_script', plugins_url( 'static/js/ucf-faq-script.min.js', UCF_FAQ__PLUGIN_FILE ), $dependencies, $version, true );
 
 			$localization = array(
 				'remote_path' => get_rest_url( null, '/wp/v2/faq/' ),
 				'empty'       => UCF_FAQ_Search_Templates::empty(),
 				'suggestion'  => UCF_FAQ_Search_Templates::suggestion(),
-				'footer'      => UCF_FAQ_Search_Templates::footer()
+				'footer'      => UCF_FAQ_Search_Templates::footer(),
+				'limit'       => $limit,
 			);
 
 			wp_localize_script( 'ucf_faq_script', 'UCF_FAQ_SEARCH', $localization );
