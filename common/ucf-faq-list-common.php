@@ -302,8 +302,6 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 				wp_enqueue_script( $handlebars_handle, 'https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js', null, null, true );
 			}
 
-			wp_enqueue_script( 'faq_he_js', 'https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.min.js', null, null, true );
-
 			$dependencies = array(
 				$typeahead_handle,
 				$handlebars_handle
