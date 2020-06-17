@@ -9,6 +9,7 @@
     },
     "globals": {
       "Bloodhound": true,
+      "Handlebars": true,
       "UCF_FAQ_SEARCH": true
     },
     "extends": "eslint:recommended",
