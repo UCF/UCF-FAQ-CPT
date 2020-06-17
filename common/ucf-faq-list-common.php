@@ -302,8 +302,15 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 				wp_enqueue_script( $handlebars_handle, 'https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js', null, null, true );
 			}
 
+			wp_enqueue_script( 'faq_he_js', 'https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.min.js', null, null, true );
+
+			$dependencies = array(
+				$typeahead_handle,
+				$handlebars_handle
+			);
+
 			// Enqueue the plugin script
-			wp_register_script( 'ucf_faq_script', plugins_url( 'static/js/ucf-faq-script.min.js', UCF_FAQ__PLUGIN_FILE ), array( $typeahead_handle, $handlebars_handle ), $version, true );
+			wp_register_script( 'ucf_faq_script', plugins_url( 'static/js/ucf-faq-script.min.js', UCF_FAQ__PLUGIN_FILE ), $dependencies, $version, true );
 
 			$localization = array(
 				'remote_path' => get_rest_url( null, '/wp/v2/faq/' ),
