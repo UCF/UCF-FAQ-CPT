@@ -32,7 +32,7 @@ class UCF_FAQ_Search_Templates {
 	public static function suggestion() {
 		ob_start();
 	?>
-		<a class="faq-typeahead-suggestion tt-suggestion" href="{{link}}">{{title.rendered}}</a>
+		<a class="faq-typeahead-suggestion tt-suggestion" href="{{link}}">{{{title.rendered}}}</a>
 	<?php
 		return apply_filters( 'ucf_faq_search_suggestion_template', ob_get_clean() );
 	}
