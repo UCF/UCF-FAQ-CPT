@@ -34,6 +34,10 @@ The plugins listed below are extended upon in this plugin--this may include cust
 
 ## Changelog ##
 
+### 1.3.0 ###
+Enhancements:
+* Added the ucf-faq-search shortcode
+
 ### 1.2.0 ###
 Enhancements:
 * Adds the option to add structured microdata to FAQs.
