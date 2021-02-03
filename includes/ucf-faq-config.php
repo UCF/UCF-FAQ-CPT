@@ -10,9 +10,9 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			'disable_faq_archive'     => false,
 			'default_sort_order'      => false,
 			'add_microdata'           => false,
-			'enqueue_typeahead'       => false,
+			'enqueue_typeahead'       => true,
 			'typeahead_handle'        => 'typeahead-js',
-			'enqueue_handlebars'      => false,
+			'enqueue_handlebars'      => true,
 			'handlebars_handle'       => 'handlebars-js',
 			'typeahead_result_limit'  => 5,
 		);
@@ -262,7 +262,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 				'ucf_faq_section_search',
 				array(
 					'label_for'   => self::$option_prefix . 'enqueue_typeahead',
-					'description' => 'If checked, the typeahead js library will be loaded from a CDN.',
+					'description' => 'If checked, the typeahead js library will be loaded from a CDN on pages that utilize a FAQ search.',
 					'type'        => 'checkbox'
 				)
 			);
@@ -289,7 +289,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 				'ucf_faq_section_search',
 				array(
 					'label_for'   => self::$option_prefix . 'enqueue_handlebars',
-					'description' => 'If checked, the handlebars library will be loaded from a CDN.',
+					'description' => 'If checked, the handlebars library will be loaded from a CDN on pages that utilize a FAQ search.',
 					'type'        => 'checkbox'
 				)
 			);
