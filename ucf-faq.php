@@ -14,7 +14,11 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'UCF_FAQ__PLUGIN_URL', plugins_url( basename( dirname( __FILE__ ) ) ) );
 define( 'UCF_FAQ__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'UCF_FAQ__STATIC_URL', UCF_FAQ__PLUGIN_URL . '/static' );
+define( 'UCF_FAQ__STYLES_URL', UCF_FAQ__STATIC_URL . '/css' );
+define( 'UCF_FAQ__SCRIPT_URL', UCF_FAQ__STATIC_URL . '/js' );
 define( 'UCF_FAQ__PLUGIN_FILE', __FILE__ );
+define( 'UCF_FAQ__TYPEAHEAD', 'https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.3.1/typeahead.bundle.min.js' );
+define( 'UCF_FAQ__HANDLEBARS', 'https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js' );
 
 require_once UCF_FAQ__PLUGIN_DIR . 'includes/ucf-faq-config.php';
 include_once UCF_FAQ__PLUGIN_DIR . 'includes/ucf-faq-topic-tax.php';

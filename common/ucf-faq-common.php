@@ -193,18 +193,20 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 		}
 
 		/**
-		 * Enqueues the stastic assets
-		 * @author Cadie Brown
-		 * @since 1.0.0
+		 * Registers frontend static assets for the plugin.
+		 *
+		 * @since 1.3.1
+		 * @author Jo Dickson
+		 * @return void
 		 */
-		public static function enqueue_assets() {
-			// CSS
+		public static function register_assets() {
+			$plugin_data   = get_plugin_data( UCF_FAQ__PLUGIN_FILE, false, false );
+			$version       = $plugin_data['Version'];
+
 			$include_athena_classes = UCF_FAQ_Config::get_option_or_default( 'include_athena_classes' );
-			$css_deps = apply_filters( 'ucf_faq_style_deps', array() );
 			if ( $include_athena_classes ) {
-				$plugin_data   = get_plugin_data( UCF_FAQ__PLUGIN_FILE, false, false );
-				$version       = $plugin_data['Version'];
-				wp_enqueue_style( 'ucf_faq_css', plugins_url( 'static/css/ucf-faq.min.css', UCF_FAQ__PLUGIN_FILE ), $css_deps, $version, 'screen' );
+				$css_deps = apply_filters( 'ucf_faq_style_deps', array() );
+				wp_register_style( 'ucf_faq_css', UCF_FAQ__STYLES_URL . '/ucf-faq.min.css', $css_deps, $version, 'screen' );
 			}
 
 			$enqueue_typeahead  = UCF_FAQ_Config::get_option_or_default( 'enqueue_typeahead' );
@@ -214,11 +216,10 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			$limit              = UCF_FAQ_Config::get_option_or_default( 'typeahead_result_limit' );
 
 			if ( $enqueue_typeahead ) {
-				wp_enqueue_script( $typeahead_handle, 'https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.3.1/typeahead.bundle.min.js', array( 'jquery' ), null, true );
+				wp_register_script( $typeahead_handle, UCF_FAQ__TYPEAHEAD, array( 'jquery' ), null, true );
 			}
-
 			if ( $enqueue_handlebars ) {
-				wp_enqueue_script( $handlebars_handle, 'https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js', null, null, true );
+				wp_register_script( $handlebars_handle, UCF_FAQ__HANDLEBARS, null, null, true );
 			}
 
 			$dependencies = array(
@@ -226,8 +227,8 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 				$handlebars_handle
 			);
 
-			// Enqueue the plugin script
-			wp_register_script( 'ucf_faq_script', plugins_url( 'static/js/ucf-faq-search.min.js', UCF_FAQ__PLUGIN_FILE ), $dependencies, $version, true );
+			// Register the FAQ search script (to be enqueued late)
+			wp_register_script( 'ucf_faq_search', UCF_FAQ__SCRIPT_URL . '/ucf-faq-search.min.js', $dependencies, $version, true );
 
 			$localization = array(
 				'remote_path' => get_rest_url( null, '/wp/v2/faq/' ),
@@ -237,9 +238,20 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 				'limit'       => $limit,
 			);
 
-			wp_localize_script( 'ucf_faq_script', 'UCF_FAQ_SEARCH', $localization );
+			wp_localize_script( 'ucf_faq_search', 'UCF_FAQ_SEARCH', $localization );
+		}
 
-			wp_enqueue_script( 'ucf_faq_script' );
+		/**
+		 * Enqueues general frontend styles for the plugin.
+		 *
+		 * @since 1.3.1
+		 * @author Jo Dickson
+		 * @return void
+		 */
+		public static function enqueue_styles() {
+			if ( wp_style_is( 'ucf_faq_css', 'registered' ) ) {
+				wp_enqueue_style( 'ucf_faq_css' );
+			}
 		}
 
 		/**
@@ -267,5 +279,6 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 		}
 	}
 
-	add_action( 'wp_enqueue_scripts', array( 'UCF_FAQ_Common', 'enqueue_assets' ) );
+	add_action( 'wp_enqueue_scripts', array( 'UCF_FAQ_Common', 'register_assets' ) );
+	add_action( 'wp_enqueue_scripts', array( 'UCF_FAQ_Common', 'enqueue_styles' ) );
 }

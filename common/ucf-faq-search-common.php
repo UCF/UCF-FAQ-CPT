@@ -9,6 +9,7 @@ if ( ! class_exists( 'UCF_FAQ_Search_Common' ) ) {
 	class UCF_FAQ_Search_Common {
 		/**
 		 * Displays a FAQ search typeahead.
+		 *
 		 * @since 1.3.1
 		 * @author Jo Dickson
 		 * @return string
@@ -20,12 +21,25 @@ if ( ! class_exists( 'UCF_FAQ_Search_Common' ) ) {
 			$random_hash = substr( md5( rand( 0, 500 ) ), 0, 16 );
 			$id          = "faq-typeahead-$random_hash";
 
+			UCF_FAQ_Search_Common::enqueue_scripts();
+
 			ob_start();
 		?>
 			<label class="<?php echo $title_classes; ?>" for="<?php echo $id; ?>"><?php echo $title; ?></label>
 			<input id="<?php echo $id; ?>" class="faq-typeahead form-control" type="text" placeholder="<?php echo $args['placeholder']; ?>">
 		<?php
 			return ob_get_clean();
+		}
+
+		/**
+		 * Late-enqueues scripts necessary for FAQ search typeaheads.
+		 *
+		 * @since 1.3.1
+		 * @author Jo Dickson
+		 * @return void
+		 */
+		public static function enqueue_scripts() {
+			wp_enqueue_script( 'ucf_faq_search' );
 		}
 	}
 }
