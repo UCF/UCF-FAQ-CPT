@@ -41,30 +41,11 @@ if (fs.existsSync('./gulp-config.json')) {
 // Helper functions
 //
 
-// BrowserSync reload function
-function serverReload(done) {
-  if (config.sync) {
-    browserSync.reload();
-  }
-  done();
-}
-
-// BrowserSync serve function
-function serverServe(done) {
-  if (config.sync) {
-    browserSync.init({
-      proxy: {
-        target: config.syncTarget
-      }
-    });
-  }
-  done();
-}
-
 // Base SCSS linting function
 function lintSCSS(src) {
   return gulp.src(src)
     .pipe(sassLint())
+    .pipe(sassLint.format())
     .pipe(sassLint.failOnError());
 }
 
@@ -88,6 +69,7 @@ function buildCSS(src, dest) {
     .pipe(gulp.dest(dest));
 }
 
+// Base JS linting function (with eslint). Fixes problems in-place.
 function lintJS(src, dest) {
   dest = dest || config.src.jsPath;
 
@@ -99,15 +81,15 @@ function lintJS(src, dest) {
     .pipe(isFixed(dest));
 }
 
-// Base JS linking function (with eslint). Fixes problems in place.
+// Base JS compile function
 function buildJS(src, dest) {
-  dest = dest || config.src.jsPath;
+  dest = dest || config.dist.jsPath;
 
   return gulp.src(src)
     .pipe(include({
       includePaths: [config.packagesPath, config.src.jsPath]
     }))
-    .on('error', console.log)
+    .on('error', console.log) // eslint-disable-line no-console
     .pipe(babel())
     .pipe(uglify())
     .pipe(rename({
@@ -115,6 +97,27 @@ function buildJS(src, dest) {
     }))
     .pipe(gulp.dest(dest));
 }
+
+// BrowserSync reload function
+function serverReload(done) {
+  if (config.sync) {
+    browserSync.reload();
+  }
+  done();
+}
+
+// BrowserSync serve function
+function serverServe(done) {
+  if (config.sync) {
+    browserSync.init({
+      proxy: {
+        target: config.syncTarget
+      }
+    });
+  }
+  done();
+}
+
 
 //
 // CSS
@@ -133,6 +136,7 @@ gulp.task('scss-build-plugin', () => {
 // All plugin css-related tasks
 gulp.task('css', gulp.series('scss-lint-plugin', 'scss-build-plugin'));
 
+
 //
 // Javascript
 //
@@ -149,6 +153,7 @@ gulp.task('js-build-plugin', () => {
 
 // All js-related tasks
 gulp.task('js', gulp.series('es-lint-plugin', 'js-build-plugin'));
+
 
 //
 // Documentation
