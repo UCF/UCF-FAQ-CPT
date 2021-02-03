@@ -29,6 +29,7 @@ include_once UCF_FAQ__PLUGIN_DIR . 'templates/templates.php';
 include_once UCF_FAQ__PLUGIN_DIR . 'templates/faq-search-templates.php';
 
 include_once UCF_FAQ__PLUGIN_DIR . 'shortcodes/ucf-faq-list-shortcode.php';
+include_once UCF_FAQ__PLUGIN_DIR . 'shortcodes/ucf-faq-topic-list-shortcode.php';
 include_once UCF_FAQ__PLUGIN_DIR . 'shortcodes/ucf-faq-search-shortcode.php';
 
 include_once UCF_FAQ__PLUGIN_DIR . 'layouts/ucf-faq-classic.php';
