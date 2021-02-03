@@ -147,12 +147,12 @@ gulp.task('es-lint-plugin', () => {
 });
 
 // Concat and uglify js files through babel
-gulp.task('js-build-plugin', () => {
-  return buildJS(`${config.src.jsPath}/ucf-faq-script.js`, config.dist.jsPath);
+gulp.task('js-build-faq-search', () => {
+  return buildJS(`${config.src.jsPath}/ucf-faq-search.js`, config.dist.jsPath);
 });
 
 // All js-related tasks
-gulp.task('js', gulp.series('es-lint-plugin', 'js-build-plugin'));
+gulp.task('js', gulp.series('es-lint-plugin', 'js-build-faq-search'));
 
 
 //

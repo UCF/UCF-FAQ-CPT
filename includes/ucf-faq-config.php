@@ -11,9 +11,9 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			'default_sort_order'      => false,
 			'add_microdata'           => false,
 			'enqueue_typeahead'       => false,
-			'typeahead_handle'        => 'typeaheadjs',
+			'typeahead_handle'        => 'typeahead-js',
 			'enqueue_handlebars'      => false,
-			'handlebars_handle'       => 'handlebarsjs',
+			'handlebars_handle'       => 'handlebars-js',
 			'typeahead_result_limit'  => 5,
 		);
 
