@@ -100,7 +100,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 					case 'default_sort_order':
 					case 'add_microdata':
 					case 'enqueue_typeahead':
-					case 'handlebars_handle':
+					case 'enqueue_handlebars':
 						$list[$key] = filter_var( $val, FILTER_VALIDATE_BOOLEAN );
 						break;
 					case 'typeahead_result_limit':
@@ -132,7 +132,14 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			// Options
 			$defaults = self::$option_defaults;
 			foreach ( $defaults as $option => $default ) {
-				add_filter( 'option_{$option}', array( 'UCF_FAQ_Config', 'format_option' ), 10, 2 );
+				$option_name = self::$option_prefix . $option;
+				add_filter( "option_{$option_name}", array( 'UCF_FAQ_Config', 'format_option' ), 10, 2 );
+				add_filter( "default_option_{$option_name}", function( $d, $o, $passed_default ) use ( $default ) {
+					if ( $passed_default ) {
+						return $d;
+					}
+					return $default;
+				}, 10, 3 );
 			}
 		}
 
