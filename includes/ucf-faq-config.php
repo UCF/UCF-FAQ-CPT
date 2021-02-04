@@ -54,6 +54,12 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			delete_option( self::$option_prefix . 'enqueue_handlebars_js' );
 			delete_option( self::$option_prefix . 'handlebars_script_handle' );
 			delete_option( self::$option_prefix . 'typeahead_result_limit' );
+
+			// Stale options from previous versions
+			delete_option( self::$option_prefix . 'enqueue_typeahead' );
+			delete_option( self::$option_prefix . 'typeahead_handle' );
+			delete_option( self::$option_prefix . 'enqueue_handlebars' );
+			delete_option( self::$option_prefix . 'handlebars_handle' );
 		}
 
 
