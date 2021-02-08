@@ -3,7 +3,7 @@ Contributors: ucfwebcom
 Tags: ucf, faq, ucf-plugin, custom post type
 Requires at least: 4.7.3
 Tested up to: 5.4
-Stable tag: 1.3.0
+Stable tag: 2.0.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
 
@@ -40,6 +40,21 @@ The plugins listed below are extended upon in this plugin--this may include cust
 * Import field groups (`dev/acf-fields.json`) using the ACF importer under Custom Fields > Tools.
 
 == Changelog ==
+
+= 2.0.0 =
+Enhancements:
+* (Breaking change) Updated Handlebars and Typeahead to enqueue by default, since those were incorrectly set to _not_ enqueue out of the box. To do this, the existing Typeahead/Handlebars enqueue options have been completely removed and replaced with new options. You'll need to adjust these settings again if you depend on these scripts _not_ being enqueued.
+* (Breaking change) Renamed Handlebars/Typeahead script handles for consistency with our other plugins
+* Implemented late JS enqueueing, so that only pages that utilize the `[ucf-faq-search]` shortcode will load dependent JS files
+* Renamed `ucf-faq-script.min.js` to `ucf-faq-search.min.js` for clarity
+* Split out existing `Common` and `Shortcode` classes into their own separate files
+* Added a display function for FAQ searches for consistency with other shortcodes
+* Upgraded packages; added Github issue/PR templates and CONTRIBUTING doc
+
+Bug fixes:
+* Fixed issue with the `handlebars_handle` option being formatted as a boolean instead of `enqueue_handlebars`
+* Fixed `option_{$option_name}` hook to actually work + use the correct option name
+* Added `default_option_{$option_name}` hook to ensure defaults values get returned by `get_option()` when a unique default param isn't passed in
 
 = 1.3.0 =
 Enhancements:
@@ -92,7 +107,11 @@ Enhancements:
 
 == Upgrade Notice ==
 
-n/a
+= 2.0.0 =
+
+Breaking changes:
+* Updated Handlebars and Typeahead to enqueue by default, since those were incorrectly set to _not_ enqueue out of the box. To do this, the existing Typeahead/Handlebars enqueue options have been completely removed and replaced with new options. You'll need to adjust these settings again if you depend on these scripts _not_ being enqueued.
+* Renamed Handlebars/Typeahead script handles for consistency with our other plugins
 
 
 == Installation Requirements ==

@@ -2,7 +2,7 @@
 /*
 Plugin Name: UCF FAQ Custom Post Type
 Description: Provides a FAQ custom post type and related meta fields.
-Version: 1.3.0
+Version: 2.0.0
 Author: UCF Web Communications
 License: GPL3
 Github Plugin URI: UCF/UCF-FAQ-CPT
