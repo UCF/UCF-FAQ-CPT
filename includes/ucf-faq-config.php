@@ -6,15 +6,15 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 	class UCF_FAQ_Config {
 		public static $option_prefix = 'ucf_faq_',
 		$option_defaults = array(
-			'include_athena_classes'  => true,
-			'disable_faq_archive'     => false,
-			'default_sort_order'      => false,
-			'add_microdata'           => false,
-			'enqueue_typeahead'       => false,
-			'typeahead_handle'        => 'typeaheadjs',
-			'enqueue_handlebars'      => false,
-			'handlebars_handle'       => 'handlebarsjs',
-			'typeahead_result_limit'  => 5,
+			'include_athena_classes'   => true,
+			'disable_faq_archive'      => false,
+			'default_sort_order'       => false,
+			'add_microdata'            => false,
+			'enqueue_typeahead_js'     => true,
+			'typeahead_script_handle'  => 'typeahead-js',
+			'enqueue_handlebars_js'    => true,
+			'handlebars_script_handle' => 'handlebars-js',
+			'typeahead_result_limit'   => 5,
 		);
 
 
@@ -30,10 +30,10 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			add_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] );
 			add_option( self::$option_prefix . 'default_sort_order', $defaults['default_sort_order'] );
 			add_option( self::$option_prefix . 'add_microdata', $defaults['add_microdata'] );
-			add_option( self::$option_prefix . 'enqueue_typeahead', $defaults['enqueue_typeahead'] );
-			add_option( self::$option_prefix . 'typeahead_handle', $defaults['typeahead_handle'] );
-			add_option( self::$option_prefix . 'enqueue_handlebars', $defaults['enqueue_handlebars'] );
-			add_option( self::$option_prefix . 'handlebars_handle', $defaults['handlebars_handle'] );
+			add_option( self::$option_prefix . 'enqueue_typeahead_js', $defaults['enqueue_typeahead_js'] );
+			add_option( self::$option_prefix . 'typeahead_script_handle', $defaults['typeahead_script_handle'] );
+			add_option( self::$option_prefix . 'enqueue_handlebars_js', $defaults['enqueue_handlebars_js'] );
+			add_option( self::$option_prefix . 'handlebars_script_handle', $defaults['handlebars_script_handle'] );
 			add_option( self::$option_prefix . 'typeahead_result_limit', $defaults['typeahead_result_limit'] );
 		}
 
@@ -49,11 +49,17 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			delete_option( self::$option_prefix . 'disable_faq_archive' );
 			delete_option( self::$option_prefix . 'default_sort_order' );
 			delete_option( self::$option_prefix . 'add_microdata' );
+			delete_option( self::$option_prefix . 'enqueue_typeahead_js' );
+			delete_option( self::$option_prefix . 'typeahead_script_handle' );
+			delete_option( self::$option_prefix . 'enqueue_handlebars_js' );
+			delete_option( self::$option_prefix . 'handlebars_script_handle' );
+			delete_option( self::$option_prefix . 'typeahead_result_limit' );
+
+			// Stale options from previous versions
 			delete_option( self::$option_prefix . 'enqueue_typeahead' );
 			delete_option( self::$option_prefix . 'typeahead_handle' );
 			delete_option( self::$option_prefix . 'enqueue_handlebars' );
 			delete_option( self::$option_prefix . 'handlebars_handle' );
-			delete_option( self::$option_prefix . 'typeahead_result_limit' );
 		}
 
 
@@ -68,15 +74,15 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 
 			// Apply default values configurable within the options page:
 			$configurable_defaults = array(
-				'include_athena_classes' => get_option( self::$option_prefix . 'include_athena_classes', $defaults['include_athena_classes'] ),
-				'disable_faq_archive'    => get_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] ),
-				'default_sort_order'     => get_option( self::$option_prefix . 'default_sort_order', $defaults['default_sort_order'] ),
-				'add_microdata'          => get_option( self::$option_prefix . 'add_microdata', $defaults['add_microdata'] ),
-				'enqueue_typeahead'      => get_option( self::$option_prefix . 'enqueue_typeahead', $defaults['enqueue_typeahead'] ),
-				'typeahead_handle'       => get_option( self::$option_prefix . 'typeahead_handle', $defaults['typeahead_handle'] ),
-				'enqueue_handlebars'     => get_option( self::$option_prefix . 'enqueue_handlebars', $defaults['enqueue_handlebars'] ),
-				'handlebars_handle'      => get_option( self::$option_prefix . 'handlebars_handle', $defaults['handlebars_handle'] ),
-				'typeahead_result_limit' => get_option( self::$option_prefix . 'typeahead_result_limit', $defaults['typeahead_result_limit'] ),
+				'include_athena_classes'   => get_option( self::$option_prefix . 'include_athena_classes', $defaults['include_athena_classes'] ),
+				'disable_faq_archive'      => get_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] ),
+				'default_sort_order'       => get_option( self::$option_prefix . 'default_sort_order', $defaults['default_sort_order'] ),
+				'add_microdata'            => get_option( self::$option_prefix . 'add_microdata', $defaults['add_microdata'] ),
+				'enqueue_typeahead_js'     => get_option( self::$option_prefix . 'enqueue_typeahead_js', $defaults['enqueue_typeahead_js'] ),
+				'typeahead_script_handle'  => get_option( self::$option_prefix . 'typeahead_script_handle', $defaults['typeahead_script_handle'] ),
+				'enqueue_handlebars_js'    => get_option( self::$option_prefix . 'enqueue_handlebars_js', $defaults['enqueue_handlebars_js'] ),
+				'handlebars_script_handle' => get_option( self::$option_prefix . 'handlebars_script_handle', $defaults['handlebars_script_handle'] ),
+				'typeahead_result_limit'   => get_option( self::$option_prefix . 'typeahead_result_limit', $defaults['typeahead_result_limit'] ),
 			);
 
 			// Force configurable options to override $defaults, even if they are empty:
@@ -99,8 +105,8 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 					case 'disable_faq_archive':
 					case 'default_sort_order':
 					case 'add_microdata':
-					case 'enqueue_typeahead':
-					case 'handlebars_handle':
+					case 'enqueue_typeahead_js':
+					case 'enqueue_handlebars_js':
 						$list[$key] = filter_var( $val, FILTER_VALIDATE_BOOLEAN );
 						break;
 					case 'typeahead_result_limit':
@@ -132,7 +138,14 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			// Options
 			$defaults = self::$option_defaults;
 			foreach ( $defaults as $option => $default ) {
-				add_filter( 'option_{$option}', array( 'UCF_FAQ_Config', 'format_option' ), 10, 2 );
+				$option_name = self::$option_prefix . $option;
+				add_filter( "option_{$option_name}", array( 'UCF_FAQ_Config', 'format_option' ), 10, 2 );
+				add_filter( "default_option_{$option_name}", function( $d, $o, $passed_default ) use ( $default ) {
+					if ( $passed_default ) {
+						return $d;
+					}
+					return $default;
+				}, 10, 3 );
 			}
 		}
 
@@ -163,10 +176,10 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			register_setting( 'ucf_faq', self::$option_prefix . 'disable_faq_archive' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'default_sort_order' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'add_microdata' );
-			register_setting( 'ucf_faq', self::$option_prefix . 'enqueue_typeahead' );
-			register_setting( 'ucf_faq', self::$option_prefix . 'typeahead_handle' );
-			register_setting( 'ucf_faq', self::$option_prefix . 'enqueue_handlebars' );
-			register_setting( 'ucf_faq', self::$option_prefix . 'handlebars_handle' );
+			register_setting( 'ucf_faq', self::$option_prefix . 'enqueue_typeahead_js' );
+			register_setting( 'ucf_faq', self::$option_prefix . 'typeahead_script_handle' );
+			register_setting( 'ucf_faq', self::$option_prefix . 'enqueue_handlebars_js' );
+			register_setting( 'ucf_faq', self::$option_prefix . 'handlebars_script_handle' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'typeahead_result_limit' );
 
 			// Register setting sections
@@ -255,54 +268,54 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			);
 
 			add_settings_field(
-				self::$option_prefix . 'enqueue_typeahead',
+				self::$option_prefix . 'enqueue_typeahead_js',
 				'Enqueue Typeahead JS',
 				array( 'UCF_FAQ_Config', 'display_settings_field' ),
 				'ucf_faq',
 				'ucf_faq_section_search',
 				array(
-					'label_for'   => self::$option_prefix . 'enqueue_typeahead',
-					'description' => 'If checked, the typeahead js library will be loaded from a CDN.',
+					'label_for'   => self::$option_prefix . 'enqueue_typeahead_js',
+					'description' => 'If checked, the Typeahead JS library will be loaded from a CDN on pages that utilize a FAQ search. You should only uncheck this setting if your theme or another plugin provides a copy of Typeahead already.',
 					'type'        => 'checkbox'
 				)
 			);
 
 			add_settings_field(
-				self::$option_prefix . 'typeahead_handle',
+				self::$option_prefix . 'typeahead_script_handle',
 				'Typeahead Handle',
 				array( 'UCF_FAQ_Config', 'display_settings_field' ),
 				'ucf_faq',
 				'ucf_faq_section_search',
 				array(
-					'label_for'   => self::$option_prefix . 'typeahead_handle',
-					'description' => 'Allows the WordPress handle for the typeahead js script to be specified. If using the typeahead from another plugin, you can define the handle here.',
+					'label_for'   => self::$option_prefix . 'typeahead_script_handle',
+					'description' => 'Allows the WordPress handle for the Typeahead JS script to be specified. If you\'re using a copy of Typeahead from your theme or another plugin, you can define the handle here.',
 					'type'        => 'text'
 
 				)
 			);
 
 			add_settings_field(
-				self::$option_prefix . 'enqueue_handlebars',
+				self::$option_prefix . 'enqueue_handlebars_js',
 				'Enqueue Handlebars JS',
 				array( 'UCF_FAQ_Config', 'display_settings_field' ),
 				'ucf_faq',
 				'ucf_faq_section_search',
 				array(
-					'label_for'   => self::$option_prefix . 'enqueue_handlebars',
-					'description' => 'If checked, the handlebars library will be loaded from a CDN.',
+					'label_for'   => self::$option_prefix . 'enqueue_handlebars_js',
+					'description' => 'If checked, the Handlebars library will be loaded from a CDN on pages that utilize a FAQ search. You should only uncheck this setting if your theme or another plugin provides a copy of Handlebars already.',
 					'type'        => 'checkbox'
 				)
 			);
 
 			add_settings_field(
-				self::$option_prefix . 'handlebars_handle',
+				self::$option_prefix . 'handlebars_script_handle',
 				'Handlebars Handle',
 				array( 'UCF_FAQ_Config', 'display_settings_field' ),
 				'ucf_faq',
 				'ucf_faq_section_search',
 				array(
-					'label_for'   => self::$option_prefix . 'handlebars_handle',
-					'description' => 'Allows the WordPress handle for the handlebars js script to be specified. If enqueueing handlebars from another plugin, you can define the handle here.',
+					'label_for'   => self::$option_prefix . 'handlebars_script_handle',
+					'description' => 'Allows the WordPress handle for the Handlebars JS script to be specified. If you\'re enqueueing Handlebars from your theme or another plugin, you can define the handle here.',
 					'type'        => 'text'
 				)
 			);

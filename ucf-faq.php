@@ -14,21 +14,32 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'UCF_FAQ__PLUGIN_URL', plugins_url( basename( dirname( __FILE__ ) ) ) );
 define( 'UCF_FAQ__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'UCF_FAQ__STATIC_URL', UCF_FAQ__PLUGIN_URL . '/static' );
+define( 'UCF_FAQ__STYLES_URL', UCF_FAQ__STATIC_URL . '/css' );
+define( 'UCF_FAQ__SCRIPT_URL', UCF_FAQ__STATIC_URL . '/js' );
 define( 'UCF_FAQ__PLUGIN_FILE', __FILE__ );
+define( 'UCF_FAQ__TYPEAHEAD', 'https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.3.1/typeahead.bundle.min.js' );
+define( 'UCF_FAQ__HANDLEBARS', 'https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js' );
 
-require_once 'includes/ucf-faq-config.php';
-include_once 'includes/ucf-faq-topic-tax.php';
-include_once 'includes/ucf-faq-posttype.php';
-include_once 'common/ucf-faq-list-common.php';
-include_once 'templates/templates.php';
-include_once 'templates/faq-search-templates.php';
-include_once 'shortcodes/ucf-faq-list-shortcode.php';
-include_once 'shortcodes/ucf-faq-search-shortcode.php';
+require_once UCF_FAQ__PLUGIN_DIR . 'includes/ucf-faq-config.php';
+include_once UCF_FAQ__PLUGIN_DIR . 'includes/ucf-faq-topic-tax.php';
+include_once UCF_FAQ__PLUGIN_DIR . 'includes/ucf-faq-posttype.php';
 
-include_once 'layouts/ucf-faq-classic.php';
-include_once 'layouts/ucf-faq-topic-classic.php';
-include_once 'layouts/ucf-faq-topic-card.php';
-include_once 'layouts/ucf-resource-search-faq.php';
+include_once UCF_FAQ__PLUGIN_DIR . 'common/ucf-faq-common.php';
+include_once UCF_FAQ__PLUGIN_DIR . 'common/ucf-faq-list-common.php';
+include_once UCF_FAQ__PLUGIN_DIR . 'common/ucf-faq-topic-list-common.php';
+include_once UCF_FAQ__PLUGIN_DIR . 'common/ucf-faq-search-common.php';
+
+include_once UCF_FAQ__PLUGIN_DIR . 'templates/templates.php';
+include_once UCF_FAQ__PLUGIN_DIR . 'templates/faq-search-templates.php';
+
+include_once UCF_FAQ__PLUGIN_DIR . 'shortcodes/ucf-faq-list-shortcode.php';
+include_once UCF_FAQ__PLUGIN_DIR . 'shortcodes/ucf-faq-topic-list-shortcode.php';
+include_once UCF_FAQ__PLUGIN_DIR . 'shortcodes/ucf-faq-search-shortcode.php';
+
+include_once UCF_FAQ__PLUGIN_DIR . 'layouts/ucf-faq-classic.php';
+include_once UCF_FAQ__PLUGIN_DIR . 'layouts/ucf-faq-topic-classic.php';
+include_once UCF_FAQ__PLUGIN_DIR . 'layouts/ucf-faq-topic-card.php';
+include_once UCF_FAQ__PLUGIN_DIR . 'layouts/ucf-resource-search-faq.php';
 
 if ( ! function_exists( 'ucf_faq_plugin_activation' ) ) {
 	function ucf_faq_plugin_activation() {
