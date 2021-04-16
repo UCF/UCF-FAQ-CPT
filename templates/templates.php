@@ -70,7 +70,7 @@ function ucf_faq_sort_order( $query ) {
 		! is_admin()
 		&& (
 			is_tax( 'topic' )
-			|| ( get_query_var( 'post_type' ) === 'faq' && is_archive() )
+			|| ( $query->get( 'post_type' ) === 'faq' && is_archive() )
 			|| is_post_type_archive( 'faq' )
 		)
 	) {
