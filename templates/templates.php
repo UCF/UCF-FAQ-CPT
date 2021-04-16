@@ -69,9 +69,9 @@ function ucf_faq_sort_order( $query ) {
 	if (
 		! is_admin()
 		&& (
-			is_tax( 'topic' )
-			|| ( $query->get( 'post_type' ) === 'faq' && is_archive() )
-			|| is_post_type_archive( 'faq' )
+			$query->is_tax( 'topic' )
+			|| ( $query->get( 'post_type' ) === 'faq' && $query->is_archive() )
+			|| $query->is_post_type_archive( 'faq' )
 		)
 	) {
 		$orderby = array(
