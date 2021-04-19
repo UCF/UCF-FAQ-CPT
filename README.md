@@ -34,6 +34,13 @@ The plugins listed below are extended upon in this plugin--this may include cust
 
 ## Changelog ##
 
+### 2.0.1 ###
+Bug Fixes:
+* Fixed incorrect early usage of conditional query tags and `get_query_var()` in `ucf_faq_sort_order()`.
+
+Enhancements:
+* Upgraded packages
+
 ### 2.0.0 ###
 Enhancements:
 * (Breaking change) Updated Handlebars and Typeahead to enqueue by default, since those were incorrectly set to _not_ enqueue out of the box. To do this, the existing Typeahead/Handlebars enqueue options have been completely removed and replaced with new options. You'll need to adjust these settings again if you depend on these scripts _not_ being enqueued.
