@@ -3,7 +3,7 @@ Contributors: ucfwebcom
 Tags: ucf, faq, ucf-plugin, custom post type
 Requires at least: 4.7.3
 Tested up to: 5.4
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
 
@@ -40,6 +40,13 @@ The plugins listed below are extended upon in this plugin--this may include cust
 * Import field groups (`dev/acf-fields.json`) using the ACF importer under Custom Fields > Tools.
 
 == Changelog ==
+
+= 2.0.1 =
+Bug Fixes:
+* Fixed incorrect early usage of conditional query tags and `get_query_var()` in `ucf_faq_sort_order()`.
+
+Enhancements:
+* Upgraded packages
 
 = 2.0.0 =
 Enhancements:
