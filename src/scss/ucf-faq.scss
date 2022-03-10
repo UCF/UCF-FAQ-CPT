@@ -6,11 +6,13 @@
 @import 'typeahead_search';
 
 .ucf-faq-question-link {
-  color: $black;
+  color: inherit;
+  text-decoration: none;
 
   &:hover,
   &:focus {
-    color: $black;
+    color: inherit;
+    text-decoration: underline;
   }
 }
 
