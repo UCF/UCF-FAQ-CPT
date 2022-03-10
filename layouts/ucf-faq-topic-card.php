@@ -34,7 +34,7 @@ if ( ! function_exists( 'ucf_faq_topic_list_display_card' ) ) {
 				$margin_class = ( $is_description ) ? "" : " mb-0";
 	?>
 				<div class="<?php UCF_FAQ_Config::add_athena_attr( 'col-md-6 col-lg-4 mb-4' ); ?>">
-					<a href="<?php echo get_term_link( $item->term_id ); ?>">
+					<a class="<?php UCF_FAQ_Config::add_athena_attr( 'hover-parent text-decoration-none' ); ?>" href="<?php echo get_term_link( $item->term_id ); ?>">
 						<div class="<?php UCF_FAQ_Config::add_athena_attr( 'card h-100' ); ?>">
 
 							<?php if ( $image_url = get_field( 'faq-topic-image', $item ) ) :?>
@@ -42,7 +42,7 @@ if ( ! function_exists( 'ucf_faq_topic_list_display_card' ) ) {
 							<?php endif; ?>
 
 							<div class="<?php UCF_FAQ_Config::add_athena_attr( 'card-block' ); ?>">
-								<<?php echo $args['topic_element']; ?> class="ucf-faq-topic-title <?php UCF_FAQ_Config::add_athena_attr( 'card-title' . $margin_class ); ?> <?php echo $args['topic_class']; ?>">
+								<<?php echo $args['topic_element']; ?> class="ucf-faq-topic-title <?php UCF_FAQ_Config::add_athena_attr( 'card-title text-secondary hover-child-text-underline' . $margin_class ); ?> <?php echo $args['topic_class']; ?>">
 									<?php echo $item->name; ?>
 								</<?php echo $args['topic_element']; ?>>
 
