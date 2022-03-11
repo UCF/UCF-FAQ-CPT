@@ -34,6 +34,12 @@ The plugins listed below are extended upon in this plugin--this may include cust
 
 ## Changelog ##
 
+### 2.0.2 ###
+Enhancements:
+* Adjusted link underline styles in card layouts for FAQs and topics to support Athena v1.1.1+
+* Adjusted text colors on FAQ question links and inner card contents to better support usage of FAQ lists against dark backgrounds with light text, e.g. `.bg-inverse`
+* Upgraded packages
+
 ### 2.0.1 ###
 Bug Fixes:
 * Fixed incorrect early usage of conditional query tags and `get_query_var()` in `ucf_faq_sort_order()`.
