@@ -6,7 +6,7 @@ $title_classes = " mb-4";
 
 <article>
 	<div class="ucf-faq-list<?php UCF_FAQ_Config::add_athena_attr( $container_classes ); ?>">
-		<strong class="ucf-faq-title<?php UCF_FAQ_Config::add_athena_attr( $title_classes ); ?> h2">Frequently Asked Questions</strong>
+		<h2 class="ucf-faq-title<?php UCF_FAQ_Config::add_athena_attr( $title_classes ); ?> h2">Frequently Asked Questions</h2>
 		<?php
 		if ( have_posts() ) {
 
