@@ -16,8 +16,8 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 			$collapsed_class = ( $atts['show'] === 'true' ) ? '' : 'collapsed';
 			$expanded_value  = ( $atts['show'] === 'true' ) ? 'true' : 'false';
 
-			$atts['question_element'] = ( isset( $atts['question_element'] ) ) ? $atts['question_element'] : 'h3';
-			$atts['question_class']   = ( isset( $atts['question_class'] ) ) ? $atts['question_class'] : '';
+			$atts['question_element'] = ( isset( $atts['question_element'] ) ) ? $atts['question_element'] : 'strong';
+			$atts['question_class']   = ( isset( $atts['question_class'] ) ) ? $atts['question_class'] : 'h5';
 			$atts['show']             = ( $atts['show'] === 'true' ) ? ' show' : '';
 
 			$question_attrs   = ' data-toggle="collapse" data-target="#post' . $post->ID . $unique_id .'" aria-expanded="' . $expanded_value . '"';
