@@ -2,8 +2,8 @@
 Contributors: ucfwebcom
 Tags: ucf, faq, ucf-plugin, custom post type
 Requires at least: 4.7.3
-Tested up to: 5.4
-Stable tag: 2.0.2
+Tested up to: 6.1
+Stable tag: 2.0.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
 
@@ -40,6 +40,15 @@ The plugins listed below are extended upon in this plugin--this may include cust
 * Import field groups (`dev/acf-fields.json`) using the ACF importer under Custom Fields > Tools.
 
 == Changelog ==
+
+= 2.0.4 =
+Enhancements:
+* Added composer file.
+
+= 2.0.3 =
+Accessibility Fixes
+* Updated question tags from h3 to strong
+* Updated title to h2 tags instead of h2
 
 = 2.0.2 =
 Enhancements:
