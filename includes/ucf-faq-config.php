@@ -10,6 +10,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			'disable_faq_archive'      => false,
 			'default_sort_order'       => false,
 			'add_microdata'            => false,
+			'add_json_ld'              => false,
 			'enqueue_typeahead_js'     => true,
 			'typeahead_script_handle'  => 'typeahead-js',
 			'enqueue_handlebars_js'    => true,
@@ -30,6 +31,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			add_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] );
 			add_option( self::$option_prefix . 'default_sort_order', $defaults['default_sort_order'] );
 			add_option( self::$option_prefix . 'add_microdata', $defaults['add_microdata'] );
+			add_option( self::$option_prefix . 'add_json_ld', $defaults['add_json_ld'] );
 			add_option( self::$option_prefix . 'enqueue_typeahead_js', $defaults['enqueue_typeahead_js'] );
 			add_option( self::$option_prefix . 'typeahead_script_handle', $defaults['typeahead_script_handle'] );
 			add_option( self::$option_prefix . 'enqueue_handlebars_js', $defaults['enqueue_handlebars_js'] );
