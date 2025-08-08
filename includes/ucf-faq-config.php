@@ -51,6 +51,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			delete_option( self::$option_prefix . 'disable_faq_archive' );
 			delete_option( self::$option_prefix . 'default_sort_order' );
 			delete_option( self::$option_prefix . 'add_microdata' );
+			delete_option( self::$option_prefix . 'add_json_ld' );
 			delete_option( self::$option_prefix . 'enqueue_typeahead_js' );
 			delete_option( self::$option_prefix . 'typeahead_script_handle' );
 			delete_option( self::$option_prefix . 'enqueue_handlebars_js' );
@@ -80,6 +81,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 				'disable_faq_archive'      => get_option( self::$option_prefix . 'disable_faq_archive', $defaults['disable_faq_archive'] ),
 				'default_sort_order'       => get_option( self::$option_prefix . 'default_sort_order', $defaults['default_sort_order'] ),
 				'add_microdata'            => get_option( self::$option_prefix . 'add_microdata', $defaults['add_microdata'] ),
+				'add_json_ld'              => get_option( self::$option_prefix . 'add_json_ld', $defaults['add_json_ld'] ),
 				'enqueue_typeahead_js'     => get_option( self::$option_prefix . 'enqueue_typeahead_js', $defaults['enqueue_typeahead_js'] ),
 				'typeahead_script_handle'  => get_option( self::$option_prefix . 'typeahead_script_handle', $defaults['typeahead_script_handle'] ),
 				'enqueue_handlebars_js'    => get_option( self::$option_prefix . 'enqueue_handlebars_js', $defaults['enqueue_handlebars_js'] ),
@@ -107,6 +109,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 					case 'disable_faq_archive':
 					case 'default_sort_order':
 					case 'add_microdata':
+					case 'add_json_ld':
 					case 'enqueue_typeahead_js':
 					case 'enqueue_handlebars_js':
 						$list[$key] = filter_var( $val, FILTER_VALIDATE_BOOLEAN );
@@ -178,6 +181,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			register_setting( 'ucf_faq', self::$option_prefix . 'disable_faq_archive' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'default_sort_order' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'add_microdata' );
+			register_setting( 'ucf-faq', self::$option_prefix . 'add_json_ld' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'enqueue_typeahead_js' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'typeahead_script_handle' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'enqueue_handlebars_js' );
@@ -249,6 +253,19 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 				array(
 					'label_for'   => self::$option_prefix . 'add_microdata',
 					'description' => 'If checked, microdata will be added to FAQ markup.',
+					'type'        => 'checkbox'
+				)
+			);
+
+			add_settings_field(
+				self::$option_prefix . 'add_json_ld',
+				'Generate JSON+LD data on pages where FAQs appear',
+				array( 'UCF_FAQ_Config', 'display_settings_field' ),
+				'ucf_faq',
+				'ucf_faq_section_general',
+				array(
+					'label_for'   => self::$option_prefix . 'add_json_ld',
+					'description' => 'If checked, a script tag will be generate with the appropriate structured data.',
 					'type'        => 'checkbox'
 				)
 			);
