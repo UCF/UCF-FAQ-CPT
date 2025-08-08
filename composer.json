@@ -1,0 +1,8 @@
+{
+    "name": "ucf/ucf-faq-cpt",
+    "description": "Provides a custom post type for describing FAQs and creates supporting shortcodes. This plugin supports the UCF Athena Framework",
+    "type": "wordpress-plugin",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}

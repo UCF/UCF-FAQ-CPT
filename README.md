@@ -34,6 +34,15 @@ The plugins listed below are extended upon in this plugin--this may include cust
 
 ## Changelog ##
 
+### 2.0.4 ###
+Enhancements:
+* Added composer file.
+
+### 2.0.3 ###
+Accessibility Fixes
+- Updated question tags from h3 to strong
+- Updated title to h2 tags instead of h2
+
 ### 2.0.2 ###
 Enhancements:
 * Adjusted link underline styles in card layouts for FAQs and topics to support Athena v1.1.1+

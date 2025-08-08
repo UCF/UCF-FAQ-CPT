@@ -35,6 +35,14 @@ if ( ! class_exists( 'UCF_FAQ_List_Common' ) ) {
 				$layout_after = apply_filters( 'ucf_faq_list_display_' . $layout . '_after', $layout_after, $items, $args );
 			}
 			echo $layout_after;
+
+			// Add JSON+LD Script to the page
+			$layout_script = ucf_faq_list_display_classic_script( '', $items, $args );
+			if ( has_filter( 'ucf_faq_list_display_' . $layout . '_script' ) ) {
+				$layout_script = apply_filters( 'ucf_faq_list_display_' . $layout . '_script', $layout_script, $items, $args );
+			}
+			echo $layout_script;
+
 			return ob_get_clean();
 		}
 	}
