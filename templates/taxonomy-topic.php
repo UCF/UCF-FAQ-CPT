@@ -80,6 +80,12 @@ $topic = get_queried_object();
 				// Display CTA Footer
 				echo UCF_FAQ_Common::display_footer_cta( $cta_text, $cta_url );
 				?>
+				<script type="application/ld+json">
+				<?php
+					$posts = $wp_query->posts;
+					echo UCF_FAQ_Common::generate_json_ld( $posts );
+				?>
+				</script>
 
 			</div>
 
