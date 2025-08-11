@@ -80,7 +80,7 @@ $topic = get_queried_object();
 				// Display CTA Footer
 				echo UCF_FAQ_Common::display_footer_cta( $cta_text, $cta_url );
 
-				$generate = UCF_FAQ_Config::get_option_or_default( 'add_json_ld' );
+				$generate = UCF_FAQ_Config::get_option_or_default( 'add_json_data' );
 
 				if ( $generate ) :
 				?>
