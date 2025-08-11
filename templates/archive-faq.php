@@ -45,10 +45,15 @@ $title_classes = " mb-4";
 				endforeach;
 			endforeach;
 
+			$generate = UCF_FAQ_Config::get_option_or_default( 'add_json_ld' );
+
+			if (  $generate ) :
 			?>
 			<script type="application/ld+json">
 				<?php echo UCF_FAQ_Common::generate_json_ld( $posts ); ?>
 			</script>
+			<?php
+			endif;
 		}
 		else {
 			echo 'No results found.';
