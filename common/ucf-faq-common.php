@@ -277,6 +277,37 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 					return '';
 			}
 		}
+
+		/**
+		 * Takes a series of FAQ items and generates
+		 * the appropriate JSON+LD structured date
+		 * @author Jim Barnes
+		 * @since 2.1.0
+		 * @param array $items The array of FAQ Items
+		 * @return string
+		 */
+		public static function generate_json_ld( $items ) {
+			$retval = array(
+				'@context'   => 'https://schema.org',
+				'@type'      => 'FAQPage',
+				'mainEntity' => array()
+			);
+
+			foreach( $items as $item ) {
+				$qa_pair = array(
+					'@type'          => 'Question',
+					'name'           => strip_tags( $item->post_title ),
+					'acceptedAnswer' => array(
+						'@type' => 'Answer',
+						'text'  => strip_tags( $item->post_content )
+					)
+				);
+
+				$retval['mainEntity'][] = $qa_pair;
+			}
+
+			return json_encode( $retval );
+		}
 	}
 
 	add_action( 'wp_enqueue_scripts', array( 'UCF_FAQ_Common', 'register_assets' ) );
