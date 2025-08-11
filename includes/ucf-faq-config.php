@@ -181,7 +181,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			register_setting( 'ucf_faq', self::$option_prefix . 'disable_faq_archive' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'default_sort_order' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'add_microdata' );
-			register_setting( 'ucf-faq', self::$option_prefix . 'add_json_data' );
+			register_setting( 'ucf_faq', self::$option_prefix . 'add_json_data' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'enqueue_typeahead_js' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'typeahead_script_handle' );
 			register_setting( 'ucf_faq', self::$option_prefix . 'enqueue_handlebars_js' );
