@@ -34,6 +34,14 @@ The plugins listed below are extended upon in this plugin--this may include cust
 
 ## Changelog ##
 
+### 2.1.1 ###
+Bug Fixes:
+* Corrected a bug having to do with the `add_json_data` setting.
+
+### 2.1.0 ###
+Enhancements:
+* Added logic to output JSON+LD structure data for FAQs
+
 ### 2.0.4 ###
 Enhancements:
 * Added composer file.

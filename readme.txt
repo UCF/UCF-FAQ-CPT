@@ -3,7 +3,7 @@ Contributors: ucfwebcom
 Tags: ucf, faq, ucf-plugin, custom post type
 Requires at least: 4.7.3
 Tested up to: 6.1
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
 
@@ -40,6 +40,14 @@ The plugins listed below are extended upon in this plugin--this may include cust
 * Import field groups (`dev/acf-fields.json`) using the ACF importer under Custom Fields > Tools.
 
 == Changelog ==
+
+= 2.1.1 =
+Bug Fixes:
+* Corrected a bug having to do with the `add_json_data` setting.
+
+= 2.1.0 =
+Enhancements:
+* Added logic to output JSON+LD structure data for FAQs
 
 = 2.0.4 =
 Enhancements:
