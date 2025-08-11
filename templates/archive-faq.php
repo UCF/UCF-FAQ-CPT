@@ -45,7 +45,7 @@ $title_classes = " mb-4";
 				endforeach;
 			endforeach;
 
-			$generate = UCF_FAQ_Config::get_option_or_default( 'add_json_ld' );
+			$generate = UCF_FAQ_Config::get_option_or_default( 'add_json_data' );
 
 			if (  $generate ) :
 			?>
