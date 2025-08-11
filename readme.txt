@@ -3,7 +3,7 @@ Contributors: ucfwebcom
 Tags: ucf, faq, ucf-plugin, custom post type
 Requires at least: 4.7.3
 Tested up to: 6.1
-Stable tag: 2.0.4
+Stable tag: 2.1.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
 

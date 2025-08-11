@@ -40,8 +40,8 @@ Enhancements:
 
 ### 2.0.3 ###
 Accessibility Fixes
-- Updated question tags from h3 to strong
-- Updated title to h2 tags instead of h2
+* Updated question tags from h3 to strong
+* Updated title to h2 tags instead of h2
 
 ### 2.0.2 ###
 Enhancements:
