@@ -10,7 +10,7 @@ if ( ! class_exists( 'UCF_FAQ_Config' ) ) {
 			'disable_faq_archive'      => false,
 			'default_sort_order'       => false,
 			'add_microdata'            => false,
-			'add_json_data'            => true,
+			'add_json_data'            => false,
 			'enqueue_typeahead_js'     => true,
 			'typeahead_script_handle'  => 'typeahead-js',
 			'enqueue_handlebars_js'    => true,
