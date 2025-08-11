@@ -20,6 +20,8 @@ $cta_url = site_url() . get_field( 'faq-topic-footer-cta-url', $topic );
 
 $tags = wp_get_post_tags( $post->ID, array( 'fields' => 'slugs' ) );
 $related_posts = UCF_FAQ_Common::get_related_faqs_by_tag( $tags, array( $post->ID ) );
+
+$generate = UCF_FAQ_Config::get_option_or_default( 'add_json_ld' );
 ?>
 
 <article>
@@ -43,5 +45,10 @@ $related_posts = UCF_FAQ_Common::get_related_faqs_by_tag( $tags, array( $post->I
 		</div>
 	</div>
 </article>
+<?php if ( $generate ) : ?>
+<script type="application/ld+json">
+	<?php echo UCF_FAQ_Common::generate_json_ld( array( $post ) ); ?>
+</script>
+<?php endif; ?>
 
 <?php get_footer(); ?>
