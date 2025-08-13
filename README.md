@@ -34,6 +34,22 @@ The plugins listed below are extended upon in this plugin--this may include cust
 
 ## Changelog ##
 
+### 2.2.1 ###
+Bug Fixes:
+* Corrected a small syntax error that was causing issues with the JSON+LD process when the shortcode was used.
+
+### 2.2.0 ###
+Enhancements:
+* Changed method of generating and outputting JSON+LD data to utilize a global variable, gather the FAQ objects within it, then output them to a script tag in the `wp_footer` action.
+
+### 2.1.1 ###
+Bug Fixes:
+* Corrected a bug having to do with the `add_json_data` setting.
+
+### 2.1.0 ###
+Enhancements:
+* Added logic to output JSON+LD structure data for FAQs
+
 ### 2.0.4 ###
 Enhancements:
 * Added composer file.
