@@ -114,6 +114,9 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 				$items['All'] = $posts;
 			}
 
+			global $ucf_faq_cpt_faqs;
+			$ucf_faq_cpt_faqs = array_merge( $$ucf_faq_cpt_faqs, $posts );
+
 			// Display results
 			$faqs = UCF_FAQ_List_Common::display_faqs( $items, $atts['layout'], $atts );
 
@@ -124,6 +127,9 @@ if ( ! class_exists( 'UCF_FAQ_List_Shortcode' ) ) {
 					return $value->ID;
 				}, $posts );
 				$related_posts = UCF_FAQ_Common::get_related_faqs_by_tag( $related_tags, $related_exclude );
+				// Add related posts to the global variable for addition to the json-ld string
+				$ucf_faq_cpt_faqs = array_merge( $$ucf_faq_cpt_faqs, $related_posts );
+
 				$related_faq_markup = UCF_FAQ_Common::display_related_faqs( $related_posts, 'Related FAQs', $atts );
 			}
 
