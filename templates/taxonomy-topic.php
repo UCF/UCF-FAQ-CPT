@@ -2,6 +2,11 @@
 
 <?php
 $topic = get_queried_object();
+
+//
+global $ucf_faq_cpt_faqs;
+
+$ucf_faq_cpt_faqs = array_merge( $ucf_faq_cpt_faqs, $wp_query->posts );
 ?>
 
 <article>
@@ -75,23 +80,12 @@ $topic = get_queried_object();
 				<?php
 				// Generate Related FAQs markup
 				$related_posts = UCF_FAQ_Common::get_related_faqs_by_topic( array( $topic ), $faqs );
+				$ucf_faq_cpt_faqs = array_merge( $ucf_faq_cpt_faqs, $related_posts );
 				echo UCF_FAQ_Common::display_related_faqs( $related_posts, $related_faq_title, $faq_atts );
 
 				// Display CTA Footer
 				echo UCF_FAQ_Common::display_footer_cta( $cta_text, $cta_url );
-
-				$generate = UCF_FAQ_Config::get_option_or_default( 'add_json_data' );
-
-				if ( $generate ) :
 				?>
-				<script type="application/ld+json">
-				<?php
-					$posts = $wp_query->posts;
-					echo UCF_FAQ_Common::generate_json_ld( $posts );
-
-				?>
-				</script>
-				<?php endif; ?>
 			</div>
 
 

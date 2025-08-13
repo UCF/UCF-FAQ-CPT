@@ -57,21 +57,3 @@ if ( ! function_exists( 'ucf_faq_list_display_classic_after' ) ) {
 	}
 	add_filter( 'ucf_faq_list_display_classic_after', 'ucf_faq_list_display_classic_after', 10, 3 );
 }
-
-if ( ! function_exists( 'ucf_faq_list_display_classic_script' ) ) {
-	function ucf_faq_list_display_classic_script( $content, $items, $args ) {
-		// Check to see if we're generating data.
-		$generate = UCF_FAQ_Config::get_option_or_default( 'add_json_data' );
-		if ( ! $generate ) return '';
-
-		$markup = UCF_FAQ_Common::generate_json_ld( $items );
-
-		ob_start();
-?>
-<script type="application/ld+json">
-	<?php echo $markup; ?>
-</script>
-<?php
-		return ob_get_clean();
-	}
-}

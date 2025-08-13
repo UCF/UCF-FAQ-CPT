@@ -2,6 +2,8 @@
 get_header();
 $container_classes = " container my-5";
 $title_classes = " mb-4";
+
+global $ucf_faq_cpt_faqs;
 ?>
 
 <article>
@@ -9,6 +11,8 @@ $title_classes = " mb-4";
 		<h2 class="ucf-faq-title<?php UCF_FAQ_Config::add_athena_attr( $title_classes ); ?> h2">Frequently Asked Questions</h2>
 		<?php
 		if ( have_posts() ) {
+
+			$ucf_faq_cpt_faqs = array_merge( $ucf_faq_cpt_faqs, $wp_query->posts );
 
 			$posts = $wp_query->posts;
 			$items = array();
@@ -44,16 +48,6 @@ $title_classes = " mb-4";
 			<?php
 				endforeach;
 			endforeach;
-
-			$generate = UCF_FAQ_Config::get_option_or_default( 'add_json_data' );
-
-			if (  $generate ) :
-			?>
-			<script type="application/ld+json">
-				<?php echo UCF_FAQ_Common::generate_json_ld( $posts ); ?>
-			</script>
-			<?php
-			endif;
 		}
 		else {
 			echo 'No results found.';

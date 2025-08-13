@@ -66,6 +66,7 @@ if ( ! function_exists( 'ucf_faq_plugin_deactivation' ) ) {
 if ( ! function_exists( 'ucf_faq_plugins_loaded' ) ) {
 	function ucf_faq_plugins_loaded() {
 		add_action( 'init', array( 'UCF_FAQ_PostType', 'register' ), 10, 0 );
+		add_action( 'init', array( 'UCF_FAQ_Common', 'init_global_variable' ), 10, 0 );
 	}
 
 	add_action( 'plugins_loaded', 'ucf_faq_plugins_loaded', 10, 0 );
