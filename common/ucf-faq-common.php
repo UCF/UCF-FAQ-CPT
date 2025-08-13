@@ -6,6 +6,18 @@
 if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 	class UCF_FAQ_Common {
 		/**
+		 * Initiates the global variable used to store
+		 * which FAQs are on the page
+		 * @author Jim Barnes
+		 * @since 2.2.0
+		 * @return void
+		 */
+		public static function init_global_variable() {
+			global $ucf_faq_cpt_faqs;
+			if ( ! $ucf_faq_cpt_faqs ) $ucf_faq_cpt_faqs = array();
+		}
+
+		/**
 		 * Method to output the faq question and answer HTML.
 		 * @author RJ Bruneel
 		 * @since 1.0.0
@@ -308,8 +320,23 @@ if ( ! class_exists( 'UCF_FAQ_Common' ) ) {
 
 			return json_encode( $retval );
 		}
+
+		public static function add_json_ld() {
+			$generate = UCF_FAQ_Config::get_option_or_default( 'add_json_data' );
+			if ( ! $generate ) return;
+
+			global $ucf_faq_cpt_faqs;
+			if ( ! $ucf_faq_cpt_faqs || empty( $ucf_faq_cpt_faqs ) ) return;
+
+			?>
+			<script type="application/ld+json">
+				<?php echo UCF_FAQ_Common::generate_json_ld( $ucf_faq_cpt_faqs ); ?>
+			</script>
+			<?php
+		}
 	}
 
 	add_action( 'wp_enqueue_scripts', array( 'UCF_FAQ_Common', 'register_assets' ) );
 	add_action( 'wp_enqueue_scripts', array( 'UCF_FAQ_Common', 'enqueue_styles' ) );
+	add_action( 'wp_footer', array( 'UCF_FAQ_Common', 'add_json_ld' ), 10 );
 }
